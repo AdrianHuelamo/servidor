@@ -37,7 +37,7 @@ if (file_exists("upload/" . $_FILES["foto"]["name"])) {
     <br>
     <a href="<?= "upload/" . $_FILES["foto"]["name"] ?>" download>Descargar</a>
     <br>
-    <a href="cargar_fichero.php?imagen=<?=$_FILES["foto"]["name"] ?>">Eliminar</a>
+    <a href="portadas.php?imagen=<?=$_FILES["foto"]["name"] ?>">Eliminar</a>
     <br>
 </body>
 </html>
