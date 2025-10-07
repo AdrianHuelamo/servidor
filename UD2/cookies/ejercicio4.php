@@ -5,7 +5,7 @@ $visitas++;
 
 setcookie('visitas',$visitas, [
     'expires' => time() + 3600,
-    'path ' => '/',
+    'path' => '/',
     'samesite' => 'Lax',
 ]);
 
