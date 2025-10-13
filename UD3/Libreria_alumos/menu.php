@@ -1,3 +1,13 @@
+<?php
+require_once "./admin/includes/crudCategorias.php";
+
+//instanciamos
+$categoriasObj = new Categorias();
+
+//obtenemos categorias
+$categorias = $categoriasObj->showCategorias();
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">
@@ -17,10 +27,11 @@
         <aside class="col-md-3">
             <h4>Categorías</h4>
             <ul class="list-group">
-                <li class="list-group-item"><a href="index.php" class="text-decoration-none">Categoria 1</a></li>
-                <li class="list-group-item"><a href="index.php" class="text-decoration-none">Categoria 1</a></li>
-                <li class="list-group-item"><a href="index.php" class="text-decoration-none">Categoria 1</a></li>
-                <li class="list-group-item"><a href="index.php" class="text-decoration-none">Categoria 1</a></li>
-                <li class="list-group-item"><a href="index.php" class="text-decoration-none">Categoria 1</a></li>
+                <?php foreach($categorias as $cat) : ?>
+                <li class="list-group-item">
+                    <a href="index.php?cat=<?= $cat['id_categoria'] ?>" class="text-decoration-none">
+                        <?= $cat['categoria']?>
+                    </a></li>
+                <?php endforeach; ?>
             </ul>
         </aside>

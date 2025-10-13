@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2025 a las 17:11:19
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: localhost
+-- Tiempo de generación: 08-10-2025 a las 11:30:05
+-- Versión del servidor: 8.0.43-0ubuntu0.24.04.2
+-- Versión de PHP: 8.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorias` (
-  `id_categoria` int(11) NOT NULL,
+  `id_categoria` int NOT NULL,
   `categoria` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -50,33 +50,33 @@ INSERT INTO `categorias` (`id_categoria`, `categoria`) VALUES
 --
 
 CREATE TABLE `libros` (
-  `id_libro` int(11) NOT NULL,
+  `id_libro` int NOT NULL,
   `titulo` varchar(50) DEFAULT NULL,
   `autor` varchar(40) NOT NULL,
-  `id_categoria` int(11) DEFAULT NULL,
+  `id_categoria` int DEFAULT NULL,
   `precio` decimal(5,0) DEFAULT NULL,
-  `visitas` int(11) DEFAULT 0,
-  `fecha` date DEFAULT curdate(),
+  `visitas` int DEFAULT '0',
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `portada` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Volcado de datos para la tabla `libros`
 --
 
 INSERT INTO `libros` (`id_libro`, `titulo`, `autor`, `id_categoria`, `precio`, `visitas`, `fecha`, `portada`) VALUES
-(1, 'Harry Potter y la piedra filosofal', 'JK Rowling', 1, 15, 11, '2020-01-01', 'harry_potter_1.jpg'),
-(2, 'Harry Potter y la cámara secreta', 'JK Rowling', 1, NULL, 8, '2020-01-02', 'harry_potter_2.jpg'),
-(3, 'El ocho', 'Katherin Neville', 1, 10, 5, '2020-01-03', 'el_ocho.jpg'),
-(4, 'Wonder Woman', 'William Moulton', 4, 10, 0, '2025-06-17', 'wonder_woman.jpg'),
-(5, 'Alicia en el país de las maravillas', 'Lewis Carroll', 3, 11, 0, '2025-06-17', 'alicia_maravillas.jpg'),
-(6, 'Los pilares de la tierra', 'Ken Follett', 5, 12, 0, '2025-06-17', 'pilares_tierra.jpg'),
-(7, 'El alquimista', 'Paolo Coelho', 3, NULL, 1, '2025-06-17', 'sin_portada.jpg'),
-(8, 'El fuego', 'Katherin Neville', 1, 10, 0, '2025-06-17', 'el_fuego.jpg'),
-(9, 'La clave está en Rebeca', 'Ken Follett', 1, 8, 0, '2025-06-17', 'clave_Rebeca.jpg'),
-(10, 'Secretos', 'Paolo Coelho', 1, 11, 0, '2025-06-17', 'secretos.jpg'),
-(11, 'Harry Potter y el prisionero de Azkabán', 'JK Rowling', 1, 15, 0, '2025-06-17', 'harry_potter_3.jpg'),
-(12, 'Harry Potter y el cáliz de fuego', 'JK Rowling', 1, 16, 0, '2025-06-17', 'harry_potter_4.jpg');
+(1, 'Harry Potter y la piedra filosofal', 'JK Rowling', 1, 15, 11, '2019-12-31 23:00:00', 'harry_potter_1.jpg'),
+(2, 'Harry Potter y la cámara secreta', 'JK Rowling', 1, NULL, 8, '2020-01-01 23:00:00', 'harry_potter_2.jpg'),
+(3, 'El ocho', 'Katherin Neville', 1, 10, 5, '2020-01-02 23:00:00', 'el_ocho.jpg'),
+(4, 'Wonder Woman', 'William Moulton', 4, 10, 0, '2025-06-16 22:00:00', 'wonder_woman.jpg'),
+(5, 'Alicia en el país de las maravillas', 'Lewis Carroll', 3, 11, 0, '2025-06-16 22:00:00', 'alicia_maravillas.jpg'),
+(6, 'Los pilares de la tierra', 'Ken Follett', 5, 12, 0, '2025-06-16 22:00:00', 'pilares_tierra.jpg'),
+(7, 'El alquimista', 'Paolo Coelho', 3, NULL, 1, '2025-06-16 22:00:00', 'sin_portada.jpg'),
+(8, 'El fuego', 'Katherin Neville', 1, 10, 0, '2025-06-16 22:00:00', 'el_fuego.jpg'),
+(9, 'La clave está en Rebeca', 'Ken Follett', 1, 8, 0, '2025-06-16 22:00:00', 'clave_Rebeca.jpg'),
+(10, 'Secretos', 'Paolo Coelho', 1, 11, 0, '2025-06-16 22:00:00', 'secretos.jpg'),
+(11, 'Harry Potter y el prisionero de Azkabán', 'JK Rowling', 1, 15, 0, '2025-06-16 22:00:00', 'harry_potter_3.jpg'),
+(12, 'Harry Potter y el cáliz de fuego', 'JK Rowling', 1, 16, 0, '2025-06-16 22:00:00', 'harry_potter_4.jpg');
 
 -- --------------------------------------------------------
 
@@ -85,12 +85,12 @@ INSERT INTO `libros` (`id_libro`, `titulo`, `autor`, `id_categoria`, `precio`, `
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  `apellidos` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `apellidos` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -136,7 +136,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
