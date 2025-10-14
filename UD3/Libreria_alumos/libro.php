@@ -1,3 +1,22 @@
+<?php
+require_once "./admin/includes/crudLibros.php";
+$libroObj = new Libros();
+
+//Si hay id en la URL
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $libroObj->sumarVisita($id);
+    $libro = $libroObj->getLibroById($id);
+
+//si no hay id en la URL
+}else{
+    header("location:index.php");
+    exit();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,15 +32,15 @@
 
     <div class="row">
         <div class="col-md-4">
-            <img src="portadas/yo_julia.jpg" alt="yo_julia" class="img-fluid">
+            <img src="portadas/<?=$libro['portada']?>" alt="<?=$libro['titulo']?>" class="img-fluid">
         </div>
         <div class="col-md-8">
-            <h2>Yo, Julia</h2>
-            <p><strong>Autor:</strong>Santiago Posteguillo</p>
-            <p><strong>Categoría:</strong>Novela Histórica</p>
-            <p><strong>Precio:</strong>22,95 €</p>
-            <p><strong>Visitas:</strong>105</p>
-            <p><strong>Fecha de alta:</strong>02/10/2025</p>
+            <h2><?=$libro['titulo']?></h2>
+            <p><strong>Autor:</strong> <?=$libro['autor']?></p>
+            <p><strong>Categoría:</strong> <?=$libro['categoria']?></p>
+            <p><strong>Precio:</strong> <?=$libro['precio']?> €</p>
+            <p><strong>Visitas:</strong> <?=$libro['visitas']?></p>
+            <p><strong>Fecha de alta:</strong> <?=$libro['fecha']?></p>
         </div>
     </div>
     <?php include("footer.php"); ?>

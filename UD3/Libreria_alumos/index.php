@@ -29,7 +29,7 @@ $libroObj = new Libros();
         }?>
             <?php foreach ($libros as $libro) : ?>
             <div class="col-md-3 text-center mb-4">
-                <a href="">
+                <a href="libro.php?id=<?=$libro['id_libro']?>">
                     <img src="portadas/<?= $libro['portada']?>" class="img-fluid" alt="<?= $libro['titulo']?>">
                 </a>
                 <p><?= $libro['titulo']?></p>
