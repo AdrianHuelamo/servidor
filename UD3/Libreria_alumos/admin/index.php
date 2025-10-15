@@ -1,3 +1,16 @@
+<?php
+require_once("./includes/sessions.php");
+$sesion = new Sessions();
+
+if (!$sesion->comprobarSesion()) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$usuario = $_SESSION['usuario'];//array con los datos
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +27,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <h2 class="mb-4">Bienvenido al panel de administración</h2>
-            <p>Hola, <strong>Nombre y apellidos</strong>. Has accedido correctamente al área privada.</p>
+            <p>Hola, <strong> <?= $usuario['nombre']?> <?= $usuario['apellidos']?></strong>. Has accedido correctamente al Area privada.</p>
         </div>
     </div>
 </div>
