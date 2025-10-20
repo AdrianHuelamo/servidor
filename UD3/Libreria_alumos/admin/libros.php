@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php if ($accion === "crear" || ($accion === "editar" && $id)): ?>
                     
                         <h3><?= $accion === "crear" ? "Nuevo libro" : "Editar libro" ?></h3>
-                        
+          
                         <form method="post" class="mb-4" style="max-width: 400px;">
                             <div class="mb-2">
                                 <label class="form-label">Título:</label>
@@ -134,8 +134,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                             <div class="mb-2">
                                 <label class="form-label">Categoria:</label>
-                                <input type="text" name="id_categoria" class="form-control"
-                                value="<?= htmlspecialchars($datos_libro['id_categoria']) ?>" required>
+                                <select name="id_categoria" class="form-control" required>
+                                    <option value="">-- Selecciona una categoría --</option>
+                                    <?php foreach ($listaCategorias as $cat): ?>
+                                        <option value="<?= $cat['id_categoria'] ?>" <?= ($datos_libro['id_categoria'] == $cat['id_categoria']) ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($cat['categoria']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
 
                             <div class="mb-2">
@@ -152,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                             <div class="mb-2">
                                 <label class="form-label">Portada:</label>
-                                <input type="text" name="portada" class="form-control"
+                                <input type="file" name="portada" class="form-control"
                                 value="<?= htmlspecialchars($datos_libro['portada']) ?>" required>
                             </div>
 

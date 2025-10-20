@@ -1,0 +1,381 @@
+/* Estilos Generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5; /* Ligeramente más compacto */
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Clase Contenedora reutilizable */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 15px; /* Reducido ligeramente el padding lateral */
+    overflow: hidden; /* Para contener flotantes si se usaran */
+}
+
+/* Encabezado y Navegación */
+header {
+    background-color: #333;
+    color: #fff;
+    padding-top: 5px; /* Reducido */
+    padding-bottom: 5px; /* Reducido */
+    /* margin-bottom ya no es necesario aquí, se maneja con el banner o main-container */
+}
+
+header h1 {
+    text-align: center;
+    margin: 0;
+    padding: 10px 0; /* Ajustado */
+    font-size: 2em; /* Ligeramente más pequeño */
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #444;
+}
+
+nav ul li {
+    flex-grow: 1;
+}
+
+
+nav ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px; /* Ligeramente reducido */
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+/* Sección del Banner */
+.banner {
+    margin-bottom: 25px; /* Espacio debajo del banner */
+    background-color: #ddd; /* Color de fondo si la imagen no carga */
+}
+
+.banner img {
+    display: block; /* Quita espacio extra debajo de la imagen */
+    height: auto;
+    width: 100%;
+}
+
+section > h2 {
+    position: relative;
+    left: 285px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007bff; /* Línea decorativa */
+    padding-bottom: 5px;
+    font-size: 1.6em;
+}
+
+.highlight-section {
+    background-color: #e9ecef; /* Un fondo sutil para diferenciar la sección */
+    padding: 25px 0; /* Espacio vertical arriba y abajo de la sección */
+    margin-bottom: 25px; /* Espacio debajo antes del contenido principal */
+}
+
+.featured-items {
+    display: flex;              /* Usa Flexbox para alinear los items */
+    flex-direction: row;        /* Dirección horizontal (default) */
+    justify-content: space-between; /* Distribuye espacio entre los items */
+                                /* Alternativas: space-around, space-evenly, flex-start */
+    align-items: flex-start;    /* Alinea los items arriba si tienen alturas diferentes */
+    gap: 20px;                  /* Espacio fijo entre items (opcional si usas space-between) */
+}
+
+.featured-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+    text-align: center;         /* Centra el texto dentro de cada item */
+    height: 350px;
+    /* Cada item ocupa aproximadamente un tercio del espacio,
+       restando el 'gap'. Ajusta según sea necesario. */
+    flex-basis: calc(30% - 14px); /* (100% / 3) - (gap * 2 / 3) Aprox. */
+    flex-grow: 0;   /* No permitir que crezcan */
+    flex-shrink: 0; /* No permitir que encojan */
+
+     /* Importante para PHP: Asegura que los contenedores se comporten */
+    display: flex;
+    flex-direction: column;
+}
+
+.featured-item img {
+    max-width: 100%;   
+    max-height: 100%;
+    height: 250px;
+    /* Imagen responsiva */
+    width: 200px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.featured-item h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.1em; /* Ajusta tamaño si es necesario */
+    color: #0056b3;
+    /* Asegurar que el título no empuje el resto hacia abajo si varía en líneas */
+    min-height: 2.4em; /* Altura mínima para 2 líneas aprox. Ajusta! */
+    line-height: 1.2em;
+}
+
+.featured-item .meta-info {
+    font-size: 0.85em;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.featured-item .sales-data {
+    font-weight: bold;
+    color: #28a745; /* Verde para ventas */
+}
+
+
+/* --- Responsividad para la Sección Destacada --- */
+
+@media (max-width: 768px) {
+    .featured-items {
+        flex-direction: column; /* Apila los items verticalmente */
+        align-items: center;    /* Centra los items apilados */
+        gap: 20px; /* Mantiene el espacio vertical */
+    }
+
+    .featured-item {
+        flex-basis: 80%; /* Ocupa la mayor parte del ancho */
+        max-width: 400px; /* Un ancho máximo para que no sea enorme en tablets */
+    }
+     .featured-item h4 {
+        min-height: auto; /* Quitar altura mínima en modo columna */
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-item {
+        flex-basis: 95%; /* Casi todo el ancho en móviles */
+         max-width: none; /* Sin ancho máximo */
+    }
+     .highlight-section {
+        padding: 15px 0; /* Menos padding en móvil */
+    }
+}
+
+/* Layout Principal con Flexbox */
+.main-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que el sidebar pase abajo en pantallas pequeñas */
+    gap: 20px; /* Espacio entre main-content y sidebar */
+}
+
+/* Columna Principal de Noticias */
+.main-content {
+    flex: 1; /* Ocupa el espacio restante */
+    min-width: 0; /* Ayuda a flexbox a encoger correctamente */
+}
+
+.main-content h2 {
+    text-align: left; /* Título alineado a la izquierda */
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007bff; /* Línea decorativa */
+    padding-bottom: 5px;
+    font-size: 1.6em;
+}
+
+/* Estilos de Items de Noticia (más pequeños) */
+.news-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 15px; /* Espacio reducido */
+    padding: 10px; /* Padding reducido */
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Sombra más sutil */
+    display: flex; /* Usar flexbox para alinear imagen y texto */
+    gap: 10px; /* Espacio entre imagen y contenido */
+    align-items: flex-start; /* Alinear items al inicio */
+}
+
+.news-item img {
+    /* Ya no se usa float */
+    /* float: left; */
+    /* margin-right: 15px; */
+    /* margin-bottom: 10px; */
+    max-width: 100px; /* Imagen más pequeña */
+    height: auto;
+    border-radius: 3px;
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+}
+
+.news-content {
+    flex: 1; /* Ocupa el espacio restante al lado de la imagen */
+}
+
+.news-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px; /* Menos espacio bajo el título */
+    color: #0056b3;
+    font-size: 1.1em; /* Título más pequeño */
+}
+
+.meta-info {
+    font-size: 0.8em; /* Más pequeño */
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.news-item p {
+    font-size: 0.9em; /* Texto del resumen más pequeño */
+    margin-bottom: 8px;
+}
+
+.read-more {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 4px 8px; /* Botón más pequeño */
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+.read-more:hover {
+    background-color: #0056b3;
+}
+
+/* Columna Lateral (Sidebar) */
+.sidebar {
+    flex-basis: 240px; /* Ancho fijo para el sidebar */
+    flex-shrink: 0; /* Evita que se encoja */
+}
+
+.widget {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.widget h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget ul li {
+    margin-bottom: 8px;
+}
+
+.widget ul li a {
+    text-decoration: none;
+    color: #0056b3;
+    font-size: 0.9em;
+}
+
+.widget ul li a:hover {
+    text-decoration: underline;
+}
+
+.ad-placeholder img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centrar si el contenedor es más ancho */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px 0;
+    background-color: #e9e9e9;
+    border-top: 1px solid #ccc;
+    color: #555;
+    font-size: 0.9em;
+}
+
+/* --- Media Queries para Responsividad --- */
+
+/* Tablets y pantallas más pequeñas */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Apila las columnas */
+        gap: 0; /* Quita el gap horizontal */
+    }
+
+    .main-content {
+        margin-right: 0; /* Quita el margen derecho */
+        margin-bottom: 20px; /* Añade espacio debajo del contenido principal */
+    }
+
+    .sidebar {
+        flex-basis: auto; /* Permite que ocupe todo el ancho disponible */
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    nav ul li {
+        display: block; /* Menú vertical */
+        text-align: center;
+    }
+
+    .news-item {
+        flex-direction: column; /* Apila imagen y texto dentro de la noticia */
+        align-items: center; /* Centra los elementos */
+        text-align: center; /* Centra el texto */
+    }
+
+    .news-item img {
+       max-width: 150px; /* Imagen un poco más grande en móvil */
+       margin-bottom: 10px;
+    }
+
+     .news-content {
+       width: 100%; /* Asegura que ocupe todo el ancho */
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .container {
+        padding: 0 10px; /* Menos padding en móviles */
+    }
+}
