@@ -17,6 +17,9 @@
                     <a class="nav-link" href="categorias.php">Gestionar categorías</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="usuarios.php">Gestionar usuarios</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="./includes/logout.php">Cerrar sesión</a>
                 </li>
             </ul>
