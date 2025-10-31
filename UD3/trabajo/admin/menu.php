@@ -44,7 +44,7 @@
 	          <li class="nav-item"><a href="car.php" class="nav-link">Coches</a></li>
 	          <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Contacto</a></li>
-	          <li class="nav-item"><a href="login.php" class="nav-link">Registrate</a></li>
+	          <li class="nav-item"><a href="includes/logout.php" class="nav-link">Cerrar sesión</a></li>
 	        </ul>
 	      </div>
 	    </div>

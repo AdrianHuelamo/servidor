@@ -40,7 +40,7 @@
 	          <li class="nav-item active"><a href="index.php" class="nav-link">Inicio</a></li>
 	          <li class="nav-item"><a href="about.php" class="nav-link">Sobre Nosotros</a></li>
 	          <li class="nav-item"><a href="services.php" class="nav-link">Servicios</a></li>
-	          <li class="nav-item"><a href="pricing.php" class="nav-link">Preciosg</a></li>
+	          <li class="nav-item"><a href="pricing.php" class="nav-link">Precios</a></li>
 	          <li class="nav-item"><a href="car.php" class="nav-link">Coches</a></li>
 	          <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Contacto</a></li>
