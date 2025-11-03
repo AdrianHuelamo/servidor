@@ -1,27 +1,72 @@
+<?php
+// ---- LÍNEAS PARA MOSTRAR ERRORES ----
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+// ---- FIN DE LÍNEAS PARA MOSTRAR ERRORES ----
+
+require_once 'admin/includes/database.php'; 
+
+$posts_por_pagina = 5; 
+$pagina_actual = isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? (int)$_GET['page'] : 1;
+$offset = ($pagina_actual - 1) * $posts_por_pagina;
+
+$db = new Connection();
+$conn = $db->getConnection(); 
+
+$sql_total = "SELECT COUNT(*) AS total FROM blog";
+$resultado_total = $conn->query($sql_total);
+if (!$resultado_total) {
+    die("Error al contar los posts: " . $conn->error);
+}
+$total_posts = $resultado_total->fetch_assoc()['total'];
+$total_paginas = ceil($total_posts / $posts_por_pagina);
+
+$sql = "SELECT b.*, u.username AS nombre_autor 
+        FROM blog b
+        LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
+        ORDER BY b.fecha DESC
+        LIMIT ? OFFSET ?";
+
+$stmt = $conn->prepare($sql);
+if ($stmt === false) {
+    die("Error al preparar la consulta: " . $conn->error);
+}
+
+$stmt->bind_param("ii", $posts_por_pagina, $offset);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+$posts = [];
+if ($resultado->num_rows > 0) {
+    while($fila = $resultado->fetch_assoc()) {
+        if(empty($fila['nombre_autor'])) {
+            $fila['nombre_autor'] = 'Admin';
+        }
+        $posts[] = $fila;
+    }
+}
+
+$stmt->close();
+$db->closeConnection($conn);
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+    <title>AlquiLobato - Blog</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
-
     <link rel="stylesheet" href="css/aos.css">
-
     <link rel="stylesheet" href="css/ionicons.min.css">
-
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
@@ -36,7 +81,7 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <swpan>Blog <i class="ion-ios-arrow-forward"></i></span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-3 bread">Nuestro Blog</h1>
           </div>
         </div>
@@ -46,114 +91,51 @@
     <section class="ftco-section">
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <div class="col-md-12 text-center d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end mb-md-5">
-              <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_1.jpg');">
-              </a>
-              <div class="text px-md-5 pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+
+            <?php if (count($posts) > 0): ?>
+                <?php foreach ($posts as $post): ?>
+                <div class="col-md-12 text-center d-flex ftco-animate">
+                    <div class="blog-entry justify-content-end mb-md-5">
+                    <a href="blog-single.php?id=<?php echo $post['id_blog']; ?>" class="block-20 img" style="background-image: url('<?php echo htmlspecialchars($post['imagen']); ?>');">
+                    </a>
+                    <div class="text px-md-5 pt-4">
+                        <div class="meta mb-3">
+                        <div><a href="#"><?php echo date("d M, Y", strtotime($post['fecha'])); ?></a></div>
+                        <div><a href="#"><?php echo htmlspecialchars($post['nombre_autor']); ?></a></div>
+                        </div>
+                        <h3 class="heading mt-2"><a href="blog-single.php?id=<?php echo $post['id_blog']; ?>"><?php echo htmlspecialchars($post['titulo']); ?></a></h3>
+                        <p><?php echo htmlspecialchars($post['resumen']); ?></p>
+                        <p><a href="blog-single.php?id=<?php echo $post['id_blog']; ?>" class="btn btn-primary">Continuar <span class="icon-long-arrow-right"></span></a></p>
+                    </div>
+                    </div>
                 </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="blog-single.html" class="btn btn-primary">Continue <span class="icon-long-arrow-right"></span></a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 text-center d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end mb-md-5">
-              <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_2.jpg');">
-              </a>
-              <div class="text px-md-5 pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-md-12 text-center">
+                    <p>No hay entradas en el blog por el momento.</p>
                 </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="blog-single.html" class="btn btn-primary">Continue <span class="icon-long-arrow-right"></span></a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 text-center d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_3.jpg');">
-              </a>
-              <div class="text px-md-5 pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="blog-single.html" class="btn btn-primary">Continue <span class="icon-long-arrow-right"></span></a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 text-center d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end mb-md-5">
-              <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_4.jpg');">
-              </a>
-              <div class="text px-md-5 pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="blog-single.html" class="btn btn-primary">Continue <span class="icon-long-arrow-right"></span></a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 text-center d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end mb-md-5">
-              <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_5.jpg');">
-              </a>
-              <div class="text px-md-5 pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="blog-single.html" class="btn btn-primary">Continue <span class="icon-long-arrow-right"></span></a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 text-center d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_6.jpg');">
-              </a>
-              <div class="text px-md-5 pt-4">
-              	<div class="meta mb-3">
-                  <div><a href="#">Oct. 29, 2019</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-                </div>
-                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                <p><a href="blog-single.html" class="btn btn-primary">Continue <span class="icon-long-arrow-right"></span></a></p>
-              </div>
-            </div>
-          </div>
+            <?php endif; ?>
+          
         </div>
         <div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
               <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
+                <?php if ($pagina_actual > 1): ?>
+                    <li><a href="blog.php?page=<?php echo $pagina_actual - 1; ?>">&lt;</a></li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+                    <?php if ($i == $pagina_actual): ?>
+                    <li class="active"><span><?php echo $i; ?></span></li>
+                    <?php else: ?>
+                    <li><a href="blog.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <?php endif; ?>
+                <?php endfor; ?>
+
+                <?php if ($pagina_actual < $total_paginas): ?>
+                    <li><a href="blog.php?page=<?php echo $pagina_actual + 1; ?>">&gt;</a></li>
+                <?php endif; ?>
               </ul>
             </div>
           </div>
@@ -161,71 +143,10 @@
       </div>
     </section>
 
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Information</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Services</a></li>
-                <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-                <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Customer Support</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">FAQ</a></li>
-                <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-                <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-                <li><a href="#" class="py-2 d-block">How it works</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <?php include("footer.php"); ?>
     
   
 
-  <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
@@ -243,7 +164,7 @@
   <script src="js/bootstrap-datepicker.js"></script>
   <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="httpsias.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
     

@@ -1,27 +1,90 @@
+<?php
+require_once 'admin/includes/database.php'; 
+
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    header('Location: car.php');
+    exit;
+}
+$id_coche = $_GET['id'];
+
+$db = new Connection();
+$conn = $db->getConnection(); 
+
+$sql = "SELECT coches.*, marcas.nombre AS marca_nombre 
+        FROM coches 
+        JOIN marcas ON coches.id_categoria = marcas.id_marca 
+        WHERE coches.id_coche = ?";
+
+$stmt = $conn->prepare($sql);
+
+if ($stmt === false) {
+    die("Error al preparar la consulta: " . $conn->error);
+}
+
+$stmt->bind_param("i", $id_coche);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+if ($resultado->num_rows === 1) {
+    $coche = $resultado->fetch_assoc();
+} else {
+    $coche = null;
+    header('Location: car.php');
+    exit;
+}
+
+$stmt->close();
+
+$coches_relacionados = [];
+if ($coche) {
+    $precio_actual = $coche['precio_dia'];
+    $id_coche_actual = $coche['id_coche'];
+    $rango_precio = 75;
+    $precio_min = $precio_actual - $rango_precio;
+    $precio_max = $precio_actual + $rango_precio;
+
+    $sql_relacionados = "SELECT c.*, m.nombre AS marca_nombre 
+                         FROM coches c
+                         JOIN marcas m ON c.id_categoria = m.id_marca
+                         WHERE c.precio_dia BETWEEN ? AND ?
+                         AND c.id_coche != ?
+                         ORDER BY RAND()
+                         LIMIT 3";
+    
+    $stmt_rel = $conn->prepare($sql_relacionados);
+    
+    if ($stmt_rel) {
+        $stmt_rel->bind_param("iii", $precio_min, $precio_max, $id_coche_actual);
+        $stmt_rel->execute();
+        $resultado_rel = $stmt_rel->get_result();
+        
+        while($fila_rel = $resultado_rel->fetch_assoc()) {
+            $coches_relacionados[] = $fila_rel;
+        }
+        $stmt_rel->close();
+    }
+}
+
+$db->closeConnection($conn);
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+    <title>AlquiLobato - Detalles del Coche</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
-
     <link rel="stylesheet" href="css/aos.css">
-
     <link rel="stylesheet" href="css/ionicons.min.css">
-
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
@@ -35,7 +98,7 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span>Detalles Coches <i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="car.php">Coches <i class="ion-ios-arrow-forward"></i></a></span> <span>Detalles Coche <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-3 bread">Detalles del Coche</h1>
           </div>
         </div>
@@ -43,15 +106,15 @@
     </section>
 		
 
-		<section class="ftco-section ftco-car-details">
+	<section class="ftco-section ftco-car-details">
       <div class="container">
       	<div class="row justify-content-center">
       		<div class="col-md-12">
       			<div class="car-details">
-      				<div class="img rounded" style="background-image: url(images/bg_1.jpg);"></div>
+      				<div class="img rounded" style="background-image: url(<?php echo htmlspecialchars($coche['imagen']); ?>);"></div>
       				<div class="text text-center">
-      					<span class="subheading">Cheverolet</span>
-      					<h2>Mercedes Grand Sedan</h2>
+      					<span class="subheading"><?php echo htmlspecialchars($coche['marca_nombre']); ?></span>
+      					<h2><?php echo htmlspecialchars($coche['nombre']); ?></h2>
       				</div>
       			</div>
       		</div>
@@ -64,8 +127,8 @@
 	              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-dashboard"></span></div>
 	              	<div class="text">
 		                <h3 class="heading mb-0 pl-3">
-		                	Mileage
-		                	<span>40,000</span>
+		                	Kilómetros
+		                	<span><?php echo number_format($coche['kilometros'], 0, ',', '.'); ?> km</span>
 		                </h3>
 	                </div>
                 </div>
@@ -79,8 +142,8 @@
 	              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-pistons"></span></div>
 	              	<div class="text">
 		                <h3 class="heading mb-0 pl-3">
-		                	Transmission
-		                	<span>Manual</span>
+		                	Transmisión
+		                	<span><?php echo htmlspecialchars($coche['transmision']); ?></span>
 		                </h3>
 	                </div>
                 </div>
@@ -94,8 +157,8 @@
 	              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car-seat"></span></div>
 	              	<div class="text">
 		                <h3 class="heading mb-0 pl-3">
-		                	Seats
-		                	<span>5 Adults</span>
+		                	Asientos
+		                	<span><?php echo htmlspecialchars($coche['asientos']); ?> Plazas</span>
 		                </h3>
 	                </div>
                 </div>
@@ -109,8 +172,8 @@
 	              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-backpack"></span></div>
 	              	<div class="text">
 		                <h3 class="heading mb-0 pl-3">
-		                	Luggage
-		                	<span>4 Bags</span>
+		                	Maletero
+		                	<span><?php echo htmlspecialchars($coche['maletero']); ?> L</span>
 		                </h3>
 	                </div>
                 </div>
@@ -124,8 +187,8 @@
 	              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div>
 	              	<div class="text">
 		                <h3 class="heading mb-0 pl-3">
-		                	Fuel
-		                	<span>Petrol</span>
+		                	Combustible
+		                	<span><?php echo htmlspecialchars($coche['combustible']); ?></span>
 		                </h3>
 	                </div>
                 </div>
@@ -138,185 +201,19 @@
 						<div class="bd-example bd-example-tabs">
 							<div class="d-flex justify-content-center">
 							  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
 							    <li class="nav-item">
-							      <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Features</a>
+							      <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Descripción</a>
 							    </li>
 							    <li class="nav-item">
-							      <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Description</a>
-							    </li>
-							    <li class="nav-item">
-							      <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Review</a>
+							      <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Reseñas</a>
 							    </li>
 							  </ul>
 							</div>
-
 						  <div class="tab-content" id="pills-tabContent">
 						    <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-						    	<div class="row">
-						    		<div class="col-md-4">
-						    			<ul class="features">
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Airconditions</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Child Seat</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>GPS</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Luggage</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Music</li>
-						    			</ul>
-						    		</div>
-						    		<div class="col-md-4">
-						    			<ul class="features">
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Seat Belt</li>
-						    				<li class="remove"><span class="ion-ios-close"></span>Sleeping Bed</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Water</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Bluetooth</li>
-						    				<li class="remove"><span class="ion-ios-close"></span>Onboard computer</li>
-						    			</ul>
-						    		</div>
-						    		<div class="col-md-4">
-						    			<ul class="features">
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Audio input</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Long Term Trips</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Car Kit</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Remote central locking</li>
-						    				<li class="check"><span class="ion-ios-checkmark"></span>Climate control</li>
-						    			</ul>
-						    		</div>
-						    	</div>
+						    	<p>Este <?php echo htmlspecialchars($coche['marca_nombre']) . " " . htmlspecialchars($coche['nombre']); ?> del año <?php echo htmlspecialchars($coche['año']); ?> es una opción fantástica para tu viaje. Cuenta con transmisión <?php echo htmlspecialchars($coche['transmision']); ?> y espacio para <?php echo htmlspecialchars($coche['asientos']); ?> personas. Perfecto para cualquier aventura.</p>
 						    </div>
-
-						    <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-						      <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-									<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-						    </div>
-
 						    <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-						      <div class="row">
-							   		<div class="col-md-7">
-							   			<h3 class="head">23 Reviews</h3>
-							   			<div class="review d-flex">
-									   		<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-									   		<div class="desc">
-									   			<h4>
-									   				<span class="text-left">Jacob Webb</span>
-									   				<span class="text-right">14 March 2018</span>
-									   			</h4>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-								   					</span>
-								   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-									   			</p>
-									   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-									   		</div>
-									   	</div>
-									   	<div class="review d-flex">
-									   		<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-									   		<div class="desc">
-									   			<h4>
-									   				<span class="text-left">Jacob Webb</span>
-									   				<span class="text-right">14 March 2018</span>
-									   			</h4>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-								   					</span>
-								   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-									   			</p>
-									   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-									   		</div>
-									   	</div>
-									   	<div class="review d-flex">
-									   		<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-									   		<div class="desc">
-									   			<h4>
-									   				<span class="text-left">Jacob Webb</span>
-									   				<span class="text-right">14 March 2018</span>
-									   			</h4>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-								   					</span>
-								   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-									   			</p>
-									   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-									   		</div>
-									   	</div>
-							   		</div>
-							   		<div class="col-md-5">
-							   			<div class="rating-wrap">
-								   			<h3 class="head">Give a Review</h3>
-								   			<div class="wrap">
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(98%)
-								   					</span>
-								   					<span>20 Reviews</span>
-									   			</p>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(85%)
-								   					</span>
-								   					<span>10 Reviews</span>
-									   			</p>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(70%)
-								   					</span>
-								   					<span>5 Reviews</span>
-									   			</p>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(10%)
-								   					</span>
-								   					<span>0 Reviews</span>
-									   			</p>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(0%)
-								   					</span>
-								   					<span>0 Reviews</span>
-									   			</p>
-									   		</div>
-								   		</div>
-							   		</div>
-							   	</div>
 						    </div>
 						  </div>
 						</div>
@@ -329,125 +226,47 @@
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          	<span class="subheading">Choose Car</span>
-            <h2 class="mb-2">Related Cars</h2>
+          	<span class="subheading">Otros coches</span>
+            <h2 class="mb-2">Coches Relacionados</h2>
           </div>
         </div>
         <div class="row">
-        	<div class="col-md-4">
-    				<div class="car-wrap rounded ftco-animate">
-    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-1.jpg);">
-    					</div>
-    					<div class="text">
-    						<h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-    						<div class="d-flex mb-3">
-	    						<span class="cat">Cheverolet</span>
-	    						<p class="price ml-auto">$500 <span>/day</span></p>
-    						</div>
-    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-4">
-    				<div class="car-wrap rounded ftco-animate">
-    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-2.jpg);">
-    					</div>
-    					<div class="text">
-    						<h2 class="mb-0"><a href="car-single.html">Range Rover</a></h2>
-    						<div class="d-flex mb-3">
-	    						<span class="cat">Subaru</span>
-	    						<p class="price ml-auto">$500 <span>/day</span></p>
-    						</div>
-    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-4">
-    				<div class="car-wrap rounded ftco-animate">
-    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-3.jpg);">
-    					</div>
-    					<div class="text">
-    						<h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-    						<div class="d-flex mb-3">
-	    						<span class="cat">Cheverolet</span>
-	    						<p class="price ml-auto">$500 <span>/day</span></p>
-    						</div>
-    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-    					</div>
-    				</div>
-    			</div>
+            
+            <?php if (count($coches_relacionados) > 0): ?>
+                <?php foreach ($coches_relacionados as $coche_rel): ?>
+                <div class="col-md-4">
+                    <div class="car-wrap rounded ftco-animate">
+                        <a href="car-single.php?id=<?php echo $coche_rel['id_coche']; ?>">
+                            <div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo htmlspecialchars($coche_rel['imagen']); ?>);">
+                            </div>
+                        </a>
+                        <div class="text">
+                            <h2 class="mb-0"><a href="car-single.php?id=<?php echo $coche_rel['id_coche']; ?>"><?php echo htmlspecialchars($coche_rel['nombre']); ?></a></h2>
+                            <div class="d-flex mb-3">
+                                <span class="cat"><?php echo htmlspecialchars($coche_rel['marca_nombre']); ?></span>
+                                <p class="price ml-auto">$<?php echo htmlspecialchars($coche_rel['precio_dia']); ?> <span>/día</span></p>
+                            </div>
+                            <p class="d-flex mb-0 d-block">
+                                <a href="#" class="btn btn-primary py-2 mr-1">Reservar</a> 
+                                <a href="car-single.php?id=<?php echo $coche_rel['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-md-12 text-center">
+                    <p>No hay más coches con un precio similar disponibles.</p>
+                </div>
+            <?php endif; ?>
+
         </div>
     	</div>
     </section>
     
-
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Information</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Services</a></li>
-                <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-                <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Customer Support</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">FAQ</a></li>
-                <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-                <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-                <li><a href="#" class="py-2 d-block">How it works</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <?php include("footer.php"); ?>
     
-  
-
-  <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
 
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>

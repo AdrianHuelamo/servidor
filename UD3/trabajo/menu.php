@@ -1,3 +1,6 @@
+<?php
+$pagina_actual = basename($_SERVER['PHP_SELF']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,21 +33,21 @@
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Alqui<span>Lobato</span></a>
+	      <a class="navbar-brand" href="index.php">Alqui<span>Lobato</span></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.php" class="nav-link">Inicio</a></li>
-	          <li class="nav-item"><a href="about.php" class="nav-link">Sobre Nosotros</a></li>
-	          <li class="nav-item"><a href="services.php" class="nav-link">Servicios</a></li>
-	          <li class="nav-item"><a href="pricing.php" class="nav-link">Precios</a></li>
-	          <li class="nav-item"><a href="car.php" class="nav-link">Coches</a></li>
-	          <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.php" class="nav-link">Contacto</a></li>
-	          <li class="nav-item"><a href="login.php" class="nav-link">Registrate</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'index.php') ? 'active' : ''; ?>"><a href="index.php" class="nav-link">Inicio</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'about.php') ? 'active' : ''; ?>"><a href="about.php" class="nav-link">Sobre Nosotros</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'services.php') ? 'active' : ''; ?>"><a href="services.php" class="nav-link">Servicios</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'pricing.php') ? 'active' : ''; ?>"><a href="pricing.php" class="nav-link">Precios</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'car.php' || $pagina_actual == 'car-single.php') ? 'active' : ''; ?>"><a href="car.php" class="nav-link">Coches</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'blog.php' || $pagina_actual == 'blog-single.php') ? 'active' : ''; ?>"><a href="blog.php" class="nav-link">Blog</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'contact.php') ? 'active' : ''; ?>"><a href="contact.php" class="nav-link">Contacto</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'login.php') ? 'active' : ''; ?>"><a href="login.php" class="nav-link">Registrate</a></li>
 	        </ul>
 	      </div>
 	    </div>
