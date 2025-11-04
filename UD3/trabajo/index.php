@@ -197,7 +197,7 @@ $db->closeConnection($conn);
                                             <span class="cat"><?php echo htmlspecialchars($coche_d['marca_nombre']); ?></span>
                                             <p class="price ml-auto">$<?php echo htmlspecialchars($coche_d['precio_dia']); ?> <span>/día</span></p>
                                         </div>
-                                        <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Reserva ya</a> <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a></p>
+                                        <p class="d-flex mb-0 d-block"><a href="login.php" class="btn btn-primary py-2 mr-1">Reserva ya</a> <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@ $db->closeConnection($conn);
     <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/lobato-ok.webp);">
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
@@ -340,46 +340,6 @@ $db->closeConnection($conn);
 
         </div>
       </div>
-    </section>	
-
-    <section class="ftco-counter ftco-section img bg-light" id="section-counter">
-			<div class="overlay"></div>
-    	<div class="container">
-    		<div class="row">
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="60">0</strong>
-                <span>Year <br>Experienced</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="1090">0</strong>
-                <span>Total <br>Cars</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="2590">0</strong>
-                <span>Happy <br>Customers</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text d-flex align-items-center">
-                <strong class="number" data-number="67">0</strong>
-                <span>Total <br>Branches</span>
-              </div>
-            </div>
-          </div>
-        </div>
-    	</div>
     </section>	
 
     <?php include("footer.php"); ?>

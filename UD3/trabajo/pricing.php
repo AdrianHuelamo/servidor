@@ -10,20 +10,9 @@ $conn = $db->getConnection();
 
 $coches = []; 
 
-$sql = "SELECT 
-            c.id_coche, 
-            c.nombre AS coche_nombre, 
-            m.nombre AS marca_nombre, 
-            c.imagen, 
-            c.precio_hora, 
-            c.precio_dia, 
-            c.precio_mes
-        FROM 
-            coches c
-        JOIN 
-            marcas m ON c.id_categoria = m.id_marca
-        ORDER BY 
-            m.nombre, c.nombre";
+$sql = "SELECT c.id_coche, c.nombre AS coche_nombre, m.nombre AS marca_nombre, c.imagen, 
+        c.precio_hora, c.precio_dia, c.precio_mes FROM coches c JOIN  marcas m ON c.id_categoria = m.id_marca
+        ORDER BY c.precio_hora";
 
 $result = $conn->query($sql);
 
@@ -124,7 +113,7 @@ $db->closeConnection($conn);
                                     </td>
                                     
                                     <td class="price">
-                                        <p class="btn-custom"><a href="#">Alquilar ahora</a></p>
+                                        <p class="btn-custom"><a href="login.php">Alquilar ahora</a></p>
                                         <div class="price-rate">
                                             <h3>
                                                 <span class="num"><?php echo htmlspecialchars($coche['precio_hora']); ?>€</span>
@@ -134,7 +123,7 @@ $db->closeConnection($conn);
                                     </td>
                                     
                                     <td class="price">
-                                        <p class="btn-custom"><a href="#">Alquilar ahora</a></p>
+                                        <p class="btn-custom"><a href="login.php">Alquilar ahora</a></p>
                                         <div class="price-rate">
                                             <h3>
                                                 <span class="num"> <?php echo htmlspecialchars($coche['precio_dia']); ?>€</span>
@@ -144,7 +133,7 @@ $db->closeConnection($conn);
                                     </td>
 
                                     <td class="price">
-                                        <p class="btn-custom"><a href="#">Alquilar ahora</a></p>
+                                        <p class="btn-custom"><a href="login.php">Alquilar ahora</a></p>
                                         <div class="price-rate">
                                             <h3>
                                                 <span class="num"> <?php echo htmlspecialchars($coche['precio_mes']); ?>€</span>

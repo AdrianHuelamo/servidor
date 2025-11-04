@@ -2,6 +2,17 @@
 require_once "./admin/includes/sessions.php";
 $sesion = new Sessions();
 $error = "";
+$mensaje_info = ""; 
+
+if ($sesion->comprobarSesion()) {
+    header("Location: admin/index.php");
+    exit();
+}
+
+if (isset($_GET['error']) && $_GET['error'] == 1) {
+    $mensaje_info = "Debes iniciar sesión para poder reservar un coche.";
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['username'];
     $clave = $_POST['password'];
@@ -33,8 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="login-box shadow-lg">
         <h2 class="text-center mb-4">Iniciar sesión</h2>
 
+        <?php if ($mensaje_info): ?>
+            <div class="alert alert-info"><?php echo $mensaje_info; ?></div>
+        <?php endif; ?>
+
         <?php if ($error): ?>
-            <div class="alert alert-danger"><?= $error ?></div>
+            <div class="alert alert-danger"><?php echo $error; ?></div>
         <?php endif; ?>
         
         <form method="POST">
