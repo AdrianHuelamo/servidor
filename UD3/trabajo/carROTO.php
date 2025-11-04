@@ -17,6 +17,10 @@ if ($resultado_marcas->num_rows > 0) {
     }
 }
 
+$coches_por_pagina = 15;
+$pagina_actual = isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? (int)$_GET['page'] : 1;
+$offset = ($pagina_actual - 1) * $coches_por_pagina;
+
 $filtro_marca = $_GET['marca'] ?? null;
 $filtro_asientos = $_GET['asientos'] ?? null;
 $filtro_precio_min = $_GET['precio_min'] ?? null;
@@ -61,25 +65,57 @@ switch ($filtro_orden) {
         $order_by_sql = "ORDER BY coches.id_coche DESC";
 }
 
+$http_query_params = http_build_query(array_filter([
+    'marca' => $filtro_marca,
+    'asientos' => $filtro_asientos,
+    'precio_min' => $filtro_precio_min,
+    'precio_max' => $filtro_precio_max,
+    'orden' => $filtro_orden,
+]));
+
+$sql_total = "SELECT COUNT(*) AS total FROM coches" . $where_sql;
+$stmt_total = $conn->prepare($sql_total);
+if ($stmt_total && !empty($types_where)) {
+    $bind_args_total = [$types_where];
+    foreach ($params_where as &$param) {
+        $bind_args_total[] = &$param;
+    }
+    call_user_func_array([$stmt_total, 'bind_param'], $bind_args_total);
+    unset($param);
+}
+if($stmt_total){
+    $stmt_total->execute();
+    $resultado_total = $stmt_total->get_result();
+    $total_coches = $resultado_total->fetch_assoc()['total'];
+    $stmt_total->close();
+} else {
+    die("Error al preparar la consulta de conteo: " . $conn->error);
+}
+$total_paginas = ceil($total_coches / $coches_por_pagina);
+
 $sql = "SELECT coches.*, marcas.nombre AS marca_nombre 
         FROM coches 
         JOIN marcas ON coches.id_categoria = marcas.id_marca 
         $where_sql 
-        $order_by_sql";
+        $order_by_sql
+        LIMIT ? OFFSET ?";
 
 $stmt = $conn->prepare($sql);
 if ($stmt === false) {
     die("Error al preparar la consulta: " . $conn->error);
 }
 
-if (!empty($types_where)) {
-    $bind_args = array($types_where);
-    foreach ($params_where as &$param_ref) {
-        $bind_args[] = &$param_ref;
-    }
-    call_user_func_array(array($stmt, 'bind_param'), $bind_args);
-    unset($param_ref);
+$params_all = $params_where;
+$params_all[] = $coches_por_pagina;
+$params_all[] = $offset;
+$types_all = $types_where . "ii";
+
+$bind_args_main = [$types_all];
+foreach ($params_all as &$param) {
+    $bind_args_main[] = &$param;
 }
+call_user_func_array([$stmt, 'bind_param'], $bind_args_main);
+unset($param);
 
 $stmt->execute();
 $resultado = $stmt->get_result();
@@ -218,7 +254,31 @@ $db->closeConnection($conn);
                 <?php endif; ?>
     		</div>
             
-    		</div>
+    		<div class="row mt-5">
+              <div class="col text-center">
+                <div class="block-27">
+                  <ul>
+                    <?php if ($pagina_actual > 1): ?>
+                      <li><a href="car.php?page=<?php echo $pagina_actual - 1; ?>&amp;<?php echo $http_query_params; ?>">&lt;</a></li>
+                    <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+                      <?php if ($i == $pagina_actual): ?>
+                        <li class="active"><span><?php echo $i; ?></span></li>
+                      <?php else: ?>
+                        <li><a href="car.php?page=<?php echo $i; ?>&amp;<?php echo $http_query_params; ?>"><?php echo $i; ?></a></li>
+                      <?php endif; ?>
+                    <?php endfor; ?>
+
+                    <?php if ($pagina_actual < $total_paginas): ?>
+                      <li><a href="car.php?page=<?php echo $pagina_actual + 1; ?>&amp;<?php echo $http_query_params; ?>">&gt;</a></li>
+                    <?php endif; ?>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+    	</div>
     </section>
     
     <?php include("footer.php"); ?>

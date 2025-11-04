@@ -1,5 +1,46 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once 'admin/includes/database.php'; 
+
+$db = new Connection();
+$conn = $db->getConnection(); 
+
+$coches = []; 
+
+$sql = "SELECT 
+            c.id_coche, 
+            c.nombre AS coche_nombre, 
+            m.nombre AS marca_nombre, 
+            c.imagen, 
+            c.precio_hora, 
+            c.precio_dia, 
+            c.precio_mes
+        FROM 
+            coches c
+        JOIN 
+            marcas m ON c.id_categoria = m.id_marca
+        ORDER BY 
+            m.nombre, c.nombre";
+
+$result = $conn->query($sql);
+
+if ($result === FALSE) {
+} 
+else if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $coches[] = $row;
+    }
+    $result->free();
+} else {
+}
+
+$db->closeConnection($conn);
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <title>Precios</title>
     <meta charset="utf-8">
@@ -37,7 +78,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
           	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span>Precios <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-3 bread">Precios</h1>
+            <h1 class="mb-3 bread">Nuestros Precios</h1>
           </div>
         </div>
       </div>
@@ -52,53 +93,70 @@
 						    <thead class="thead-primary">
 						      <tr class="text-center">
 						        <th>&nbsp;</th>
-						        <th>&nbsp;</th>
+						        <th>Vehículo</th>
 						        <th class="bg-primary heading">Precio Por Hora</th>
 						        <th class="bg-dark heading">Precio Por Día</th>
 						        <th class="bg-black heading">Precio Por Mes</th>
 						      </tr>
 						    </thead>
+						    
 						    <tbody>
-						      <tr class="">
-						      	<td class="car-image"><div class="img" style="background-image:url(images/car-1.jpg);"></div></td>
-						        <td class="product-name">
-						        	<h3>Cheverolet SUV Car</h3>
-						        </td>
-						        
-						        <td class="price">
-						        	<p class="btn-custom"><a href="#">Rent a car</a></p>
-						        	<div class="price-rate">
-							        	<h3>
-							        		<span class="num"><small class="currency">$</small> 10.99</span>
-							        		<span class="per">/per hour</span>
-							        	</h3>
-							        	<span class="subheading">$3/hour fuel surcharges</span>
-						        	</div>
-						        </td>
-						        
-						        <td class="price">
-						        	<p class="btn-custom"><a href="#">Rent a car</a></p>
-						        	<div class="price-rate">
-							        	<h3>
-							        		<span class="num"><small class="currency">$</small> 60.99</span>
-							        		<span class="per">/per day</span>
-							        	</h3>
-							        	<span class="subheading">$3/hour fuel surcharges</span>
-						        </div>
-						        </td>
+                              <?php if (empty($coches)): ?>
+                                <tr class="text-center">
+                                    <td colspan="5">No hay coches disponibles en este momento.</td>
+                                </tr>
+                              <?php else: ?>
+                                <?php foreach ($coches as $coche): ?>
+                                  <tr class="">
+                                    
+                                    <td class="car-image">
+                                        <a href="car-single.php?id=<?php echo $coche['id_coche']; ?>">
+                                            <div class="img" style="background-image:url(<?php echo htmlspecialchars($coche['imagen']); ?>);"></div>
+                                        </a>
+                                    </td>
+                                    
+                                    <td class="product-name">
+                                        <h3>
+                                            <a href="car-single.php?id=<?php echo $coche['id_coche']; ?>">
+                                                <?php echo htmlspecialchars($coche['marca_nombre'] . ' ' . $coche['coche_nombre']); ?>
+                                            </a>
+                                        </h3>
+                                    </td>
+                                    
+                                    <td class="price">
+                                        <p class="btn-custom"><a href="#">Alquilar ahora</a></p>
+                                        <div class="price-rate">
+                                            <h3>
+                                                <span class="num"><?php echo htmlspecialchars($coche['precio_hora']); ?>€</span>
+                                                <span class="per">/por hora</span>
+                                            </h3>
+                                        </div>
+                                    </td>
+                                    
+                                    <td class="price">
+                                        <p class="btn-custom"><a href="#">Alquilar ahora</a></p>
+                                        <div class="price-rate">
+                                            <h3>
+                                                <span class="num"> <?php echo htmlspecialchars($coche['precio_dia']); ?>€</span>
+                                                <span class="per">/por día</span>
+                                            </h3>
+                                    </div>
+                                    </td>
 
-						        <td class="price">
-						        	<p class="btn-custom"><a href="#">Rent a car</a></p>
-						        	<div class="price-rate">
-							        	<h3>
-							        		<span class="num"><small class="currency">$</small> 995.99</span>
-							        		<span class="per">/per month</span>
-							        	</h3>
-							        	<span class="subheading">$3/hour fuel surcharges</span>
-							        </div>
-						        </td>
-						      </tr><!-- END TR-->
+                                    <td class="price">
+                                        <p class="btn-custom"><a href="#">Alquilar ahora</a></p>
+                                        <div class="price-rate">
+                                            <h3>
+                                                <span class="num"> <?php echo htmlspecialchars($coche['precio_mes']); ?>€</span>
+                                                <span class="per">/por mes</span>
+                                            </h3>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                <?php endforeach; ?>
+                              <?php endif; ?>
 						    </tbody>
+
 						  </table>
 					  </div>
     			</div>
@@ -111,7 +169,6 @@
     
   
 
-  <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 

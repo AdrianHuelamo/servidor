@@ -195,9 +195,9 @@ $db->closeConnection($conn);
                                         <h2 class="mb-0"><a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>"><?php echo htmlspecialchars($coche_d['nombre']); ?></a></h2>
                                         <div class="d-flex mb-3">
                                             <span class="cat"><?php echo htmlspecialchars($coche_d['marca_nombre']); ?></span>
-                                            <p class="price ml-auto">$<?php echo htmlspecialchars($coche_d['precio_dia']); ?> <span>/day</span></p>
+                                            <p class="price ml-auto">$<?php echo htmlspecialchars($coche_d['precio_dia']); ?> <span>/día</span></p>
                                         </div>
-                                        <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                                        <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Reserva ya</a> <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a></p>
                                     </div>
                                 </div>
                             </div>

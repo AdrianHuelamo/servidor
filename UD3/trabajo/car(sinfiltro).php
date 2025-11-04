@@ -1,24 +1,21 @@
 <?php
-// 1. CONEXIÓN A LA BASE DE DATOS
 require_once 'admin/includes/database.php'; 
+
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-// 2. CONSULTA SQL PARA OBTENER TODOS LOS POSTS
-// Unimos blog con usuarios para obtener el nombre del autor
-// Ordenamos por fecha descendente para mostrar los más nuevos primero
-$sql = "SELECT b.id_blog, b.titulo, b.resumen, b.fecha, b.imagen, u.username 
-        FROM blog b 
-        LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
-        ORDER BY b.fecha DESC";
+$sql = "SELECT c.id_coche, c.nombre AS car_name, c.precio_dia, c.imagen, m.nombre AS brand_name 
+        FROM coches c 
+        JOIN marcas m ON c.id_categoria = m.id_marca
+        ORDER BY m.nombre, c.nombre"; // Opcional: ordenar los resultados
 
 $result = $conn->query($sql);
 
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
-    <title>AlquiLobato - Nuestro Blog</title>
+    <title>Carbook - Elige tu Coche</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -46,60 +43,54 @@ $result = $conn->query($sql);
   <body>
     
 	  <?php include("menu.php"); ?>
-    
     <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-3 bread">Nuestro Blog</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.php">Inicio <i class="ion-ios-arrow-forward"></i></a></span> <span>Coches <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Elige tu coche</h1>
           </div>
         </div>
       </div>
     </section>
+		
 
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row d-flex justify-content-center">
+	<section class="ftco-section bg-light">
+    	<div class="container">
+    		<div class="row">
 
-            <?php
-            if ($result && $result->num_rows > 0) {
-                while($post = $result->fetch_assoc()) {
-                    
-                    $autor = !empty($post['username']) ? $post['username'] : 'Admin';
-                    
-                    $fecha_formateada = date("M d, Y", strtotime($post['fecha']));
-            ?>
+				<?php
+                if ($result && $result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                ?>
 
-            <div class="col-md-12 text-center d-flex ftco-animate">
-                <div class="blog-entry justify-content-end mb-md-5">
-                <a href="blog-single.php?id=<?php echo $post['id_blog']; ?>" class="block-20 img" style="background-image: url('<?php echo htmlspecialchars($post['imagen']); ?>');">
-                </a>
-                <div class="text px-md-5 pt-4">
-                    <div class="meta mb-3">
-                    <div><a href="#"><?php echo $fecha_formateada; ?></a></div>
-                    <div><a href="#"><?php echo htmlspecialchars($autor); ?></a></div>
-                    </div>
-                    <h3 class="heading mt-2"><a href="blog-single.php?id=<?php echo $post['id_blog']; ?>"><?php echo htmlspecialchars($post['titulo']); ?></a></h3>
-                    <p><?php echo htmlspecialchars($post['resumen']); ?></p>
-                    <p><a href="blog-single.php?id=<?php echo $post['id_blog']; ?>" class="btn btn-primary">Continuar Leyendo <span class="icon-long-arrow-right"></span></a></p>
-                </div>
-                </div>
-            </div>
+    			<div class="col-md-4">
+    				<div class="car-wrap rounded ftco-animate">
+						<div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo htmlspecialchars($row['imagen']); ?>);">
+    					</div>
+    					<div class="text">
+							<h2 class="mb-0"><a href="car-single.php?id=<?php echo $row['id_coche']; ?>"><?php echo htmlspecialchars($row['car_name']); ?></a></h2>
+    						<div class="d-flex mb-3">
+	    						<span class="cat"><?php echo htmlspecialchars($row['brand_name']); ?></span>
+	    						<p class="price ml-auto">$<?php echo htmlspecialchars($row['precio_dia']); ?> <span>/día</span></p>
+    						</div>
+							<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Reserva ya</a> <a href="car-single.php?id=<?php echo $row['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a></p>
+    					</div>
+    				</div>
+    			</div>
 
-            <?php
-                } // Fin del while
-            } else {
-                echo "<div class='col-md-12 text-center'><p>No hay entradas en el blog por el momento.</p></div>";
-            }
-            
-            // 4. CERRAR CONEXIÓN
-            $db->closeConnection($conn);
-            ?>
+				<?php
+                    } // Fin del while
+                } else {
+                    echo "<p>No hay coches disponibles en este momento.</p>";
+                }
+                // Cerramos la conexión
+                $db->closeConnection($conn);
+                ?>
 
-        </div>
-        <div class="row mt-5">
+    		</div>
+    		<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
               <ul>
@@ -114,8 +105,9 @@ $result = $conn->query($sql);
             </div>
           </div>
         </div>
-      </div>
+    	</div>
     </section>
+    
 
     <?php include("footer.php"); ?>
     
