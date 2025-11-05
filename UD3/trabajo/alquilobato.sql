@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2025 a las 21:29:23
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Servidor: localhost
+-- Tiempo de generación: 05-11-2025 a las 12:23:22
+-- Versión del servidor: 8.0.43-0ubuntu0.24.04.1
+-- Versión de PHP: 8.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blog` (
-  `id_blog` int(11) NOT NULL,
-  `titulo` varchar(255) DEFAULT NULL,
-  `resumen` text DEFAULT NULL,
-  `contenido` text DEFAULT NULL,
-  `id_autor` int(11) DEFAULT NULL,
+  `id_blog` int NOT NULL,
+  `titulo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `resumen` text COLLATE utf8mb4_general_ci,
+  `contenido` text COLLATE utf8mb4_general_ci,
+  `id_autor` int DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -58,19 +58,19 @@ INSERT INTO `blog` (`id_blog`, `titulo`, `resumen`, `contenido`, `id_autor`, `fe
 --
 
 CREATE TABLE `coches` (
-  `id_coche` int(11) NOT NULL,
-  `nombre` varchar(55) DEFAULT NULL,
-  `id_categoria` int(11) NOT NULL,
-  `año` year(4) DEFAULT NULL,
-  `precio_hora` int(11) DEFAULT NULL,
-  `precio_dia` int(11) DEFAULT NULL,
-  `precio_mes` int(11) DEFAULT NULL,
-  `imagen` varchar(200) DEFAULT NULL,
-  `kilometros` int(11) DEFAULT 0,
-  `transmision` varchar(20) DEFAULT 'Manual',
-  `asientos` tinyint(4) DEFAULT 5,
-  `maletero` smallint(6) DEFAULT 300,
-  `combustible` varchar(20) DEFAULT 'Gasolina'
+  `id_coche` int NOT NULL,
+  `nombre` varchar(55) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `id_categoria` int NOT NULL,
+  `año` year DEFAULT NULL,
+  `precio_hora` int DEFAULT NULL,
+  `precio_dia` int DEFAULT NULL,
+  `precio_mes` int DEFAULT NULL,
+  `imagen` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kilometros` int DEFAULT '0',
+  `transmision` varchar(20) COLLATE utf8mb4_general_ci DEFAULT 'Manual',
+  `asientos` tinyint DEFAULT '5',
+  `maletero` smallint DEFAULT '300',
+  `combustible` varchar(20) COLLATE utf8mb4_general_ci DEFAULT 'Gasolina'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -116,9 +116,9 @@ INSERT INTO `coches` (`id_coche`, `nombre`, `id_categoria`, `año`, `precio_hora
 --
 
 CREATE TABLE `marcas` (
-  `id_marca` int(11) NOT NULL,
-  `nombre` varchar(25) DEFAULT NULL,
-  `logo` varchar(255) DEFAULT NULL
+  `id_marca` int NOT NULL,
+  `nombre` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -161,11 +161,11 @@ INSERT INTO `marcas` (`id_marca`, `nombre`, `logo`) VALUES
 --
 
 CREATE TABLE `opiniones` (
-  `id_opinion` int(11) NOT NULL,
-  `comentario` text DEFAULT NULL,
-  `nombre_cliente` varchar(100) DEFAULT NULL,
-  `trabajo` varchar(100) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL
+  `id_opinion` int NOT NULL,
+  `comentario` text COLLATE utf8mb4_general_ci,
+  `nombre_cliente` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `trabajo` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -187,10 +187,10 @@ INSERT INTO `opiniones` (`id_opinion`, `comentario`, `nombre_cliente`, `trabajo`
 --
 
 CREATE TABLE `servicios` (
-  `id_servicio` int(11) NOT NULL,
-  `titulo` varchar(100) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
-  `icono_flaticon` varchar(50) DEFAULT NULL
+  `id_servicio` int NOT NULL,
+  `titulo` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf8mb4_general_ci,
+  `icono_flaticon` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -210,13 +210,13 @@ INSERT INTO `servicios` (`id_servicio`, `titulo`, `descripcion`, `icono_flaticon
 --
 
 CREATE TABLE `usuarios` (
-  `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(25) DEFAULT NULL,
-  `correo` varchar(55) DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `username` varchar(25) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `rol` varchar(25) DEFAULT NULL
+  `id_usuario` int NOT NULL,
+  `nombre` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `correo` varchar(55) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telefono` int DEFAULT NULL,
+  `username` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rol` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -224,10 +224,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `telefono`, `username`, `password`, `rol`) VALUES
-(1, 'admin', 'admin@solvam.es', 123456789, 'admin', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'admin'),
-(2, 'mariluz', 'mariluz@solvam.es', 987654321, 'mariluz', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'super'),
+(1, 'Adrian', 'admin@solvam.es', 123456789, 'adri', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'admin'),
+(2, 'mariluz', 'mariluz@solvam.es', 987654321, 'mariluz', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'admin'),
 (3, 'Adahi', 'adahi@solvam.es', 515184818, 'adahi', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'super'),
-(4, 'Joselu', 'Joselu@israel.es', 841212561, 'joselu', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'super');
+(4, 'Joselu', 'Joselu@israel.es', 841212561, 'joselu', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'super'),
+(5, 'Lorenzo', 'lorenzo@solvam.es', 987654321, 'lorenzo', '$2y$12$BbACIgRj3qbQ8rdnJi.rzuZ9lfTQEggm0Yd1Pb8nmJDxXB0k7yTde', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -279,37 +280,37 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id_blog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_blog` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `coches`
 --
 ALTER TABLE `coches`
-  MODIFY `id_coche` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_coche` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_marca` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `opiniones`
 --
 ALTER TABLE `opiniones`
-  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_opinion` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_servicio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_usuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
