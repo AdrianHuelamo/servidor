@@ -1,40 +1,67 @@
 <?php
-require_once("database.php");
-
 class Sessions {
-    public function comprobarCredenciales($username, $password) {
+    
+    public function comprobarCredenciales($usuario, $clave) {
+        require_once 'database.php';
         $db = new Connection();
         $conn = $db->getConnection();
         
+        // Obtener el usuario
         $sql = "SELECT * FROM usuarios WHERE username = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $usuario);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $resultado = $stmt->get_result();
         
-        $usuario = $result->fetch_assoc();
-        $db->closeConnection($conn);
-        
-        if ($usuario && password_verify($password, $usuario['password'])) {
-            return $usuario;
+        if ($resultado->num_rows === 1) {
+            $datos = $resultado->fetch_assoc();
+            
+            // Verificar contraseña con bcrypt
+            if (password_verify($clave, $datos['password'])) {
+                $stmt->close();
+                $db->closeConnection($conn);
+                return $datos;
+            }
         }
-
-        return null;
+        
+        $stmt->close();
+        $db->closeConnection($conn);
+        return false;
     }
     
-    public function crearSesion($usuario) {
-        session_start();
-        $_SESSION['usuario'] = $usuario;
+    public function crearSesion($datos) {
+        $_SESSION['id_usuario'] = $datos['id_usuario'];
+        $_SESSION['username'] = $datos['username'];
+        $_SESSION['nombre'] = $datos['nombre'];
+        $_SESSION['correo'] = $datos['correo'];
+        $_SESSION['telefono'] = $datos['telefono'];
+        $_SESSION['rol'] = $datos['rol'];
     }
     
     public function comprobarSesion() {
-        session_start();
-        return isset($_SESSION['usuario']);
+        return isset($_SESSION['id_usuario']);
     }
     
     public function cerrarSesion() {
-        session_start();
         session_destroy();
+        header("Location: ../login.php");
+        exit();
+    }
+    
+    public function esAdmin() {
+        return isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin';
+    }
+    
+    public function esEditor() {
+        return isset($_SESSION['rol']) && $_SESSION['rol'] === 'editor';
+    }
+    
+    public function esUser() {
+        return isset($_SESSION['rol']) && $_SESSION['rol'] === 'user';
+    }
+    
+    public function puedeEditar() {
+        return $this->esAdmin() || $this->esEditor();
     }
 }
 ?>

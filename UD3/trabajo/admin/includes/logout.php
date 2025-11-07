@@ -1,6 +1,7 @@
 <?php
-require_once("sessions.php");
-$sesion = new Sessions();
-$sesion->cerrarSesion();
-header("Location: ../../login.php");
+session_start();
+session_destroy();
+
+header("Location: ../../index.php");
 exit();
+?>

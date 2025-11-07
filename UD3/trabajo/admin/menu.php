@@ -40,12 +40,12 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item <?php echo ($pagina_actual == 'index.php') ? 'active' : ''; ?>"><a href="index.php" class="nav-link">Inicio</a></li>
-	          <li class="nav-item <?php echo ($pagina_actual == 'about.php') ? 'active' : ''; ?>"><a href="about.php" class="nav-link">Sobre Nosotros</a></li>
-	          <li class="nav-item <?php echo ($pagina_actual == 'services.php') ? 'active' : ''; ?>"><a href="services.php" class="nav-link">Servicios</a></li>
-	          <li class="nav-item <?php echo ($pagina_actual == 'pricing.php') ? 'active' : ''; ?>"><a href="pricing.php" class="nav-link">Precios</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'index.php') ? 'active' : ''; ?>"><a href="../index.php" class="nav-link">Inicio</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'about.php') ? 'active' : ''; ?>"><a href="../about.php" class="nav-link">Sobre Nosotros</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'services.php') ? 'active' : ''; ?>"><a href="../services.php" class="nav-link">Servicios</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'pricing.php') ? 'active' : ''; ?>"><a href="../pricing.php" class="nav-link">Precios</a></li>
 	          <li class="nav-item <?php echo ($pagina_actual == 'car.php' || $pagina_actual == 'car-single.php') ? 'active' : ''; ?>"><a href="car.php" class="nav-link">Coches</a></li>
-	          <li class="nav-item <?php echo ($pagina_actual == 'blog.php' || $pagina_actual == 'blog-single.php') ? 'active' : ''; ?>"><a href="blog.php" class="nav-link">Blog</a></li>
+	          <li class="nav-item <?php echo ($pagina_actual == 'blog.php' || $pagina_actual == 'blog-single.php') ? 'active' : ''; ?>"><a href="../blog.php" class="nav-link">Blog</a></li>
 	          <li class="nav-item <?php echo ($pagina_actual == 'logout.php') ? 'active' : ''; ?>"><a href="includes/logout.php" class="nav-link">Cerrar Sesion</a></li>
 	        </ul>
 	      </div>
