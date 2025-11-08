@@ -113,7 +113,13 @@ $db->closeConnection($conn);
                                     </td>
                                     
                                     <td class="price">
-                                        <p class="btn-custom"><a href="login.php">Alquilar ahora</a></p>
+                                        <p class="btn-custom">
+                                            <?php if (estaLogueado()): ?>
+                                                <a href="reservar.php?id=<?php echo $coche['id_coche']; ?>">Alquilar ahora</a>
+                                            <?php else: ?>
+                                                <a href="login.php?error=1">Alquilar ahora</a>
+                                            <?php endif; ?>
+                                        </p>
                                         <div class="price-rate">
                                             <h3>
                                                 <span class="num"><?php echo htmlspecialchars($coche['precio_hora']); ?>€</span>
@@ -123,7 +129,13 @@ $db->closeConnection($conn);
                                     </td>
                                     
                                     <td class="price">
-                                        <p class="btn-custom"><a href="login.php">Alquilar ahora</a></p>
+                                        <p class="btn-custom">
+                                            <?php if (estaLogueado()): ?>
+                                                <a href="reservar.php?id=<?php echo $coche['id_coche']; ?>">Alquilar ahora</a>
+                                            <?php else: ?>
+                                                <a href="login.php?error=1">Alquilar ahora</a>
+                                            <?php endif; ?>
+                                        </p>
                                         <div class="price-rate">
                                             <h3>
                                                 <span class="num"> <?php echo htmlspecialchars($coche['precio_dia']); ?>€</span>
@@ -133,7 +145,13 @@ $db->closeConnection($conn);
                                     </td>
 
                                     <td class="price">
-                                        <p class="btn-custom"><a href="login.php">Alquilar ahora</a></p>
+                                        <p class="btn-custom">
+                                            <?php if (estaLogueado()): ?>
+                                                <a href="reservar.php?id=<?php echo $coche['id_coche']; ?>">Alquilar ahora</a>
+                                            <?php else: ?>
+                                                <a href="login.php?error=1">Alquilar ahora</a>
+                                            <?php endif; ?>
+                                        </p>
                                         <div class="price-rate">
                                             <h3>
                                                 <span class="num"> <?php echo htmlspecialchars($coche['precio_mes']); ?>€</span>

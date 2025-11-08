@@ -314,17 +314,15 @@
   });
 
 
-	$('#book_pick_date,#book_off_date').datepicker({
-  'format': 'dd/mm/yyyy',  
-  'autoclose': true
-	});
-
-	$('#time_pick').timepicker({
-	  'timeFormat': 'H:i', 
-	  'showMeridian': false
-	});
-
-
+	$('#book_pick_date,#book_off_date, #reserva_fecha_inicio, #reserva_fecha_fin').datepicker({
+    'format': 'dd/mm/yyyy',
+    'autoclose': true
+  });
+  
+  $('#time_pick, #reserva_hora_inicio, #reserva_hora_fin').timepicker({
+    'timeFormat': 'H:i',
+    'showMeridian': false
+  });
 
 })(jQuery);
 
