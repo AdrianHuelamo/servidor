@@ -1,12 +1,15 @@
 <?php
-require_once 'admin/includes/auth.php';  // ← Ruta correcta
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once 'admin/includes/auth.php';
 require_once 'admin/includes/sessions.php';
 
 $sesion = new Sessions();
 $error = '';
 $mensaje_info = '';
 
-// NO redirigir si ya hay sesión, solo mostrar mensaje
 if (estaLogueado()) {
     $mensaje_info = "Ya has iniciado sesión como " . getNombreUsuario();
 }

@@ -1,5 +1,4 @@
 <?php
-// Incluir sistema de autenticación
 if (!function_exists('estaLogueado')) {
     require_once 'admin/includes/auth.php';
 }
@@ -15,14 +14,13 @@ if (!function_exists('estaLogueado')) {
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="index.php" class="nav-link">Inicio</a></li>
-                <li class="nav-item"><a href="about.php" class="nav-link">Nosotros</a></li>
-                <li class="nav-item"><a href="services.php" class="nav-link">Servicios</a></li>
+                <li class="nav-item"><a href="about.php" class="nav-link">Sobre Nosotros</a></li>
+                <li class="nav-item"><a href="pricing.php" class="nav-link">Precios</a></li>
                 <li class="nav-item"><a href="car.php" class="nav-link">Coches</a></li>
                 <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="contact.php" class="nav-link">Contacto</a></li>
                 
                 <?php if (estaLogueado()): ?>
-                    <!-- Usuario logueado -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             👤 <?php echo getNombreUsuario(); ?>
@@ -39,7 +37,6 @@ if (!function_exists('estaLogueado')) {
                         </div>
                     </li>
                 <?php else: ?>
-                    <!-- Usuario NO logueado -->
                     <li class="nav-item"><a href="login.php" class="nav-link">Iniciar Sesión</a></li>
                 <?php endif; ?>
             </ul>

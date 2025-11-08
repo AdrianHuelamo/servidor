@@ -1,8 +1,11 @@
 <?php
-require_once 'admin/includes/auth.php';  // ← Ruta correcta
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once 'admin/includes/auth.php'; 
 require_once 'admin/includes/database.php';
 
-// Si ya está logueado, mostrar mensaje
 if (estaLogueado()) {
     $mensaje_info = "Ya tienes una cuenta activa como " . getNombreUsuario();
 }
@@ -74,8 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !estaLogueado()) {
 <head>
     <meta charset="UTF-8">
     <title>Crear Cuenta</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
     <?php include 'menu.php'; ?>
@@ -100,23 +101,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !estaLogueado()) {
                 
                 <form method="POST" action="">
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre Completo</label>
+                        <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" name="nombre" id="nombre" class="form-control" 
-                               placeholder="Ej: Juan Pérez" required maxlength="25"
+                               placeholder="Ej: Adahi" required maxlength="25"
                                value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : ''; ?>">
                     </div>
                     
                     <div class="mb-3">
                         <label for="username" class="form-label">Nombre de Usuario</label>
                         <input type="text" name="username" id="username" class="form-control" 
-                               placeholder="Ej: juanperez" required maxlength="25"
+                               placeholder="Ej: joselu24" required maxlength="25"
                                value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
                     </div>
                     
                     <div class="mb-3">
                         <label for="correo" class="form-label">Correo Electrónico</label>
                         <input type="email" name="correo" id="correo" class="form-control" 
-                               placeholder="Ej: juan@email.com" required maxlength="55"
+                               placeholder="Ej: borja@gmail.com" required maxlength="55"
                                value="<?php echo isset($_POST['correo']) ? htmlspecialchars($_POST['correo']) : ''; ?>">
                     </div>
                     

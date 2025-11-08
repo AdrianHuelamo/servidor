@@ -1,5 +1,4 @@
 <?php
-// admin/includes/auth.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -38,7 +37,7 @@ function getRol() {
 
 function cerrarSesion() {
     session_destroy();
-    header("Location: ../index.php");  // Redirige a la raíz pública
+    header("Location: ../index.php");
     exit();
 }
 ?>

@@ -1,12 +1,12 @@
 <?php
-// 1. CONEXIÓN A LA BASE DE DATOS
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once 'admin/includes/database.php'; 
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-// 2. CONSULTA SQL PARA OBTENER TODOS LOS POSTS
-// Unimos blog con usuarios para obtener el nombre del autor
-// Ordenamos por fecha descendente para mostrar los más nuevos primero
 $sql = "SELECT b.id_blog, b.titulo, b.resumen, b.fecha, b.imagen, u.username 
         FROM blog b 
         LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
