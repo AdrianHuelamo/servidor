@@ -61,11 +61,43 @@ switch ($filtro_orden) {
         $order_by_sql = "ORDER BY coches.id_coche DESC";
 }
 
-$sql = "SELECT coches.*, marcas.nombre AS marca_nombre 
+$sql_base = "SELECT coches.*, marcas.nombre AS marca_nombre 
         FROM coches 
         JOIN marcas ON coches.id_categoria = marcas.id_marca 
         $where_sql 
         $order_by_sql";
+
+$perPage = 15;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+
+$count_sql = "SELECT COUNT(*) AS total FROM coches JOIN marcas ON coches.id_categoria = marcas.id_marca $where_sql";
+$count_stmt = $conn->prepare($count_sql);
+if ($count_stmt === false) {
+    die("Error al preparar la consulta de conteo: " . $conn->error);
+}
+if (!empty($types_where)) {
+    $bind_args = array($types_where);
+    foreach ($params_where as &$param_ref) {
+        $bind_args[] = &$param_ref;
+    }
+    call_user_func_array(array($count_stmt, 'bind_param'), $bind_args);
+    unset($param_ref);
+}
+$count_stmt->execute();
+$count_res = $count_stmt->get_result();
+$totalRows = 0;
+if ($count_res && $count_res->num_rows > 0) {
+    $r = $count_res->fetch_assoc();
+    $totalRows = (int)$r['total'];
+}
+$count_stmt->close();
+
+$totalPages = ($totalRows > 0) ? (int)ceil($totalRows / $perPage) : 1;
+if ($page > $totalPages) $page = $totalPages;
+$offset = ($page - 1) * $perPage;
+
+$sql = $sql_base . " LIMIT " . ((int)$offset) . "," . ((int)$perPage);
 
 $stmt = $conn->prepare($sql);
 if ($stmt === false) {
@@ -93,6 +125,15 @@ if ($resultado->num_rows > 0) {
 
 $stmt->close();
 $db->closeConnection($conn);
+
+$baseParams = $_GET;
+unset($baseParams['page']);
+
+function buildPageUrl($p, $baseParams) {
+    $params = $baseParams;
+    $params['page'] = $p;
+    return 'car.php?' . http_build_query($params);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -215,14 +256,49 @@ $db->closeConnection($conn);
         				</div>
         			</div>
                     <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="col-md-12 text-center">
-                        <p>No se encontraron coches con esos filtros.</p>
+                    <?php else: ?>
+                        <div class="col-md-12 text-center">
+                            <p>No se encontraron coches con esos filtros.</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <?php if (isset($totalPages) && $totalPages > 1): ?>
+                <div class="row mt-5">
+                  <div class="col text-center">
+                    <div class="block-27">
+                      <ul>
+                        <?php
+                        if ($page > 1) {
+                            $prev = $page - 1;
+                            echo '<li><a href="' . htmlspecialchars(buildPageUrl($prev, $baseParams)) . '">&lt;</a></li>';
+                        } else {
+                            echo '<li class="disabled"><span>&lt;</span></li>';
+                        }
+
+                        for ($p = 1; $p <= $totalPages; $p++) {
+                            if ($p == $page) {
+                                echo "<li class=\"active\"><span>$p</span></li>";
+                            } else {
+                                echo '<li><a href="' . htmlspecialchars(buildPageUrl($p, $baseParams)) . '">' . $p . '</a></li>';
+                            }
+                        }
+
+                        // siguiente
+                        if ($page < $totalPages) {
+                            $next = $page + 1;
+                            echo '<li><a href="' . htmlspecialchars(buildPageUrl($next, $baseParams)) . '">&gt;</a></li>';
+                        } else {
+                            echo '<li class="disabled"><span>&gt;</span></li>';
+                        }
+                        ?>
+                      </ul>
                     </div>
+                  </div>
+                </div>
                 <?php endif; ?>
-    		</div>
             
-    		</div>
+                </div>
     </section>
     
     <?php include("footer.php"); ?>

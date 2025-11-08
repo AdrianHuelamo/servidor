@@ -8,10 +8,29 @@ $db = new Connection();
 $conn = $db->getConnection(); 
 
 
+$perPage = 4; 
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+
+$countSql = "SELECT COUNT(*) as total FROM blog";
+$countRes = $conn->query($countSql);
+$totalRows = 0;
+if ($countRes) {
+    $row = $countRes->fetch_assoc();
+    $totalRows = (int)$row['total'];
+}
+
+$totalPages = ($totalRows > 0) ? (int)ceil($totalRows / $perPage) : 1;
+if ($page > $totalPages) $page = $totalPages;
+
+$offset = ($page - 1) * $perPage;
+
 $sql = "SELECT b.id_blog, b.titulo, b.resumen, b.fecha, b.imagen, u.nombre AS nombre_autor 
-        FROM blog b 
-        LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
-        ORDER BY b.fecha DESC";
+  FROM blog b 
+  LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
+  ORDER BY b.fecha DESC
+  LIMIT $offset, $perPage";
 
 $result = $conn->query($sql);
 
@@ -103,13 +122,29 @@ $result = $conn->query($sql);
           <div class="col text-center">
             <div class="block-27">
               <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
+                <?php
+                if ($page > 1) {
+                    $prev = $page - 1;
+                    echo "<li><a href=\"blog.php?page=$prev\">&lt;</a></li>";
+                } else {
+                    echo "<li class=\"disabled\"><span>&lt;</span></li>";
+                }
+
+                for ($p = 1; $p <= $totalPages; $p++) {
+                    if ($p == $page) {
+                        echo "<li class=\"active\"><span>$p</span></li>";
+                    } else {
+                        echo "<li><a href=\"blog.php?page=$p\">$p</a></li>";
+                    }
+                }
+
+                if ($page < $totalPages) {
+                    $next = $page + 1;
+                    echo "<li><a href=\"blog.php?page=$next\">&gt;</a></li>";
+                } else {
+                    echo "<li class=\"disabled\"><span>&gt;</span></li>";
+                }
+                ?>
               </ul>
             </div>
           </div>

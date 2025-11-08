@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once './includes/proteger.php';
 
 if (!esAdmin()) {
@@ -73,6 +70,7 @@ $db->closeConnection($conn);
         .form-crud { max-width: 600px; margin: 20px auto; }
         .table-responsive { overflow-x: auto; }
         .badge.bg-warning { color: #000 !important; }
+        .badge.bg-info { color: #fff !important; }
     </style>
 </head>
 <body>
@@ -110,7 +108,7 @@ $db->closeConnection($conn);
                                     <?php
                                         $rol_clase = 'bg-primary';
                                         if ($usuario['rol'] == 'admin') {
-                                            $rol_clase = 'bg-dark';
+                                            $rol_clase = 'bg-info';
                                         } elseif ($usuario['rol'] == 'editor') {
                                             $rol_clase = 'bg-warning text-dark';
                                         }

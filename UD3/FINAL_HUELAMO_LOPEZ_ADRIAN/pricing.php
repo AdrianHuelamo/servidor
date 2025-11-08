@@ -8,21 +8,37 @@ require_once 'admin/includes/database.php';
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-$coches = []; 
+$coches = [];
+
+$perPage = 15;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+
+$countSql = "SELECT COUNT(*) AS total FROM coches";
+$countRes = $conn->query($countSql);
+$totalRows = 0;
+if ($countRes) {
+  $r = $countRes->fetch_assoc();
+  $totalRows = (int)$r['total'];
+}
+
+$totalPages = ($totalRows > 0) ? (int)ceil($totalRows / $perPage) : 1;
+if ($page > $totalPages) $page = $totalPages;
+
+$offset = ($page - 1) * $perPage;
 
 $sql = "SELECT c.id_coche, c.nombre AS coche_nombre, m.nombre AS marca_nombre, c.imagen, 
-        c.precio_hora, c.precio_dia, c.precio_mes FROM coches c JOIN  marcas m ON c.id_categoria = m.id_marca
-        ORDER BY c.precio_hora";
+    c.precio_hora, c.precio_dia, c.precio_mes FROM coches c JOIN  marcas m ON c.id_categoria = m.id_marca
+    ORDER BY c.precio_hora LIMIT " . ((int)$offset) . "," . ((int)$perPage);
 
 $result = $conn->query($sql);
 
 if ($result === FALSE) {
-} 
-else if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $coches[] = $row;
-    }
-    $result->free();
+} else if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+    $coches[] = $row;
+  }
+  $result->free();
 } else {
 }
 
@@ -168,7 +184,39 @@ $db->closeConnection($conn);
 					  </div>
     			</div>
     		</div>
-			</div>
+        </div>
+
+        <?php if (isset($totalPages) && $totalPages > 1): ?>
+        <div class="row mt-5">
+          <div class="col text-center">
+          <div class="block-27">
+            <ul>
+            <?php
+            if ($page > 1) {
+              $prev = $page - 1;
+              echo '<li><a href="' . htmlspecialchars('pricing.php?page=' . $prev) . '">&lt;</a></li>';
+            } else {
+              echo '<li class="disabled"><span>&lt;</span></li>';
+            }
+            for ($p = 1; $p <= $totalPages; $p++) {
+              if ($p == $page) {
+                echo "<li class=\"active\"><span>$p</span></li>";
+              } else {
+                echo '<li><a href="' . htmlspecialchars('pricing.php?page=' . $p) . '">' . $p . '</a></li>';
+              }
+            }
+            if ($page < $totalPages) {
+              $next = $page + 1;
+              echo '<li><a href="' . htmlspecialchars('pricing.php?page=' . $next) . '">&gt;</a></li>';
+            } else {
+              echo '<li class="disabled"><span>&gt;</span></li>';
+            }
+            ?>
+            </ul>
+          </div>
+          </div>
+        </div>
+        <?php endif; ?>
 		</section>
 
 
