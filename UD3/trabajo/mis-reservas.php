@@ -14,11 +14,55 @@ $id_usuario = getUserId(); //
 
 // 4. Variables para mensajes
 $success_msg = '';
+$error_msg = '';
 if (isset($_GET['exito']) && $_GET['exito'] == '1') {
     $success_msg = "¡Reserva confirmada con éxito!";
 }
+if (isset($_GET['exito_cancel'])) {
+    $success_msg = "Reserva cancelada correctamente.";
+}
+if (isset($_GET['error_cancel'])) {
+    $error_msg = "No se pudo cancelar la reserva (posiblemente no era tuya o ya no existía).";
+}
 
-// 5. Obtener todas las reservas del usuario
+
+// ===========================================
+// ==== NUEVA LÓGICA DE CANCELACIÓN (INICIO) ====
+// ===========================================
+if (isset($_GET['accion']) && $_GET['accion'] == 'cancelar' && isset($_GET['id'])) {
+    $id_reserva_a_cancelar = $_GET['id'];
+    
+    $db_cancel = new Connection();
+    $conn_cancel = $db_cancel->getConnection();
+
+    // Medida de seguridad CRÍTICA:
+    // Solo borramos la reserva si el ID de reserva Y el ID del usuario coinciden.
+    // Esto evita que un usuario cancele reservas de otros adivinando el ID.
+    $sql_cancel = "DELETE FROM reservas WHERE id_reserva = ? AND id_usuario = ?"; //
+    $stmt_cancel = $conn_cancel->prepare($sql_cancel);
+    $stmt_cancel->bind_param("ii", $id_reserva_a_cancelar, $id_usuario);
+    $stmt_cancel->execute();
+
+    if ($stmt_cancel->affected_rows > 0) {
+        // Éxito: Se borró 1 fila
+        $stmt_cancel->close();
+        $db_cancel->closeConnection($conn_cancel);
+        header('Location: mis-reservas.php?exito_cancel=1');
+        exit();
+    } else {
+        // Error: No se borró nada (la reserva no era de este usuario o no existía)
+        $stmt_cancel->close();
+        $db_cancel->closeConnection($conn_cancel);
+        header('Location: mis-reservas.php?error_cancel=1');
+        exit();
+    }
+}
+// ===========================================
+// ==== NUEVA LÓGICA DE CANCELACIÓN (FIN) ====
+// ===========================================
+
+
+// 5. Obtener todas las reservas del usuario (esto ya lo tenías)
 $db = new Connection();
 $conn = $db->getConnection();
 
@@ -28,7 +72,7 @@ $sql = "SELECT r.*, c.nombre AS coche_nombre, c.imagen AS coche_imagen, m.nombre
         JOIN coches c ON r.id_coche = c.id_coche
         JOIN marcas m ON c.id_categoria = m.id_marca
         WHERE r.id_usuario = ?
-        ORDER BY r.fecha_inicio DESC"; // Mostrar las más nuevas primero
+        ORDER BY r.fecha_inicio DESC"; //
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_usuario);
@@ -88,6 +132,9 @@ $db->closeConnection($conn);
                     <?php if ($success_msg): ?>
                         <div class="alert alert-success"><?php echo $success_msg; ?></div>
                     <?php endif; ?>
+                    <?php if ($error_msg): ?>
+                        <div class="alert alert-danger"><?php echo $error_msg; ?></div>
+                    <?php endif; ?>
 
                     <?php if (empty($reservas)): ?>
                         <div class="text-center p-5 bg-light rounded">
@@ -115,11 +162,16 @@ $db->closeConnection($conn);
                                             <li class="list-group-item">
                                                 <strong>Coste Total:</strong> <?php echo number_format($reserva['coste_total'], 2, ',', '.'); ?>€
                                             </li>
-                                            <li class="list-group-item">
-                                                <strong>Reservado el:</strong> <?php echo date("d/m/Y", strtotime($reserva['fecha_creacion'])); ?>
-                                            </li>
                                         </ul>
-                                    </div>
+                                        
+                                        <div class="card-footer bg-transparent border-0 p-0 pt-3">
+                                            <a href="mis-reservas.php?accion=cancelar&id=<?php echo $reserva['id_reserva']; ?>" 
+                                               class="btn btn-danger" 
+                                               onclick="return confirm('¿Estás seguro de que quieres cancelar esta reserva?');">
+                                               Cancelar Reserva
+                                            </a>
+                                        </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -149,5 +201,7 @@ $db->closeConnection($conn);
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/jquery.timepicker.min.js"></script>
     <script src="js/scrollax.min.js"></script>
-    <script src="js/main.js"></script> </body>
+    <script src="js/main.js"></script>
+    
+</body>
 </html>

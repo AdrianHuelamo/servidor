@@ -3,11 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once 'admin/includes/database.php'; //
+require_once 'admin/includes/database.php'; 
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-// --- Cargar Opiniones ---
 $sql_opiniones = "SELECT * FROM opiniones ORDER BY id_opinion ASC";
 $resultado_opiniones = $conn->query($sql_opiniones);
 $opiniones = [];
@@ -17,7 +16,6 @@ if ($resultado_opiniones && $resultado_opiniones->num_rows > 0) {
     }
 }
 
-// --- Cargar Coches Destacados ---
 $sql_destacados = "SELECT c.*, m.nombre AS marca_nombre 
                    FROM coches c 
                    JOIN marcas m ON c.id_categoria = m.id_marca 
@@ -31,7 +29,6 @@ if ($resultado_destacados && $resultado_destacados->num_rows > 0) {
     }
 }
 
-// --- Cargar Servicios ---
 $sql_servicios = "SELECT * FROM servicios ORDER BY id_servicio ASC";
 $resultado_servicios = $conn->query($sql_servicios);
 $servicios = [];
@@ -41,8 +38,7 @@ if ($resultado_servicios && $resultado_servicios->num_rows > 0) {
     }
 }
 
-// --- Cargar Blog ---
-$sql_blog = "SELECT b.*, u.username AS nombre_autor 
+$sql_blog = "SELECT b.*, u.nombre AS nombre_autor 
              FROM blog b
              LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
              ORDER BY b.fecha DESC 
@@ -82,7 +78,7 @@ $db->closeConnection($conn);
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <?php include("menu.php"); // ?>
+    <?php include("menu.php"); ?>
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -111,8 +107,7 @@ $db->closeConnection($conn);
     		<div class="row no-gutters">
     			<div class="col-md-12	featured-top">
     				<div class="row no-gutters">
-                        
-                        <div class="col-md-12 d-flex align-items-center">
+	  					<div class="col-md-12 d-flex align-items-center">
 	  						<div class="services-wrap rounded w-100">
 	  							<h3 class="heading-section mb-4">La mejor forma de alquilar tu coche perfecto</h3>
 	  							<div class="row d-flex mb-4">
@@ -141,8 +136,10 @@ $db->closeConnection($conn);
 					            </div>      
 					          </div>
 					        </div>
-<p class="text-center"><a href="car.php" class="btn btn-primary py-3 px-4">Reserva tu coche perfecto</a></p>	  					</div>
-                        </div>
+					        <p class="text-center"><a href="car.php" class="btn btn-primary py-3 px-4">Reserva tu coche perfecto</a></p>
+	  						</div>
+	  					</div>
+	  				</div>
 				</div>
   		</div>
     </section>
@@ -164,20 +161,24 @@ $db->closeConnection($conn);
                             <?php foreach ($coches_destacados as $coche_d): ?>
                             <div class="item">
                                 <div class="car-wrap rounded ftco-animate">
-                                    <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>"> <div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo htmlspecialchars($coche_d['imagen']); ?>);">
+                                    <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>">
+                                        <div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo htmlspecialchars($coche_d['imagen']); ?>);">
                                         </div>
                                     </a>
                                     <div class="text">
-                                        <h2 class="mb-0"><a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>"><?php echo htmlspecialchars($coche_d['nombre']); ?></a></h2> <div class="d-flex mb-3">
+                                        <h2 class="mb-0"><a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>"><?php echo htmlspecialchars($coche_d['nombre']); ?></a></h2>
+                                        <div class="d-flex mb-3">
                                             <span class="cat"><?php echo htmlspecialchars($coche_d['marca_nombre']); ?></span>
                                             <p class="price ml-auto">$<?php echo htmlspecialchars($coche_d['precio_dia']); ?> <span>/día</span></p>
                                         </div>
-                                        
                                         <p class="d-flex mb-0 d-block">
-                                            <?php if (estaLogueado()): // ?>
-                                                <a href="reservar.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-primary py-2 mr-1">Reserva ya</a> <?php else: ?>
-                                                <a href="login.php?error=1" class="btn btn-primary py-2 mr-1">Reserva ya</a> <?php endif; ?>
-                                            <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a> </p>
+                                            <?php if (estaLogueado()): ?>
+                                                <a href="reservar.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-primary py-2 mr-1">Reserva ya</a>
+                                            <?php else: ?>
+                                                <a href="login.php?error=1" class="btn btn-primary py-2 mr-1">Reserva ya</a> 
+                                            <?php endif; ?>
+                                            <a href="car-single.php?id=<?php echo $coche_d['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +206,8 @@ $db->closeConnection($conn);
 	            <p>¿Quieres saber cuanto vale alquilar un coche?</p>
 	            <p>En AlquiLobato, entendemos que cada viaje es una nueva aventura. Nacimos de la pasión por la carretera y el servicio, con la misión de ofrecerte la libertad de moverte a tu ritmo, con el coche perfecto para cada ocasión.</p>
 	            <p>Nuestra flota está cuidadosamente seleccionada para garantizar tu seguridad y confort. Desde coches compactos ideales para la ciudad hasta SUVs espaciosos y vehículos de lujo para momentos especiales. Con un proceso de reserva sencillo y precios transparentes, estamos aquí para hacer que tu alquiler sea tan fácil y agradable como el propio viaje.</p>
-	            <p><a href="car.php" class="btn btn-primary py-3 px-4">Busca tu coche</a></a </div>
+	            <p><a href="car.php" class="btn btn-primary py-3 px-4">Busca tu coche</a>
+	          </div>
 					</div>
 				</div>
 			</div>
@@ -298,13 +300,16 @@ $db->closeConnection($conn);
                 <?php foreach ($posts_blog as $post_b): ?>
                 <div class="col-md-4 d-flex ftco-animate">
                     <div class="blog-entry justify-content-end">
-                    <a href="blog-single.php?id=<?php echo $post_b['id_blog']; ?>" class="block-20" style="background-image: url('<?php echo htmlspecialchars($post_b['imagen']); ?>');"> </a>
+                    <a href="blog-single.php?id=<?php echo $post_b['id_blog']; ?>" class="block-20" style="background-image: url('<?php echo htmlspecialchars($post_b['imagen']); ?>');">
+                    </a>
                     <div class="text pt-4">
                         <div class="meta mb-3">
                         <div><a href="#"><?php echo date("d M, Y", strtotime($post_b['fecha'])); ?></a></div>
                         <div><a href="#"><?php echo htmlspecialchars($post_b['nombre_autor']); ?></a></div>
                         </div>
-                        <h3 class="heading mt-2"><a href="blog-single.php?id=<?php echo $post_b['id_blog']; ?>"><?php echo htmlspecialchars($post_b['titulo']); ?></a></h3> <p><a href="blog-single.php?id=<?php echo $post_b['id_blog']; ?>" class="btn btn-primary">Leer más</a></p> </div>
+                        <h3 class="heading mt-2"><a href="blog-single.php?id=<?php echo $post_b['id_blog']; ?>"><?php echo htmlspecialchars($post_b['titulo']); ?></a></h3>
+                        <p><a href="blog-single.php?id=<?php echo $post_b['id_blog']; ?>" class="btn btn-primary">Leer más</a></p>
+                    </div>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -318,7 +323,7 @@ $db->closeConnection($conn);
       </div>
     </section>	
 
-    <?php include("footer.php"); // ?>
+    <?php include("footer.php"); ?>
     
   
 
@@ -341,5 +346,7 @@ $db->closeConnection($conn);
   <script src="js/scrollax.min.js"></script>
   <script src="httpsias.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script> </body>
+  <script src="js/main.js"></script>
+    
+  </body>
 </html>

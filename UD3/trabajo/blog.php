@@ -7,7 +7,8 @@ require_once 'admin/includes/database.php';
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-$sql = "SELECT b.id_blog, b.titulo, b.resumen, b.fecha, b.imagen, u.username 
+
+$sql = "SELECT b.id_blog, b.titulo, b.resumen, b.fecha, b.imagen, u.nombre AS nombre_autor 
         FROM blog b 
         LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
         ORDER BY b.fecha DESC";
@@ -67,7 +68,7 @@ $result = $conn->query($sql);
             if ($result && $result->num_rows > 0) {
                 while($post = $result->fetch_assoc()) {
                     
-                    $autor = !empty($post['username']) ? $post['username'] : 'Admin';
+                    $autor = !empty($post['nombre_autor']) ? $post['nombre_autor'] : 'Admin';
                     
                     $fecha_formateada = date("M d, Y", strtotime($post['fecha']));
             ?>
@@ -137,7 +138,7 @@ $result = $conn->query($sql);
   <script src="js/bootstrap-datepicker.js"></script>
   <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="httpsias.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
     

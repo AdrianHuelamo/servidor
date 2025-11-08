@@ -1,12 +1,10 @@
 <?php
-class Sessions {
-    
+class Sessions {   
     public function comprobarCredenciales($usuario, $clave) {
         require_once 'database.php';
         $db = new Connection();
         $conn = $db->getConnection();
         
-        // Obtener el usuario
         $sql = "SELECT * FROM usuarios WHERE username = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $usuario);
@@ -16,7 +14,6 @@ class Sessions {
         if ($resultado->num_rows === 1) {
             $datos = $resultado->fetch_assoc();
             
-            // Verificar contraseña con bcrypt
             if (password_verify($clave, $datos['password'])) {
                 $stmt->close();
                 $db->closeConnection($conn);
@@ -36,6 +33,9 @@ class Sessions {
         $_SESSION['correo'] = $datos['correo'];
         $_SESSION['telefono'] = $datos['telefono'];
         $_SESSION['rol'] = $datos['rol'];
+
+        $_SESSION['imagen'] = $datos['imagen'];
+        $_SESSION['bio'] = $datos['bio'];
     }
     
     public function comprobarSesion() {

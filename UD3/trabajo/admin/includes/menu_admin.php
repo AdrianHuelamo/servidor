@@ -20,21 +20,25 @@
                 <?php // --- LINKS PARA EDITORES Y ADMINS --- ?>
                 <?php if (puedeEditar()): // ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="gest_blog/listar_blog.php">Gestionar Blog</a>
+                        <a class="nav-link" href="blog.php">Gestionar Blog</a>
                     </li>
                 <?php endif; ?>
 
                 <?php // --- LINKS SOLO PARA ADMINS --- ?>
                 <?php if (esAdmin()): // ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="gest_coches/listar_coches.php">Gestionar Coches</a>
+                        <a class="nav-link" href="coches.php">Gestionar Coches</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gest_usuarios/listar_usuarios.php">Gestionar Usuarios</a>
+                        <a class="nav-link" href="usuarios.php">Gestionar Usuarios</a>
                     </li>
-                <?php endif; ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reservas.php">Gestionar Reservas</a>
+                    </li>
+                    <?php endif; ?>
 
             </ul>
+            
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="../index.php" target="_blank">Ver Web Pública</a>
@@ -43,6 +47,7 @@
                     <a class="nav-link" href="includes/logout.php">Cerrar Sesión (<?php echo htmlspecialchars(getNombreUsuario()); // ?>)</a>
                 </li>
             </ul>
+
         </div>
     </div>
 </nav>

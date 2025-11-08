@@ -14,8 +14,7 @@ $id_blog = $_GET['id'];
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-// Consulta principal para el post (unida a usuarios)
-$sql = "SELECT b.*, u.username AS nombre_autor 
+$sql = "SELECT b.*, u.nombre AS nombre_autor, u.imagen AS autor_imagen, u.bio AS autor_bio 
         FROM blog b
         LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
         WHERE b.id_blog = ?";
@@ -31,17 +30,24 @@ $resultado = $stmt->get_result();
 
 if ($resultado->num_rows === 1) {
     $post = $resultado->fetch_assoc();
+    
     if(empty($post['nombre_autor'])) {
         $post['nombre_autor'] = 'Admin';
     }
+    if(empty($post['autor_imagen'])) {
+        $post['autor_imagen'] = 'images/autores/default.png';
+    }
+    if(empty($post['autor_bio'])) {
+        $post['autor_bio'] = 'Este autor todavía no ha escrito su biografía.';
+    }
+
 } else {
     header('Location: blog.php');
     exit;
 }
 $stmt->close();
 
-// Consulta secundaria para el blog reciente (AHORA CON EL JOIN)
-$sql_recent = "SELECT b.*, u.username AS nombre_autor 
+$sql_recent = "SELECT b.*, u.nombre AS nombre_autor 
                FROM blog b
                LEFT JOIN usuarios u ON b.id_autor = u.id_usuario
                WHERE b.id_blog != ? 
@@ -60,7 +66,6 @@ $resultado_recent = $stmt_recent->get_result();
 $recent_posts = [];
 if ($resultado_recent->num_rows > 0) {
     while($fila = $resultado_recent->fetch_assoc()) {
-        // Añadimos el mismo control por si el autor es nulo
         if(empty($fila['nombre_autor'])) {
             $fila['nombre_autor'] = 'Admin';
         }
@@ -124,11 +129,11 @@ $db->closeConnection($conn);
             
             <div class="about-author d-flex p-4 bg-light mt-5">
               <div class="bio mr-5">
-                <img src="images/person_1.jpg" alt="Foto del autor" class="img-fluid mb-4">
+                <img src="<?php echo htmlspecialchars($post['autor_imagen']); ?>" alt="Foto de <?php echo htmlspecialchars($post['nombre_autor']); ?>" class="img-fluid mb-4" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
               </div>
               <div class="desc">
                 <h3><?php echo htmlspecialchars($post['nombre_autor']); ?></h3>
-                <p><?php echo htmlspecialchars($post['resumen']); ?></p>
+                <p><?php echo nl2br(htmlspecialchars($post['autor_bio'])); ?></p>
               </div>
             </div>
 
