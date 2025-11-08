@@ -201,27 +201,16 @@ $db->closeConnection($conn);
         						<h2 class="mb-0"><a href="car-single.php?id=<?php echo $coche['id_coche']; ?>"><?php echo htmlspecialchars($coche['nombre']); ?></a></h2>
         						<div class="d-flex mb-3">
     	    						<span class="cat"><?php echo htmlspecialchars($coche['marca_nombre']); ?></span>
-    	    						<p class="price ml-auto">$<?php echo htmlspecialchars($coche['precio_dia']); ?> <span>/día</span></p>
+    	    						<p class="price ml-auto"><?php echo htmlspecialchars($coche['precio_dia']); ?> €<span>/día</span></p>
         						</div>
-        						<?php if (puedeEditar()): ?>
                                     <p class="d-flex mb-0 d-block">
-                                        <a href="admin/gest_coches/editar_coche.php?id=<?php echo $coche['id_coche']; ?>" class="btn btn-warning py-2 mr-1">Editar</a>
-                                        <a href="admin/gest_coches/eliminar_coche.php?id=<?php echo $coche['id_coche']; ?>" 
-                                           class="btn btn-danger py-2 ml-1" 
-                                           onclick="return confirm('¿Estás seguro de que quieres eliminar este coche?');">
-                                           Eliminar
-                                        </a>
+                                        <?php if (estaLogueado()): ?>
+                                            <a href="reservar.php?id=<?php echo $coche['id_coche']; ?>" class="btn btn-primary py-2 mr-1">Reservar</a>
+                                        <?php else: ?>
+                                            <a href="login.php?error=1" class="btn btn-primary py-2 mr-1">Reservar</a> 
+                                        <?php endif; ?>
+                                        <a href="car-single.php?id=<?php echo $coche['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a>
                                     </p>
-                                    <?php else: ?>
-                                        <p class="d-flex mb-0 d-block">
-                                            <?php if (estaLogueado()): ?>
-                                                <a href="reservar.php?id=<?php echo $coche['id_coche']; ?>" class="btn btn-primary py-2 mr-1">Reservar</a>
-                                            <?php else: ?>
-                                                <a href="login.php?error=1" class="btn btn-primary py-2 mr-1">Reservar</a> 
-                                            <?php endif; ?>
-                                            <a href="car-single.php?id=<?php echo $coche['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a>
-                                        </p>
-                                    <?php endif; ?>
         					</div>
         				</div>
         			</div>

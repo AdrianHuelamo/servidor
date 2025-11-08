@@ -1,7 +1,6 @@
 <?php
 require_once 'admin/includes/database.php'; 
 
-// Comprobación de ID (ya la tenías)
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header('Location: car.php');
     exit;
@@ -11,7 +10,6 @@ $id_coche = $_GET['id'];
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-// Consulta del coche principal
 $sql = "SELECT coches.*, marcas.nombre AS marca_nombre 
         FROM coches 
         JOIN marcas ON coches.id_categoria = marcas.id_marca 
@@ -37,7 +35,6 @@ if ($resultado->num_rows === 1) {
 
 $stmt->close();
 
-// Consulta de coches relacionados (ya la tenías)
 $coches_relacionados = [];
 if ($coche) {
     $precio_actual = $coche['precio_dia'];
@@ -95,7 +92,6 @@ $db->closeConnection($conn);
   <body>
     
 	<?php 
-    // ¡IMPORTANTE! menu.php ahora define $es_admin
     include("menu.php"); 
     ?>
     
@@ -202,29 +198,24 @@ $db->closeConnection($conn);
             </div>      
           </div>
       	</div>
+
       	<div class="row">
-      		<div class="col-md-12 pills">
-						<div class="bd-example bd-example-tabs">
-							<div class="d-flex justify-content-center">
-							  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-							    <li class="nav-item">
-							      <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Descripción</a>
-							    </li>
-							    <li class="nav-item">
-							      <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Reseñas</a>
-							    </li>
-							  </ul>
-							</div>
-						  <div class="tab-content" id="pills-tabContent">
-						    <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-						    	<p>Este <?php echo htmlspecialchars($coche['marca_nombre']) . " " . htmlspecialchars($coche['nombre']); ?> del año <?php echo htmlspecialchars($coche['año']); ?> es una opción fantástica para tu viaje. Cuenta con transmisión <?php echo htmlspecialchars($coche['transmision']); ?> y espacio para <?php echo htmlspecialchars($coche['asientos']); ?> personas. Perfecto para cualquier aventura.</p>
-						    </div>
-						    <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-						    </div>
-						  </div>
-						</div>
-		      </div>
-				</div>
+      		<div class="col-md-12">
+                <div class="bg-light p-4 rounded mt-4">
+                    <h3 class="mb-3">Descripción</h3>
+                    <p>Este <?php echo htmlspecialchars($coche['marca_nombre']) . " " . htmlspecialchars($coche['nombre']); ?> del año <?php echo htmlspecialchars($coche['año']); ?> es una opción fantástica para tu viaje. Cuenta con transmisión <?php echo htmlspecialchars($coche['transmision']); ?> y espacio para <?php echo htmlspecialchars($coche['asientos']); ?> personas. Perfecto para cualquier aventura.</p>
+                </div>
+                
+                <p class="text-center mt-4">
+                    <?php if (estaLogueado()): ?>
+                        <a href="reservar.php?id=<?php echo $coche['id_coche']; ?>" class="btn btn-primary py-3 px-5">Reservar este coche</a>
+                    <?php else: ?>
+                        <a href="login.php?error=1" class="btn btn-primary py-3 px-5">Reservar este coche</a> 
+                    <?php endif; ?>
+                </p>
+                
+		    </div>
+		</div>
       </div>
     </section>
 
@@ -253,26 +244,16 @@ $db->closeConnection($conn);
                                 <p class="price ml-auto">$<?php echo htmlspecialchars($coche_rel['precio_dia']); ?> <span>/día</span></p>
                             </div>
                             
-                           <?php if (puedeEditar()): ?>
-                                <p class="d-flex mb-0 d-block">
-                                    <a href="admin/gest_coches/editar_coche.php?id=<?php echo $coche_rel['id_coche']; ?>" class="btn btn-warning py-2 mr-1">Editar</a>
-                                    <a href="admin/gest_coches/eliminar_coche.php?id=<?php echo $coche_rel['id_coche']; ?>" 
-                                       class="btn btn-danger py-2 ml-1" 
-                                       onclick="return confirm('¿Estás seguro de que quieres eliminar este coche?');">
-                                       Eliminar
-                                    </a>
-                                </p>
+                            <p class="d-flex mb-0 d-block">
+                                <?php if (estaLogueado()): ?>
+                                    <a href="reservar.php?id=<?php echo $coche_rel['id_coche']; ?>" class="btn btn-primary py-2 mr-1">Reservar</a>
                                 <?php else: ?>
-                                    <p class="d-flex mb-0 d-block">
-                                        <?php if (estaLogueado()): ?>
-                                            <a href="reservar.php?id=<?php echo $coche_rel['id_coche']; ?>" class="btn btn-primary py-2 mr-1">Reservar</a>
-                                        <?php else: ?>
-                                            <a href="login.php?error=1" class="btn btn-primary py-2 mr-1">Reservar</a> 
-                                        <?php endif; ?>
-                                        <a href="car-single.php?id=<?php echo $coche_rel['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a>
-                                    </p>
+                                    <a href="login.php?error=1" class="btn btn-primary py-2 mr-1">Reservar</a> 
                                 <?php endif; ?>
-                            </div>
+                                <a href="car-single.php?id=<?php echo $coche_rel['id_coche']; ?>" class="btn btn-secondary py-2 ml-1">Detalles</a>
+                            </p>
+                            
+                        </div>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -304,7 +285,7 @@ $db->closeConnection($conn);
   <script src="js/bootstrap-datepicker.js"></script>
   <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="httpsias.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
     

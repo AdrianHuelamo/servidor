@@ -1,6 +1,7 @@
 <?php
-// 1. ¡EL GUARDIA PRIMERO!
-// Si no tienes permiso, 'proteger.php' te expulsará antes de ver nada.
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once 'includes/proteger.php';
 ?>
 <!DOCTYPE html>

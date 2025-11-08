@@ -1,23 +1,21 @@
 <?php
-// 1. Cargar auth y database
-require_once 'admin/includes/auth.php'; //
-require_once 'admin/includes/database.php'; //
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once 'admin/includes/auth.php'; 
+require_once 'admin/includes/database.php'; 
 
-// 2. PROTEGER LA PÁGINA
-// Si no está logueado, lo expulsamos al login
-if (!estaLogueado()) { //
-    header('Location: login.php?error=1'); //
+if (!estaLogueado()) { 
+    header('Location: login.php?error=1'); 
     exit();
 }
 
-// 3. Comprobar que tenemos un ID de coche
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header('Location: car.php'); //
+    header('Location: car.php'); 
     exit;
 }
 $id_coche = $_GET['id'];
 
-// 4. Obtener datos del coche
 $db = new Connection();
 $conn = $db->getConnection();
 
@@ -31,15 +29,13 @@ $stmt->execute();
 $resultado = $stmt->get_result();
 
 if ($resultado->num_rows !== 1) {
-    // El coche no existe
-    header('Location: car.php'); //
+    header('Location: car.php'); 
     exit;
 }
 $coche = $resultado->fetch_assoc();
 $stmt->close();
 $db->closeConnection($conn);
 
-// 5. Variables para mensajes de error
 $error_msg = '';
 if (isset($_GET['error'])) {
     if ($_GET['error'] == 'conflicto') {
@@ -74,9 +70,9 @@ if (isset($_GET['error'])) {
 </head>
 <body>
     
-    <?php include("menu.php"); // ?>
+    <?php include("menu.php"); ?>
     
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/sobre-nosotros.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -120,6 +116,7 @@ if (isset($_GET['error'])) {
                                             Precio por Día
                                             <span class="badge badge-primary badge-pill"><?php echo htmlspecialchars($coche['precio_dia']); ?>€</span>
                                         </li>
+         
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             Precio por Mes
                                             <span class="badge badge-primary badge-pill"><?php echo htmlspecialchars($coche['precio_mes']); ?>€</span>
@@ -142,8 +139,7 @@ if (isset($_GET['error'])) {
 
                         <form method="POST" action="proceso_reserva.php">
                             <input type="hidden" name="id_coche" value="<?php echo $coche['id_coche']; ?>">
-                            <input type="hidden" name="precio_hora" value="<?php echo $coche['precio_hora']; ?>">
-
+                            
                             <div class="form-group">
                                 <label for="fecha_inicio">Fecha de Recogida</label>
                                 <input type="text" name="fecha_inicio_fecha" class="form-control" id="reserva_fecha_inicio" placeholder="Fecha" required>
@@ -174,7 +170,7 @@ if (isset($_GET['error'])) {
         </div>
     </section>
 
-    <?php include("footer.php"); // ?>
+    <?php include("footer.php"); ?>
     
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
@@ -192,5 +188,7 @@ if (isset($_GET['error'])) {
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/jquery.timepicker.min.js"></script>
     <script src="js/scrollax.min.js"></script>
-    <script src="js/main.js"></script> </body>
+    <script src="js/main.js"></script>
+    
+</body>
 </html>

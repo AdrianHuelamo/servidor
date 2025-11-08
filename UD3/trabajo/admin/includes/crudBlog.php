@@ -1,16 +1,15 @@
 <?php
-require_once 'database.php'; //
+require_once 'database.php';
 
 class Blog {
-
     public function getAll() {
         $db = new Connection();
         $conn = $db->getConnection();
         
-        $sql = "SELECT b.*, u.username 
+        $sql = "SELECT b.*, u.nombre AS nombre_autor 
                 FROM blog b 
                 LEFT JOIN usuarios u ON b.id_autor = u.id_usuario 
-                ORDER BY b.fecha DESC"; 
+                ORDER BY b.fecha DESC"; //
         
         $result = $conn->query($sql);
         $db->closeConnection($conn);
@@ -65,10 +64,11 @@ class Blog {
         $db = new Connection();
         $conn = $db->getConnection();
 
-        $post_a_borrar = $this->getPostById($id); // Usamos el método de esta misma clase
+        $post_a_borrar = $this->getPostById($id);
         if ($post_a_borrar && !empty($post_a_borrar['imagen'])) {
-            if (file_exists("../" . $post_a_borrar['imagen'])) { 
-                @unlink("../" . $post_a_borrar['imagen']);
+            $ruta_imagen = "../" . $post_a_borrar['imagen'];
+            if (file_exists($ruta_imagen)) { 
+                unlink($ruta_imagen);
             }
         }
         
@@ -76,6 +76,7 @@ class Blog {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $exito = $stmt->execute();
+        $stmt->close();
 
         $db->closeConnection($conn);
         return $exito;

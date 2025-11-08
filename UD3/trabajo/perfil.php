@@ -1,7 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once 'admin/includes/auth.php';
 require_once 'admin/includes/database.php';
-
+require_once 'admin/includes/crudUsuarios.php';
 
 if (!estaLogueado()) {
     header('Location: login.php?error=1');
@@ -14,115 +17,91 @@ $error_pass = '';
 $success_pass = '';
 
 $id_usuario = getUserId();
+$userObj = new Usuarios();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db = new Connection();
     $conn = $db->getConnection();
 
     if (isset($_POST['guardar_datos'])) {
-        $nombre = trim($_POST['nombre']);
-        $correo = trim($_POST['correo']);
-        $telefono = trim($_POST['telefono']);
-        $bio = trim($_POST['bio']);
-        $imagen_path = $_POST['imagen_actual'];
-
         try {
+            $nombre = trim($_POST['nombre']);
+            $correo = trim($_POST['correo']);
+            $telefono = trim($_POST['telefono']);
+            $bio = trim($_POST['bio']);
+            $imagen_path = $_POST['imagen_actual'];
+
+            if (empty($nombre) || empty($correo) || empty($telefono)) {
+                throw new Exception("Los campos nombre, correo y teléfono son obligatorios.");
+            }
+            if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("El formato de correo no es válido.");
+            }
+
             if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
-                
-                $target_dir = "images/autores/"; 
+                $target_dir = "images/autores/";
                 if (!file_exists($target_dir)) {
                     mkdir($target_dir, 0755, true); 
                 }
-                
                 $file_name = "user-" . $id_usuario . '-' . basename($_FILES["imagen"]["name"]);
                 $target_file = $target_dir . $file_name;
                 $db_path = "images/autores/" . $file_name; 
 
                 if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
-                    $imagen_path = $db_path; 
-                    
-                    if (!empty($_POST['imagen_actual']) && $_POST['imagen_actual'] != 'images/autores/default.png' && file_exists($_POST['imagen_actual'])) {
-                        @unlink($_POST['imagen_actual']);
+                    $imagen_path = $db_path;
+                    $ruta_imagen_antigua = $_POST['imagen_actual'];
+                    if (!empty($ruta_imagen_antigua) && $ruta_imagen_antigua != 'images/autores/default.png' && file_exists($ruta_imagen_antigua)) {
+                        unlink($ruta_imagen_antigua);
                     }
                 } else {
                     throw new Exception("Error al mover la imagen subida.");
                 }
             }
-        } catch (Exception $e) {
-            $error_datos = $e->getMessage();
-        }
 
-        if (empty($nombre) || empty($correo) || empty($telefono)) {
-            $error_datos = "Los campos nombre, correo y teléfono son obligatorios.";
-        } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-            $error_datos = "El formato de correo no es válido.";
-        }
-
-        if (empty($error_datos)) {
-            $sql = "UPDATE usuarios SET nombre = ?, correo = ?, telefono = ?, bio = ?, imagen = ? WHERE id_usuario = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssi", $nombre, $correo, $telefono, $bio, $imagen_path, $id_usuario);
-            
-            if ($stmt->execute()) {
-                $success_datos = "¡Datos actualizados correctamente!";
-                
+            if ($userObj->actualizarPerfil($conn, $id_usuario, $nombre, $correo, $telefono, $bio, $imagen_path)) {
                 $_SESSION['nombre'] = $nombre;
                 $_SESSION['correo'] = $correo;
                 $_SESSION['telefono'] = $telefono;
                 $_SESSION['bio'] = $bio;
                 $_SESSION['imagen'] = $imagen_path;
-                
                 header("Location: perfil.php?exito_datos=1");
                 exit();
-                
             } else {
-                $error_datos = "Error al actualizar. Inténtalo de nuevo.";
+                throw new Exception("Error al actualizar. Inténtalo de nuevo.");
             }
-            $stmt->close();
+
+        } catch (Exception $e) {
+            $error_datos = $e->getMessage();
         }
     }
 
     if (isset($_POST['guardar_password'])) {
-        $pass_actual = $_POST['pass_actual'];
-        $pass_nueva = $_POST['pass_nueva'];
-        $pass_confirm = $_POST['pass_confirm'];
+        try {
+            $pass_actual = $_POST['pass_actual'];
+            $pass_nueva = $_POST['pass_nueva'];
+            $pass_confirm = $_POST['pass_confirm'];
 
-        if (empty($pass_actual) || empty($pass_nueva) || empty($pass_confirm)) {
-            $error_pass = "Todos los campos de contraseña son obligatorios.";
-        } elseif ($pass_nueva !== $pass_confirm) {
-            $error_pass = "Las contraseñas nuevas no coinciden.";
-        } elseif (strlen($pass_nueva) < 4) {
-            $error_pass = "La contraseña nueva debe tener al menos 4 caracteres.";
-        } else {
-            $sql_pass = "SELECT password FROM usuarios WHERE id_usuario = ?";
-            $stmt_pass = $conn->prepare($sql_pass);
-            $stmt_pass->bind_param("i", $id_usuario);
-            $stmt_pass->execute();
-            $resultado = $stmt_pass->get_result();
-            $usuario = $resultado->fetch_assoc();
-            $stmt_pass->close();
-
-            if (password_verify($pass_actual, $usuario['password'])) {
-                $password_hash = password_hash($pass_nueva, PASSWORD_BCRYPT);
-
-                $sql_update_pass = "UPDATE usuarios SET password = ? WHERE id_usuario = ?";
-                $stmt_update = $conn->prepare($sql_update_pass);
-                $stmt_update->bind_param("si", $password_hash, $id_usuario);
-                
-                if ($stmt_update->execute()) {
-                    $success_pass = "¡Contraseña actualizada correctamente!";
-                } else {
-                    $error_pass = "Error al actualizar la contraseña.";
-                }
-                $stmt_update->close();
-            } else {
-                $error_pass = "La contraseña actual es incorrecta.";
+            if (empty($pass_actual) || empty($pass_nueva) || empty($pass_confirm)) {
+                throw new Exception("Todos los campos de contraseña son obligatorios.");
             }
+            if ($pass_nueva !== $pass_confirm) {
+                throw new Exception("Las contraseñas nuevas no coinciden.");
+            }
+            if (strlen($pass_nueva) < 4) {
+                throw new Exception("La contraseña nueva debe tener al menos 4 caracteres.");
+            }
+
+            if ($userObj->actualizarPassword($conn, $id_usuario, $pass_actual, $pass_nueva)) {
+                $success_pass = "¡Contraseña actualizada correctamente!";
+            }
+        } catch (Exception $e) {
+            $error_pass = $e->getMessage();
         }
     }
     
     $db->closeConnection($conn);
 }
+
 if(isset($_GET['exito_datos'])) $success_datos = "¡Datos actualizados correctamente!";
 ?>
 <!DOCTYPE html>
@@ -211,6 +190,7 @@ if(isset($_GET['exito_datos'])) $success_datos = "¡Datos actualizados correctam
                             </div>
                         </form>
                     </div>
+
                     <hr class="my-5">
 
                     <div class="bg-light p-4 p-md-5 rounded">

@@ -1,9 +1,13 @@
 <?php
-// 1. Proteger la página
-require_once './includes/proteger.php'; //
-
-// 2. Incluir la nueva clase CRUD
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once './includes/proteger.php';
 require_once './includes/crudBlog.php';
+require_once './includes/database.php';
+
+$db = new Connection();
+$conn = $db->getConnection();
 $blogObj = new Blog();
 
 $accion = $_GET['accion'] ?? null;
@@ -11,45 +15,38 @@ $id = $_GET['id'] ?? null;
 $mensaje = "";
 $error = "";
 
-// 3. ACCIÓN: Eliminar (GET)
-// (Igual que en libros.php)
 if ($accion == "eliminar" && $id) {
-    if ($blogObj->eliminarPost($id)) {
+    if ($blogObj->eliminarPost($conn, $id)) {
         $mensaje = "Post eliminado correctamente.";
     } else {
         $error = "Error al eliminar el post.";
     }
-    // Recargamos la página sin los parámetros para limpiar la URL
     header("Location: blog.php" . ($error ? "?error=$error" : "?exito=$mensaje"));
     exit();
 }
 
-// 4. ACCIÓN: Crear o Editar (POST)
-// (Igual que en libros.php)
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titulo = $_POST['titulo'] ?? '';
     $resumen = $_POST['resumen'] ?? '';
     $contenido = $_POST['contenido'] ?? '';
-    $id_autor = getUserId(); //
+    $id_autor = getUserId();
     $accion_post = $_POST['accion'] ?? 'crear';
     $id_post = $_POST['id_blog'] ?? null;
 
-    // --- Lógica de subida de imagen ---
-    // (Esta lógica la tenía tu libros.php mal, la he corregido)
-    $imagen_path = $_POST['imagen_actual'] ?? ''; // Mantenemos la actual por defecto
+    $imagen_path = $_POST['imagen_actual'] ?? '';
     
     try {
         if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
-            $target_dir = "../images/"; // Salimos de 'admin' y entramos a 'images'
+            $target_dir = "../images/";
             $file_name = uniqid() . '-' . basename($_FILES["imagen"]["name"]);
             $target_file = $target_dir . $file_name;
-            $db_path = "images/" . $file_name; // Ruta para la BBDD
+            $db_path = "images/" . $file_name;
 
             if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
-                $imagen_path = $db_path; // Asignamos la nueva ruta
-                // Borramos la antigua si existía
-                if (!empty($_POST['imagen_actual']) && file_exists("../" . $_POST['imagen_actual'])) {
-                    @unlink("../" . $_POST['imagen_actual']);
+                $imagen_path = $db_path;
+                $ruta_imagen_antigua = "../" . $_POST['imagen_actual'];
+                if (!empty($_POST['imagen_actual']) && file_exists($ruta_imagen_antigua)) {
+                    unlink($ruta_imagen_antigua);
                 }
             } else {
                 throw new Exception("Error al mover la imagen subida.");
@@ -58,12 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
              throw new Exception("La imagen es obligatoria para un post nuevo.");
         }
 
-        // 5. Llamar a la clase CRUD
         if ($accion_post === "crear") {
-            $blogObj->insertarPost($titulo, $resumen, $contenido, $id_autor, $imagen_path);
+            $blogObj->insertarPost($conn, $titulo, $resumen, $contenido, $id_autor, $imagen_path);
             $mensaje = "Post creado con éxito.";
         } elseif ($accion_post === "editar" && $id_post) {
-            $blogObj->actualizarPost($id_post, $titulo, $resumen, $contenido, $imagen_path);
+            $blogObj->actualizarPost($conn, $id_post, $titulo, $resumen, $contenido, $imagen_path);
             $mensaje = "Post actualizado con éxito.";
         }
         header("Location: blog.php?exito=$mensaje");
@@ -71,23 +67,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } catch (Exception $e) {
         $error = $e->getMessage();
-        // Recargamos el formulario con el error
         header("Location: blog.php?accion=$accion_post" . ($id_post ? "&id=$id_post" : "") . "&error=$error");
         exit();
     }
 }
 
-// 6. OBTENER DATOS (para la VISTA)
+$posts = $blogObj->getAll($conn);
 
-// Para la tabla
-$posts = $blogObj->getAll();
-
-// Para el formulario (si es 'editar' o 'crear')
-// (Igual que en libros.php)
 $datos_post = ['titulo' => '', 'resumen' => '', 'contenido' => '', 'imagen' => ''];
 if ($accion === "editar" && $id) {
-    $datos_post = $blogObj->getPostById($id);
+    $datos_post = $blogObj->getPostById($conn, $id);
 }
+
+$db->closeConnection($conn);
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +99,7 @@ if ($accion === "editar" && $id) {
 </head>
 <body>
 
-    <?php include("./includes/menu_admin.php"); // ?>
+    <?php include("./includes/menu_admin.php"); ?>
 
     <div class="container ftco-section">
         <div class="row justify-content-center">
@@ -120,8 +112,8 @@ if ($accion === "editar" && $id) {
                 <a href="blog.php?accion=crear" class="btn btn-success mb-3">Añadir Nuevo Post</a>
 
                 <div class="bg-white p-4 rounded shadow-sm mb-5">
-                    <table class="table table-striped">
-                        <thead>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Imagen</th>
                                 <th>Título</th>
@@ -135,7 +127,7 @@ if ($accion === "editar" && $id) {
                             <tr>
                                 <td><img src="../<?php echo htmlspecialchars($post['imagen']); ?>" alt=""></td>
                                 <td><?php echo htmlspecialchars($post['titulo']); ?></td>
-                                <td><?php echo htmlspecialchars($post['username'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($post['nombre_autor'] ?? 'N/A'); ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($post['fecha'])); ?></td>
                                 <td>
                                     <a href="blog.php?accion=editar&id=<?php echo $post['id_blog']; ?>" class="btn btn-sm btn-primary">
@@ -201,5 +193,7 @@ if ($accion === "editar" && $id) {
     <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/admin-scroll.js"></script>
+
 </body>
 </html>

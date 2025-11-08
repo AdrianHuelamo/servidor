@@ -1,18 +1,19 @@
 <?php
-// 1. Cargar auth y database
-require_once 'admin/includes/auth.php'; //
-require_once 'admin/includes/database.php'; //
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once 'admin/includes/auth.php';
+require_once 'admin/includes/database.php';
+require_once 'admin/includes/crudReservas.php';
 
-// 2. PROTEGER LA PÁGINA
-if (!estaLogueado()) { //
-    header('Location: login.php?error=1'); //
+if (!estaLogueado()) {
+    header('Location: login.php?error=1');
     exit();
 }
 
-// 3. Obtener el ID del usuario
-$id_usuario = getUserId(); //
+$id_usuario = getUserId();
+$reservasObj = new Reservas();
 
-// 4. Variables para mensajes
 $success_msg = '';
 $error_msg = '';
 if (isset($_GET['exito']) && $_GET['exito'] == '1') {
@@ -22,69 +23,25 @@ if (isset($_GET['exito_cancel'])) {
     $success_msg = "Reserva cancelada correctamente.";
 }
 if (isset($_GET['error_cancel'])) {
-    $error_msg = "No se pudo cancelar la reserva (posiblemente no era tuya o ya no existía).";
+    $error_msg = "No se pudo cancelar la reserva.";
 }
 
+$db = new Connection();
+$conn = $db->getConnection();
 
-// ===========================================
-// ==== NUEVA LÓGICA DE CANCELACIÓN (INICIO) ====
-// ===========================================
 if (isset($_GET['accion']) && $_GET['accion'] == 'cancelar' && isset($_GET['id'])) {
     $id_reserva_a_cancelar = $_GET['id'];
     
-    $db_cancel = new Connection();
-    $conn_cancel = $db_cancel->getConnection();
-
-    // Medida de seguridad CRÍTICA:
-    // Solo borramos la reserva si el ID de reserva Y el ID del usuario coinciden.
-    // Esto evita que un usuario cancele reservas de otros adivinando el ID.
-    $sql_cancel = "DELETE FROM reservas WHERE id_reserva = ? AND id_usuario = ?"; //
-    $stmt_cancel = $conn_cancel->prepare($sql_cancel);
-    $stmt_cancel->bind_param("ii", $id_reserva_a_cancelar, $id_usuario);
-    $stmt_cancel->execute();
-
-    if ($stmt_cancel->affected_rows > 0) {
-        // Éxito: Se borró 1 fila
-        $stmt_cancel->close();
-        $db_cancel->closeConnection($conn_cancel);
+    if ($reservasObj->cancelarReservaUsuario($conn, $id_reserva_a_cancelar, $id_usuario)) {
         header('Location: mis-reservas.php?exito_cancel=1');
         exit();
     } else {
-        // Error: No se borró nada (la reserva no era de este usuario o no existía)
-        $stmt_cancel->close();
-        $db_cancel->closeConnection($conn_cancel);
         header('Location: mis-reservas.php?error_cancel=1');
         exit();
     }
 }
-// ===========================================
-// ==== NUEVA LÓGICA DE CANCELACIÓN (FIN) ====
-// ===========================================
 
-
-// 5. Obtener todas las reservas del usuario (esto ya lo tenías)
-$db = new Connection();
-$conn = $db->getConnection();
-
-$reservas = [];
-$sql = "SELECT r.*, c.nombre AS coche_nombre, c.imagen AS coche_imagen, m.nombre AS marca_nombre
-        FROM reservas r
-        JOIN coches c ON r.id_coche = c.id_coche
-        JOIN marcas m ON c.id_categoria = m.id_marca
-        WHERE r.id_usuario = ?
-        ORDER BY r.fecha_inicio DESC"; //
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_usuario);
-$stmt->execute();
-$resultado = $stmt->get_result();
-
-if ($resultado->num_rows > 0) {
-    while($fila = $resultado->fetch_assoc()) {
-        $reservas[] = $fila;
-    }
-}
-$stmt->close();
+$reservas = $reservasObj->getReservasPorUsuario($conn, $id_usuario);
 $db->closeConnection($conn);
 ?>
 <!DOCTYPE html>
@@ -110,9 +67,9 @@ $db->closeConnection($conn);
 </head>
 <body>
     
-    <?php include("menu.php"); // ?>
+    <?php include("menu.php"); ?>
     
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/mis-reservas.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/sobre-nosotros.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -129,12 +86,8 @@ $db->closeConnection($conn);
             <div class="row justify-content-center">
                 <div class="col-md-10">
                     
-                    <?php if ($success_msg): ?>
-                        <div class="alert alert-success"><?php echo $success_msg; ?></div>
-                    <?php endif; ?>
-                    <?php if ($error_msg): ?>
-                        <div class="alert alert-danger"><?php echo $error_msg; ?></div>
-                    <?php endif; ?>
+                    <?php if ($success_msg): ?><div class="alert alert-success"><?php echo $success_msg; ?></div><?php endif; ?>
+                    <?php if ($error_msg): ?><div class="alert alert-danger"><?php echo $error_msg; ?></div><?php endif; ?>
 
                     <?php if (empty($reservas)): ?>
                         <div class="text-center p-5 bg-light rounded">
@@ -171,7 +124,8 @@ $db->closeConnection($conn);
                                                Cancelar Reserva
                                             </a>
                                         </div>
-                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +137,7 @@ $db->closeConnection($conn);
         </div>
     </section>
 
-    <?php include("footer.php"); // ?>
+    <?php include("footer.php"); ?>
     
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 

@@ -1,13 +1,19 @@
 <?php
-require_once './includes/proteger.php'; //
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once './includes/proteger.php';
 
-
-if (!esAdmin()) { //
+if (!esAdmin()) {
     header('Location: index.php');
     exit();
 }
 
 require_once './includes/crudReservas.php';
+require_once './includes/database.php';
+
+$db = new Connection();
+$conn = $db->getConnection();
 $reservasObj = new Reservas();
 
 $accion = $_GET['accion'] ?? null;
@@ -25,7 +31,8 @@ if ($accion == "eliminar" && $id) {
     exit();
 }
 
-$reservas = $reservasObj->getAll();
+$reservas = $reservasObj->getAll($conn);
+$db->closeConnection($conn);
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +51,7 @@ $reservas = $reservasObj->getAll();
 </head>
 <body>
 
-    <?php include("./includes/menu_admin.php"); // ?>
+    <?php include("./includes/menu_admin.php"); ?>
 
     <div class="container-fluid ftco-section">
         <div class="row justify-content-center">
@@ -57,7 +64,7 @@ $reservas = $reservasObj->getAll();
                 <div class="bg-white p-4 rounded shadow-sm mb-5">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            <thead>
+                            <thead class="thead-dark">
                                 <tr>
                                     <th>Coche</th>
                                     <th>Imagen</th>
@@ -86,7 +93,7 @@ $reservas = $reservasObj->getAll();
                                         <td><?php echo number_format($reserva['coste_total'], 2, ',', '.'); ?>€</td>
                                         <td>
                                             <a href="reservas.php?accion=eliminar&id=<?php echo $reserva['id_reserva']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres ELIMINAR esta reserva?')">
-                                                Eliminar
+                                                Cancelar
                                             </a>
                                         </td>
                                     </tr>
@@ -103,5 +110,7 @@ $reservas = $reservasObj->getAll();
     <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/admin-scroll.js"></script>
+
 </body>
 </html>

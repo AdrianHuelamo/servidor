@@ -1,8 +1,6 @@
 <?php
-// ¡IMPORTANTE! Iniciamos la sesión y cargamos las funciones ANTES de cualquier HTML.
 require_once 'admin/includes/auth.php';
 
-// Detectamos la página actual para el 'active'
 $pagina_actual = basename($_SERVER['PHP_SELF']);
 ?>
 <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
