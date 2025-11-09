@@ -206,7 +206,7 @@ $db->closeConnection($conn);
 	            <p>¿Quieres saber cuanto vale alquilar un coche?</p>
 	            <p>En AlquiLobato, entendemos que cada viaje es una nueva aventura. Nacimos de la pasión por la carretera y el servicio, con la misión de ofrecerte la libertad de moverte a tu ritmo, con el coche perfecto para cada ocasión.</p>
 	            <p>Nuestra flota está cuidadosamente seleccionada para garantizar tu seguridad y confort. Desde coches compactos ideales para la ciudad hasta SUVs espaciosos y vehículos de lujo para momentos especiales. Con un proceso de reserva sencillo y precios transparentes, estamos aquí para hacer que tu alquiler sea tan fácil y agradable como el propio viaje.</p>
-	            <p><a href="car.php" class="btn btn-primary py-3 px-4">Busca tu coche</a></a
+	            <p><a href="car.php" class="btn btn-primary py-3 px-4">Busca tu coche</a>
 	          </div>
 					</div>
 				</div>

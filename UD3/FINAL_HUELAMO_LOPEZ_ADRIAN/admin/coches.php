@@ -18,6 +18,12 @@ $id = $_GET['id'] ?? null;
 $mensaje = "";
 $error = "";
 
+$datos_coche = [
+    'id_coche' => $id, 'nombre' => '', 'id_categoria' => '', 'año' => date('Y'), 'precio_hora' => '', 
+    'precio_dia' => '', 'precio_mes' => '', 'imagen' => '', 'kilometros' => 0, 
+    'transmision' => 'Manual', 'asientos' => 5, 'maletero' => 300, 'combustible' => 'Gasolina'
+];
+
 if ($accion == "eliminar" && $id) {
     try {
         if ($cocheObj->eliminarCoche($conn, $id)) {
@@ -34,7 +40,11 @@ if ($accion == "eliminar" && $id) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $datos_form = [
+    $accion_post = $_POST['accion'] ?? 'crear';
+    $id_coche = $_POST['id_coche'] ?? null;
+    
+    $datos_coche = [
+        'id_coche' => $id_coche,
         'nombre' => $_POST['nombre'] ?? '',
         'id_categoria' => $_POST['id_categoria'] ?? null,
         'año' => $_POST['año'] ?? 0,
@@ -45,17 +55,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'transmision' => $_POST['transmision'] ?? 'Manual',
         'asientos' => $_POST['asientos'] ?? 0,
         'maletero' => $_POST['maletero'] ?? 0,
-        'combustible' => $_POST['combustible'] ?? 'Gasolina'
+        'combustible' => $_POST['combustible'] ?? 'Gasolina',
+        'imagen' => $_POST['imagen_actual'] ?? ''
     ];
     
-    $accion_post = $_POST['accion'] ?? 'crear';
-    $id_coche = $_POST['id_coche'] ?? null;
     $imagen_path = $_POST['imagen_actual'] ?? '';
-    
     $nueva_imagen_subida = false;
     $ruta_nueva_imagen = '';
 
     try {
+        if (
+            empty($datos_coche['nombre']) || empty($datos_coche['id_categoria']) ||
+            !is_numeric($datos_coche['precio_hora']) || $datos_coche['precio_hora'] < 0 ||
+            !is_numeric($datos_coche['precio_dia']) || $datos_coche['precio_dia'] < 0 ||
+            !is_numeric($datos_coche['precio_mes']) || $datos_coche['precio_mes'] < 0 ||
+            !is_numeric($datos_coche['kilometros']) || $datos_coche['kilometros'] < 0 ||
+            !is_numeric($datos_coche['año']) || $datos_coche['año'] < 1900 || $datos_coche['año'] > (date('Y') + 1) ||
+            !is_numeric($datos_coche['asientos']) || $datos_coche['asientos'] < 1 ||
+            !is_numeric($datos_coche['maletero']) || $datos_coche['maletero'] < 1
+        ) {
+            throw new Exception("Todos los campos son obligatorios y los valores numéricos no pueden ser negativos o irreales.");
+        }
+
         if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
             
             $file_tmp_name = $_FILES['imagen']['tmp_name'];
@@ -98,10 +119,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if ($accion_post === "crear") {
-            $cocheObj->insertarCoche($conn, $datos_form, $imagen_path);
+            $cocheObj->insertarCoche($conn, $datos_coche, $imagen_path);
             $mensaje = "Coche creado con éxito.";
         } elseif ($accion_post === "editar" && $id_coche) {
-            $cocheObj->actualizarCoche($conn, $id_coche, $datos_form, $imagen_path);
+            $cocheObj->actualizarCoche($conn, $id_coche, $datos_coche, $imagen_path);
             $mensaje = "Coche actualizado con éxito.";
         }
         header("Location: coches.php?exito=$mensaje");
@@ -109,26 +130,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } catch (Exception $e) {
         $error = $e->getMessage();
-        
         if ($nueva_imagen_subida && file_exists($ruta_nueva_imagen)) {
             unlink($ruta_nueva_imagen);
         }
-        
-        header("Location: coches.php?accion=$accion_post" . ($id_coche ? "&id=$id_coche" : "") . "&error=" . urlencode($error));
-        exit();
     }
 }
 
 $coches = $cocheObj->getAll($conn);
 $marcas = $cocheObj->getMarcas($conn);
 
-$datos_coche = [
-    'nombre' => '', 'id_categoria' => '', 'año' => date('Y'), 'precio_hora' => '', 
-    'precio_dia' => '', 'precio_mes' => '', 'imagen' => '', 'kilometros' => 0, 
-    'transmision' => 'Manual', 'asientos' => 5, 'maletero' => 300, 'combustible' => 'Gasolina'
-];
-if ($accion === "editar" && $id) {
-    $datos_coche = $cocheObj->getById($conn, $id);
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    if ($accion === "editar" && $id) {
+        $datos_coche = $cocheObj->getById($conn, $id);
+    } elseif ($accion === "crear") {
+        $datos_coche = [
+            'nombre' => '', 'id_categoria' => '', 'año' => date('Y'), 'precio_hora' => '', 
+            'precio_dia' => '', 'precio_mes' => '', 'imagen' => '', 'kilometros' => 0, 
+            'transmision' => 'Manual', 'asientos' => 5, 'maletero' => 300, 'combustible' => 'Gasolina'
+        ];
+    }
 }
 
 $db->closeConnection($conn);
@@ -159,6 +179,8 @@ $db->closeConnection($conn);
             <main class="col-md-11">
                 <h2>Gestión de Coches</h2>
 
+                <?php if ($mensaje): ?><div class="alert alert-success"><?php echo htmlspecialchars($mensaje); ?></div><?php endif; ?>
+                <?php if ($error): ?><div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
                 <?php if (isset($_GET['exito'])): ?><div class="alert alert-success"><?php echo htmlspecialchars($_GET['exito']); ?></div><?php endif; ?>
                 <?php if (isset($_GET['error'])): ?><div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div><?php endif; ?>
 
@@ -208,7 +230,7 @@ $db->closeConnection($conn);
                     <div class="bg-white p-4 p-md-5 rounded shadow-sm form-crud">
                         <h3><?php echo $accion === "crear" ? "Nuevo Coche" : "Editar Coche"; ?></h3>
           
-                        <form method="post" action="coches.php" enctype="multipart/form-data">
+                        <form method="post" action="coches.php?accion=<?php echo $accion; ?><?php if ($id) echo '&id='.$id; ?>" enctype="multipart/form-data">
                             <input type="hidden" name="accion" value="<?php echo $accion; ?>">
                             <input type="hidden" name="id_coche" value="<?php echo $id; ?>">
                             <input type="hidden" name="imagen_actual" value="<?php echo htmlspecialchars($datos_coche['imagen']); ?>">
@@ -216,11 +238,11 @@ $db->closeConnection($conn);
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nombre del Modelo</label>
-                                    <input type="text" name="nombre" class="form-control" value="<?php echo htmlspecialchars($datos_coche['nombre']); ?>" required>
+                                    <input type="text" name="nombre" class="form-control" value="<?php echo htmlspecialchars($datos_coche['nombre']); ?>">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Marca</label>
-                                    <select name="id_categoria" class="form-control" required>
+                                    <select name="id_categoria" class="form-control">
                                         <option value="">-- Selecciona Marca --</option>
                                         <?php foreach ($marcas as $marca): ?>
                                             <option value="<?php echo $marca['id_marca']; ?>" <?php if ($datos_coche['id_categoria'] == $marca['id_marca']) echo 'selected'; ?>>
@@ -236,15 +258,15 @@ $db->closeConnection($conn);
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Precio por Hora</label>
-                                    <input type="number" name="precio_hora" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_hora']); ?>" required>
+                                    <input type="number" name="precio_hora" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_hora']); ?>">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Precio por Día</label>
-                                    <input type="number" name="precio_dia" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_dia']); ?>" required>
+                                    <input type="number" name="precio_dia" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_dia']); ?>">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Precio por Mes</label>
-                                    <input type="number" name="precio_mes" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_mes']); ?>" required>
+                                    <input type="number" name="precio_mes" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_mes']); ?>">
                                 </div>
                             </div>
                             
@@ -253,30 +275,30 @@ $db->closeConnection($conn);
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Año</label>
-                                    <input type="number" name="año" class="form-control" min="1900" max="<?php echo date('Y') + 1; ?>" value="<?php echo htmlspecialchars($datos_coche['año']); ?>" required>
+                                    <input type="number" name="año" class="form-control" min="1900" max="<?php echo date('Y') + 1; ?>" value="<?php echo htmlspecialchars($datos_coche['año']); ?>">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Kilómetros</label>
-                                    <input type="number" name="kilometros" class="form-control" min="0" value="<?php echo htmlspecialchars($datos_coche['kilometros']); ?>" required>
+                                    <input type="number" name="kilometros" class="form-control" min="0" value="<?php echo htmlspecialchars($datos_coche['kilometros']); ?>">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Asientos</label>
-                                    <input type="number" name="asientos" class="form-control" min="1" value="<?php echo htmlspecialchars($datos_coche['asientos']); ?>" required>
+                                    <input type="number" name="asientos" class="form-control" min="1" value="<?php echo htmlspecialchars($datos_coche['asientos']); ?>">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Maletero (Litros)</label>
-                                    <input type="number" name="maletero" class="form-control" min="1" value="<?php echo htmlspecialchars($datos_coche['maletero']); ?>" required>
+                                    <input type="number" name="maletero" class="form-control" min="1" value="<?php echo htmlspecialchars($datos_coche['maletero']); ?>">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Transmisión</label>
-                                    <select name="transmision" class="form-control" required>
+                                    <select name="transmision" class="form-control">
                                         <option value="Manual" <?php if ($datos_coche['transmision'] == 'Manual') echo 'selected'; ?>>Manual</option>
                                         <option value="Automático" <?php if ($datos_coche['transmision'] == 'Automático') echo 'selected'; ?>>Automático</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Combustible</label>
-                                    <select name="combustible" class="form-control" required>
+                                    <select name="combustible" class="form-control">
                                         <option value="Gasolina" <?php if ($datos_coche['combustible'] == 'Gasolina') echo 'selected'; ?>>Gasolina</option>
                                         <option value="Diesel" <?php if ($datos_coche['combustible'] == 'Diesel') echo 'selected'; ?>>Diesel</option>
                                         <option value="Híbrido" <?php if ($datos_coche['combustible'] == 'Híbrido') echo 'selected'; ?>>Híbrido</option>
@@ -295,8 +317,7 @@ $db->closeConnection($conn);
                                     <label for="imagen" class="mt-2">Subir nueva imagen (opcional):</label>
                                 <?php endif; ?>
                                 
-                                <input type="file" name="imagen" class="form-control" 
-                                <?php echo ($accion == 'crear') ? 'required' : ''; ?>>
+                                <input type="file" name="imagen" class="form-control">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Guardar Coche</button>

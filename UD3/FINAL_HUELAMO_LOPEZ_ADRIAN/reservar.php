@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once 'admin/includes/auth.php'; 
 require_once 'admin/includes/database.php'; 
 
@@ -40,10 +37,12 @@ $error_msg = '';
 if (isset($_GET['error'])) {
     if ($_GET['error'] == 'conflicto') {
         $error_msg = "¡Ocupado! Ese coche ya está reservado en las fechas seleccionadas. Por favor, elige otras.";
+    } elseif ($_GET['error'] == 'campos_vacios') {
+        $error_msg = "Error: Debes rellenar todos los campos de fecha y hora.";
+    } elseif ($_GET['error'] == 'fechas') {
+        $error_msg = "Error: Las fechas no son válidas. La fecha de fin debe ser posterior a la de inicio o el formato (dd/mm/aaaa) es incorrecto.";
     } elseif ($_GET['error'] == 'general') {
         $error_msg = "Error al procesar la reserva. Inténtalo de nuevo.";
-    } elseif ($_GET['error'] == 'fechas') {
-        $error_msg = "Las fechas no son válidas. La fecha de fin debe ser posterior a la de inicio.";
     }
 }
 ?>
@@ -72,7 +71,7 @@ if (isset($_GET['error'])) {
     
     <?php include("menu.php"); ?>
     
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/sobre-nosotros.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
@@ -142,22 +141,22 @@ if (isset($_GET['error'])) {
                             
                             <div class="form-group">
                                 <label for="fecha_inicio">Fecha de Recogida</label>
-                                <input type="text" name="fecha_inicio_fecha" class="form-control" id="reserva_fecha_inicio" placeholder="Fecha" required>
+                                <input type="text" name="fecha_inicio_fecha" class="form-control" id="reserva_fecha_inicio" placeholder="Fecha">
                             </div>
                             <div class="form-group">
                                 <label for="fecha_inicio_hora">Hora de Recogida</label>
-                                <input type="text" name="fecha_inicio_hora" class="form-control" id="reserva_hora_inicio" placeholder="Hora" required>
+                                <input type="text" name="fecha_inicio_hora" class="form-control" id="reserva_hora_inicio" placeholder="Hora">
                             </div>
 
                             <hr class="my-4">
 
                             <div class="form-group">
                                 <label for="fecha_fin_fecha">Fecha de Entrega</label>
-                                <input type="text" name="fecha_fin_fecha" class="form-control" id="reserva_fecha_fin" placeholder="Fecha" required>
+                                <input type="text" name="fecha_fin_fecha" class="form-control" id="reserva_fecha_fin" placeholder="Fecha">
                             </div>
                             <div class="form-group">
                                 <label for="fecha_fin_hora">Hora de Entrega</label>
-                                <input type="text" name="fecha_fin_hora" class="form-control" id="reserva_hora_fin" placeholder="Hora" required>
+                                <input type="text" name="fecha_fin_hora" class="form-control" id="reserva_hora_fin" placeholder="Hora">
                             </div>
                             
                             <div class="form-group mt-5">

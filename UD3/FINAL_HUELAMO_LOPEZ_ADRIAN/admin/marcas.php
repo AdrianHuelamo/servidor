@@ -150,7 +150,7 @@ $db->closeConnection($conn);
                             
                             <div class="mb-3">
                                 <label class="form-label">Nombre de la Marca</label>
-                                <input type="text" name="nombre" class="form-control" value="<?php echo htmlspecialchars($datos_marca['nombre']); ?>" required>
+                                <input type="text" name="nombre" class="form-control" value="<?php echo htmlspecialchars($datos_marca['nombre']); ?>">
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 <?php echo $accion === "crear" ? "Guardar Marca" : "Actualizar Marca"; ?>

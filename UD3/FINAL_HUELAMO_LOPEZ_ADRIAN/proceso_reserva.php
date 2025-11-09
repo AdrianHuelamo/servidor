@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once 'admin/includes/auth.php';
 require_once 'admin/includes/database.php';
 require_once 'admin/includes/crudReservas.php';
@@ -19,6 +16,13 @@ $db = new Connection();
 $conn = $db->getConnection();
 
 try {
+    if (
+        empty($_POST['fecha_inicio_fecha']) || empty($_POST['fecha_inicio_hora']) ||
+        empty($_POST['fecha_fin_fecha']) || empty($_POST['fecha_fin_hora'])
+    ) {
+        throw new Exception("campos_vacios");
+    }
+
     $fecha_inicio_obj = DateTime::createFromFormat('d/m/Y H:i', $_POST['fecha_inicio_fecha'] . ' ' . $_POST['fecha_inicio_hora']);
     $fecha_fin_obj = DateTime::createFromFormat('d/m/Y H:i', $_POST['fecha_fin_fecha'] . ' ' . $_POST['fecha_fin_hora']);
 
@@ -44,6 +48,8 @@ try {
     
     if ($error_tipo == 'conflicto') {
         header('Location: reservar.php?id=' . $id_coche . '&error=conflicto');
+    } elseif ($error_tipo == 'campos_vacios') {
+        header('Location: reservar.php?id=' . $id_coche . '&error=campos_vacios');
     } elseif ($error_tipo == 'fechas_orden' || $error_tipo == 'fechas_formato') {
         header('Location: reservar.php?id=' . $id_coche . '&error=fechas');
     } else {

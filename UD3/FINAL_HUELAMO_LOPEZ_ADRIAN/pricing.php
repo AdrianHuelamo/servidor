@@ -179,7 +179,6 @@ $db->closeConnection($conn);
                                 <?php endforeach; ?>
                               <?php endif; ?>
 						    </tbody>
-
 						  </table>
 					  </div>
     			</div>

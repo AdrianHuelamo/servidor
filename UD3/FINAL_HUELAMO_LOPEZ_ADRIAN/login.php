@@ -42,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Iniciar Sesión - AlquiLobato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Estilos CSS - Asegúrate de incluir todos los que usas en el resto de la web -->
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/owl.carousel.min.css" />
@@ -87,11 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST" action="">
                 <div class="form-group mb-3">
                     <label for="username">Usuario</label>
-                    <input type="text" name="username" id="username" class="form-control" required />
+                    <input type="text" name="username" id="username" class="form-control"/>
                 </div>
                 <div class="form-group mb-3">
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" required />
+                    <input type="password" name="password" id="password" class="form-control"/>
                 </div>
                 <div class="form-group mt-4">
                     <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>

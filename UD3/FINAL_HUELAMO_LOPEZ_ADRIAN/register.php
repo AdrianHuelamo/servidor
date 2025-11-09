@@ -79,7 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !estaLogueado()) {
     <meta charset="UTF-8" />
     <title>Crear Cuenta - AlquiLobato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Todos los estilos CSS usados en la web -->
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/owl.carousel.min.css" />
@@ -130,32 +129,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !estaLogueado()) {
             <form method="POST" action="">
                 <div class="form-group mb-3">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" required maxlength="25" value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>">
+                    <input type="text" name="nombre" id="nombre" class="form-control" maxlength="25" value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="username">Nombre de Usuario</label>
-                    <input type="text" name="username" id="username" class="form-control" required maxlength="25" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+                    <input type="text" name="username" id="username" class="form-control" maxlength="25" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="correo">Correo Electrónico</label>
-                    <input type="email" name="correo" id="correo" class="form-control" required maxlength="55" value="<?= htmlspecialchars($_POST['correo'] ?? '') ?>">
+                    <input type="email" name="correo" id="correo" class="form-control" maxlength="55" value="<?= htmlspecialchars($_POST['correo'] ?? '') ?>">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="telefono">Teléfono</label>
-                    <input type="number" name="telefono" id="telefono" class="form-control" required value="<?= htmlspecialchars($_POST['telefono'] ?? '') ?>">
+                    <input type="number" name="telefono" id="telefono" class="form-control" value="<?= htmlspecialchars($_POST['telefono'] ?? '') ?>">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Mínimo 4 caracteres" required>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Mínimo 4 caracteres">
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="password_confirm">Confirmar Contraseña</label>
-                    <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="Repite la contraseña" required>
+                    <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="Repite la contraseña">
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Crear Cuenta</button>
@@ -169,7 +168,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !estaLogueado()) {
         </div>
     </div>
 
-    <!-- Scripts iguales a los de otras páginas -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>

@@ -187,15 +187,15 @@ if(isset($_GET['exito_datos'])) $success_datos = "¡Datos actualizados correctam
                             </div>
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control" value="<?php echo htmlspecialchars($_SESSION['nombre']); ?>" required>
+                                <input type="text" name="nombre" class="form-control" value="<?php echo htmlspecialchars($_SESSION['nombre']); ?>">
                             </div>
                             <div class="form-group">
                                 <label for="correo">Correo Electrónico</label>
-                                <input type="email" name="correo" class="form-control" value="<?php echo htmlspecialchars($_SESSION['correo']); ?>" required>
+                                <input type="email" name="correo" class="form-control" value="<?php echo htmlspecialchars($_SESSION['correo']); ?>">
                             </div>
                             <div class="form-group">
                                 <label for="telefono">Teléfono</label>
-                                <input type="text" name="telefono" class="form-control" value="<?php echo htmlspecialchars($_SESSION['telefono']); ?>" required>
+                                <input type="text" name="telefono" class="form-control" value="<?php echo htmlspecialchars($_SESSION['telefono']); ?>">
                             </div>
 
                             <div class="form-group">
@@ -230,15 +230,15 @@ if(isset($_GET['exito_datos'])) $success_datos = "¡Datos actualizados correctam
                         <form method="POST" action="perfil.php">
                             <div class="form-group">
                                 <label for="pass_actual">Contraseña Actual</label>
-                                <input type="password" name="pass_actual" class="form-control" required>
+                                <input type="password" name="pass_actual" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="pass_nueva">Nueva Contraseña</label>
-                                <input type="password" name="pass_nueva" class="form-control" placeholder="Mínimo 4 caracteres" required>
+                                <input type="password" name="pass_nueva" class="form-control" placeholder="Mínimo 4 caracteres">
                             </div>
                             <div class="form-group">
                                 <label for="pass_confirm">Confirmar Nueva Contraseña</label>
-                                <input type="password" name="pass_confirm" class="form-control" required>
+                                <input type="password" name="pass_confirm" class="form-control">
                             </div>
                             <div class="form-group">
                                 <button type="submit" name="guardar_password" class="btn btn-primary py-3 px-4">Actualizar Contraseña</button>

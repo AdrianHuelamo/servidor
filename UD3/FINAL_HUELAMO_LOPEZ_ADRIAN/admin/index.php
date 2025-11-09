@@ -28,7 +28,6 @@ require_once 'includes/proteger.php';
 </head>
 <body>
 
-    <?php // 2. Cargar el menú de admin ?>
     <?php include 'includes/menu_admin.php'; ?>
 
     <div class="container ftco-section">
@@ -36,16 +35,16 @@ require_once 'includes/proteger.php';
             <div class="col-md-12">
                 <h1 class="mb-4">Bienvenido al Panel de Administración</h1>
                 <p>Hola, <strong><?php echo htmlspecialchars(getNombreUsuario()); // ?></strong>.</p>
-                <p>Tu rol es: <strong><?php echo getRol(); // ?></strong>.</p>
+                <p>Tu rol es: <strong><?php echo getRol();?></strong>.</p>
                 <p>Usa el menú superior para gestionar el contenido del sitio web.</p>
                 
                 <hr>
                 
-                <?php if (esAdmin()): // ?>
+                <?php if (esAdmin()): ?>
                     <div class="alert alert-success">
                         Tienes permisos de <b>Administrador</b>. Tienes acceso a todas las secciones.
                     </div>
-                <?php elseif (puedeEditar()): // ?>
+                <?php elseif (puedeEditar()): ?>
                     <div class="alert alert-info">
                         Tienes permisos de <b>Editor</b>. Puedes crear y editar las entradas del Blog.
                     </div>

@@ -14,28 +14,40 @@ $id = $_GET['id'] ?? null;
 $mensaje = "";
 $error = "";
 
+$datos_post = ['id_blog' => $id, 'titulo' => '', 'resumen' => '', 'contenido' => '', 'imagen' => '', 'id_autor' => getUserId()];
+
 if ($accion == "eliminar" && $id) {
     if ($blogObj->eliminarPost($conn, $id)) {
         $mensaje = "Post eliminado correctamente.";
     } else {
         $error = "Error al eliminar el post.";
     }
-    header("Location: blog.php" . ($error ? "?error=$error" : "?exito=$mensaje"));
+    header("Location: blog.php" . ($error ? "?error=" . urlencode($error) : "?exito=" . urlencode($mensaje)));
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $titulo = $_POST['titulo'] ?? '';
-    $resumen = $_POST['resumen'] ?? '';
-    $contenido = $_POST['contenido'] ?? '';
     $accion_post = $_POST['accion'] ?? 'crear';
     $id_post = $_POST['id_blog'] ?? null;
+    
+    $datos_post = [
+        'id_blog' => $id_post,
+        'titulo' => $_POST['titulo'] ?? '',
+        'resumen' => $_POST['resumen'] ?? '',
+        'contenido' => $_POST['contenido'] ?? '',
+        'id_autor' => $_POST['id_autor'] ?? getUserId(),
+        'imagen' => $_POST['imagen_actual'] ?? ''
+    ];
 
     $imagen_path = $_POST['imagen_actual'] ?? '';
     $nueva_imagen_subida = false;
     $ruta_nueva_imagen = '';
     
     try {
+        if (empty($datos_post['titulo']) || empty($datos_post['resumen']) || empty($datos_post['contenido'])) {
+            throw new Exception("Todos los campos (título, resumen, contenido) son obligatorios.");
+        }
+
         if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
             
             $file_tmp_name = $_FILES['imagen']['tmp_name'];
@@ -80,13 +92,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($accion_post === "crear") {
             $id_autor = getUserId();
-            $blogObj->insertarPost($conn, $titulo, $resumen, $contenido, $id_autor, $imagen_path);
+            $blogObj->insertarPost($conn, $datos_post['titulo'], $datos_post['resumen'], $datos_post['contenido'], $id_autor, $imagen_path);
             $mensaje = "Post creado con éxito.";
         } elseif ($accion_post === "editar" && $id_post) {
-            
-            $id_autor = $_POST['id_autor'];
-            
-            $blogObj->actualizarPost($conn, $id_post, $titulo, $resumen, $contenido, $imagen_path, $id_autor);
+            $id_autor = $datos_post['id_autor'];
+            $blogObj->actualizarPost($conn, $id_post, $datos_post['titulo'], $datos_post['resumen'], $datos_post['contenido'], $imagen_path, $id_autor);
             $mensaje = "Post actualizado con éxito.";
         }
         header("Location: blog.php?exito=$mensaje");
@@ -98,9 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($nueva_imagen_subida && file_exists($ruta_nueva_imagen)) {
             unlink($ruta_nueva_imagen);
         }
-        
-        header("Location: blog.php?accion=$accion_post" . ($id_post ? "&id=$id_post" : "") . "&error=" . urlencode($error));
-        exit();
     }
 }
 
@@ -110,9 +117,12 @@ if (esAdmin()) {
     $autores = $userObj->getAutores($conn);
 }
 
-$datos_post = ['id_blog' => '', 'titulo' => '', 'resumen' => '', 'contenido' => '', 'imagen' => '', 'id_autor' => getUserId()];
-if ($accion === "editar" && $id) {
-    $datos_post = $blogObj->getPostById($conn, $id);
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    if ($accion === "editar" && $id) {
+        $datos_post = $blogObj->getPostById($conn, $id);
+    } elseif ($accion === "crear") {
+        $datos_post = ['id_blog' => '', 'titulo' => '', 'resumen' => '', 'contenido' => '', 'imagen' => '', 'id_autor' => getUserId()];
+    }
 }
 
 $db->closeConnection($conn);
@@ -142,8 +152,11 @@ $db->closeConnection($conn);
             <main class="col-md-12">
                 <h2>Blog</h2>
 
+                <?php if ($mensaje): ?><div class="alert alert-success"><?php echo htmlspecialchars($mensaje); ?></div><?php endif; ?>
+                <?php if ($error): ?><div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
                 <?php if (isset($_GET['exito'])): ?><div class="alert alert-success"><?php echo htmlspecialchars($_GET['exito']); ?></div><?php endif; ?>
                 <?php if (isset($_GET['error'])): ?><div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div><?php endif; ?>
+
 
                 <a href="blog.php?accion=crear" class="btn btn-success mb-3">Añadir Nuevo Post</a>
 
@@ -183,7 +196,7 @@ $db->closeConnection($conn);
                     <div class="bg-white p-4 p-md-5 rounded shadow-sm form-crud">
                         <h3><?php echo $accion === "crear" ? "Nuevo Post" : "Editar Post"; ?></h3>
           
-                        <form method="post" action="blog.php" enctype="multipart/form-data">
+                        <form method="post" action="blog.php?accion=<?php echo $accion; ?><?php if ($id) echo '&id='.$id; ?>" enctype="multipart/form-data">
                             <input type="hidden" name="accion" value="<?php echo $accion; ?>">
                             <input type="hidden" name="id_blog" value="<?php echo $id; ?>">
                             <input type="hidden" name="imagen_actual" value="<?php echo htmlspecialchars($datos_post['imagen']); ?>">
@@ -191,13 +204,13 @@ $db->closeConnection($conn);
                             <div class="mb-3">
                                 <label class="form-label">Título:</label>
                                 <input type="text" name="titulo" class="form-control"
-                                value="<?php echo htmlspecialchars($datos_post['titulo']); ?>" required>
+                                value="<?php echo htmlspecialchars($datos_post['titulo']); ?>">
                             </div>
                             
                             <?php if (esAdmin() && $accion === 'editar'): ?>
                             <div class="mb-3">
                                 <label class="form-label">Autor:</label>
-                                <select name="id_autor" class="form-control" required>
+                                <select name="id_autor" class="form-control">
                                     <?php foreach ($autores as $autor): ?>
                                         <option value="<?php echo $autor['id_usuario']; ?>" <?php if ($datos_post['id_autor'] == $autor['id_usuario']) echo 'selected'; ?>>
                                             <?php echo htmlspecialchars($autor['nombre']); ?>
@@ -217,18 +230,17 @@ $db->closeConnection($conn);
                                     <label for="imagen" class="mt-2">Subir nueva imagen (opcional):</label>
                                 <?php endif; ?>
                                 
-                                <input type="file" name="imagen" class="form-control" 
-                                <?php echo ($accion == 'crear') ? 'required' : ''; ?>>
+                                <input type="file" name="imagen" class="form-control">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Resumen:</label>
-                                <textarea name="resumen" class="form-control" rows="3" required><?php echo htmlspecialchars($datos_post['resumen']); ?></textarea>
+                                <textarea name="resumen" class="form-control" rows="3"><?php echo htmlspecialchars($datos_post['resumen']); ?></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Contenido Completo:</label>
-                                <textarea name="contenido" class="form-control" rows="10" required><?php echo htmlspecialchars($datos_post['contenido']); ?></textarea>
+                                <textarea name="contenido" class="form-control" rows="10"><?php echo htmlspecialchars($datos_post['contenido']); ?></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Guardar</button>

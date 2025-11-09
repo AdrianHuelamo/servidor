@@ -142,7 +142,7 @@ $db->closeConnection($conn);
 
                             <div class="mb-3">
                                 <label class="form-label">Nuevo Rol:</label>
-                                <select name="nuevo_rol" class="form-control" required>
+                                <select name="nuevo_rol" class="form-control">
                                     <option value="user" <?php if($datos_usuario['rol'] == 'user') echo 'selected'; ?>>User</option>
                                     <option value="editor" <?php if($datos_usuario['rol'] == 'editor') echo 'selected'; ?>>Editor</option>
                                     <option value="admin" <?php if($datos_usuario['rol'] == 'admin') echo 'selected'; ?>>Admin</option>
