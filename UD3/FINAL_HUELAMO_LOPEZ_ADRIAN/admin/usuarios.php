@@ -81,8 +81,6 @@ $db->closeConnection($conn);
         <div class="row justify-content-center">
             <main class="col-md-11">
                 <h2>Gestión de Usuarios</h2>
-                <p>Aquí puedes cambiar el rol o eliminar a los usuarios. Los 'super-admin' y tu propia cuenta no aparecen en esta lista por seguridad.</p>
-
                 <?php if (isset($_GET['exito'])): ?><div class="alert alert-success"><?php echo htmlspecialchars($_GET['exito']); ?></div><?php endif; ?>
                 <?php if (isset($_GET['error'])): ?><div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div><?php endif; ?>
 

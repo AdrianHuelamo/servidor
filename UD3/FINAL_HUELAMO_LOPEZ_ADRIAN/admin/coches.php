@@ -1,5 +1,4 @@
 <?php
-
 require_once './includes/proteger.php';
 
 if (!esAdmin()) {
@@ -47,6 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $accion_post = $_POST['accion'] ?? 'crear';
     $id_coche = $_POST['id_coche'] ?? null;
     $imagen_path = $_POST['imagen_actual'] ?? '';
+    
+    $nueva_imagen_subida = false;
+    $ruta_nueva_imagen = '';
 
     try {
         if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
@@ -57,6 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
                 $imagen_path = $db_path;
+                $nueva_imagen_subida = true;
+                $ruta_nueva_imagen = $target_file;
+                
                 if (!empty($_POST['imagen_actual']) && file_exists("../" . $_POST['imagen_actual'])) {
                     unlink("../" . $_POST['imagen_actual']);
                 }
@@ -79,7 +84,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } catch (Exception $e) {
         $error = $e->getMessage();
-        header("Location: coches.php?accion=$accion_post" . ($id_coche ? "&id=$id_coche" : "") . "&error=$error");
+        
+        if ($nueva_imagen_subida && file_exists($ruta_nueva_imagen)) {
+            unlink($ruta_nueva_imagen);
+        }
+        
+        header("Location: coches.php?accion=$accion_post" . ($id_coche ? "&id=$id_coche" : "") . "&error=" . urlencode($error));
         exit();
     }
 }

@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once './includes/proteger.php';
 
 if (!esAdmin()) {
@@ -113,9 +110,9 @@ $db->closeConnection($conn);
                         <table class="table table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Acciones</th>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -126,9 +123,9 @@ $db->closeConnection($conn);
                                 <?php else: ?>
                                     <?php foreach($marcas as $marca) : ?>
                                     <tr>
-                                        <td><?php echo $marca['id_marca']; ?></td>
-                                        <td><?php echo htmlspecialchars($marca['nombre']); ?></td>
-                                        <td>
+                                        <td class="text-center align-middle"><?php echo $marca['id_marca']; ?></td>
+                                        <td class="text-center align-middle"><?php echo htmlspecialchars($marca['nombre']); ?></td>
+                                        <td class="text-center align-middle">
                                             <a href="marcas.php?accion=editar&id=<?php echo $marca['id_marca']; ?>" class="btn btn-sm btn-primary">
                                                 Editar
                                             </a>
@@ -171,5 +168,6 @@ $db->closeConnection($conn);
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/admin-scroll.js"></script>
+
 </body>
 </html>

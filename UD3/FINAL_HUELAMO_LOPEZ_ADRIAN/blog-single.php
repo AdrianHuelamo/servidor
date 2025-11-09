@@ -96,7 +96,13 @@ $db->closeConnection($conn);
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-  </head>
+
+    <style>
+        .hero-wrap .slider-text h1.bread {
+            line-height: 1.4; 
+        }
+    </style>
+    </head>
   <body>
     
     <?php include("menu.php"); ?>

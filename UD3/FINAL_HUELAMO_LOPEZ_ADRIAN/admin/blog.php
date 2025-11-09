@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once './includes/proteger.php';
 require_once './includes/crudBlog.php';
 require_once './includes/database.php';
@@ -34,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id_post = $_POST['id_blog'] ?? null;
 
     $imagen_path = $_POST['imagen_actual'] ?? '';
+    $nueva_imagen_subida = false;
+    $ruta_nueva_imagen = '';
     
     try {
         if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
@@ -44,6 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
                 $imagen_path = $db_path;
+                $nueva_imagen_subida = true;
+                $ruta_nueva_imagen = $target_file;
+                
                 $ruta_imagen_antigua = "../" . $_POST['imagen_actual'];
                 if (!empty($_POST['imagen_actual']) && file_exists($ruta_imagen_antigua)) {
                     unlink($ruta_imagen_antigua);
@@ -67,7 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } catch (Exception $e) {
         $error = $e->getMessage();
-        header("Location: blog.php?accion=$accion_post" . ($id_post ? "&id=$id_post" : "") . "&error=$error");
+        
+        if ($nueva_imagen_subida && file_exists($ruta_nueva_imagen)) {
+            unlink($ruta_nueva_imagen);
+        }
+        
+        header("Location: blog.php?accion=$accion_post" . ($id_post ? "&id=$id_post" : "") . "&error=" . urlencode($error));
         exit();
     }
 }

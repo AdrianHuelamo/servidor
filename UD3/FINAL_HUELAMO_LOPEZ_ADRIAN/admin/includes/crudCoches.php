@@ -29,7 +29,38 @@ class Coches {
         return $datos;
     }
 
+    private function checkDuplicado($conn, $nombre, $id_categoria, $id_coche = null) {
+        $sql = "SELECT id_coche FROM coches WHERE nombre = ? AND id_categoria = ?";
+        $types = "si";
+        $params = [$nombre, $id_categoria];
+
+        if ($id_coche !== null) {
+            $sql .= " AND id_coche != ?";
+            $types .= "i";
+            $params[] = $id_coche;
+        }
+
+        $stmt = $conn->prepare($sql);
+        
+        $bind_args = [$types];
+        foreach ($params as $key => &$param) {
+            $bind_args[] = &$params[$key];
+        }
+        call_user_func_array(array($stmt, 'bind_param'), $bind_args);
+        
+        $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
+        $stmt->close();
+        
+        return $num_rows > 0;
+    }
+
     public function insertarCoche($conn, $datos, $imagen_path) {
+        if ($this->checkDuplicado($conn, $datos['nombre'], $datos['id_categoria'])) {
+            throw new Exception("Ya existe un coche con ese nombre para esa marca.");
+        }
+        
         $sql = "INSERT INTO coches (nombre, id_categoria, año, precio_hora, precio_dia, precio_mes, imagen, kilometros, transmision, asientos, maletero, combustible) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
@@ -50,10 +81,18 @@ class Coches {
         );
         $exito = $stmt->execute();
         $stmt->close();
+        
+        if (!$exito) {
+            throw new Exception("Error de la base de datos: " . $conn->error);
+        }
         return $exito;
     }
 
     public function actualizarCoche($conn, $id_coche, $datos, $imagen_path) {
+        if ($this->checkDuplicado($conn, $datos['nombre'], $datos['id_categoria'], $id_coche)) {
+            throw new Exception("Ya existe otro coche con ese nombre para esa marca.");
+        }
+        
         $sql = "UPDATE coches SET 
                 nombre = ?, id_categoria = ?, año = ?, 
                 precio_hora = ?, precio_dia = ?, precio_mes = ?, 
@@ -79,6 +118,10 @@ class Coches {
         );
         $exito = $stmt->execute();
         $stmt->close();
+        
+        if (!$exito) {
+            throw new Exception("Error de la base de datos: " . $conn->error);
+        }
         return $exito;
     }
 

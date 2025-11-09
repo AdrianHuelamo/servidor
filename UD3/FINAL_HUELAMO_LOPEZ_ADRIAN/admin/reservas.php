@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once './includes/proteger.php';
 
 if (!esAdmin()) {
@@ -66,14 +63,14 @@ $db->closeConnection($conn);
                         <table class="table table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>Coche</th>
-                                    <th>Imagen</th>
-                                    <th>Usuario</th>
-                                    <th>Email</th>
-                                    <th>Desde</th>
-                                    <th>Hasta</th>
-                                    <th>Coste Total</th>
-                                    <th>Acciones</th>
+                                    <th class="text-center">Coche</th>
+                                    <th class="text-center">Imagen</th>
+                                    <th class="text-center">Usuario</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Desde</th>
+                                    <th class="text-center">Hasta</th>
+                                    <th class="text-center">Coste Total</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,16 +81,16 @@ $db->closeConnection($conn);
                                 <?php else: ?>
                                     <?php foreach($reservas as $reserva) : ?>
                                     <tr>
-                                        <td><?php echo htmlspecialchars($reserva['coche_nombre']); ?></td>
-                                        <td><img src="../<?php echo htmlspecialchars($reserva['coche_imagen']); ?>" alt=""></td>
-                                        <td><?php echo htmlspecialchars($reserva['usuario_nombre']); ?></td>
-                                        <td><?php echo htmlspecialchars($reserva['usuario_correo']); ?></td>
-                                        <td><?php echo date("d/m/Y H:i", strtotime($reserva['fecha_inicio'])); ?></td>
-                                        <td><?php echo date("d/m/Y H:i", strtotime($reserva['fecha_fin'])); ?></td>
-                                        <td><?php echo number_format($reserva['coste_total'], 2, ',', '.'); ?>€</td>
-                                        <td>
+                                        <td class="text-center align-middle"><?php echo htmlspecialchars($reserva['coche_nombre']); ?></td>
+                                        <td class="text-center align-middle"><img src="../<?php echo htmlspecialchars($reserva['coche_imagen']); ?>" alt=""></td>
+                                        <td class="text-center align-middle"><?php echo htmlspecialchars($reserva['usuario_nombre']); ?></td>
+                                        <td class="text-center align-middle"><?php echo htmlspecialchars($reserva['usuario_correo']); ?></td>
+                                        <td class="text-center align-middle"><?php echo date("d/m/Y H:i", strtotime($reserva['fecha_inicio'])); ?></td>
+                                        <td class="text-center align-middle"><?php echo date("d/m/Y H:i", strtotime($reserva['fecha_fin'])); ?></td>
+                                        <td class="text-center align-middle"><?php echo number_format($reserva['coste_total'], 2, ',', '.'); ?>€</td>
+                                        <td class="text-center align-middle">
                                             <a href="reservas.php?accion=eliminar&id=<?php echo $reserva['id_reserva']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que quieres ELIMINAR esta reserva?')">
-                                                Cancelar
+                                                Eliminar
                                             </a>
                                         </td>
                                     </tr>
