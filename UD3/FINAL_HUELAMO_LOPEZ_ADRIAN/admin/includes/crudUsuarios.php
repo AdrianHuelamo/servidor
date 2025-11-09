@@ -12,17 +12,30 @@ class Usuarios {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id_admin_actual);
         $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+        $stmt->bind_result($id, $nombre, $username, $correo, $rol);
+        
+        $usuarios = [];
+        while ($stmt->fetch()) {
+            $usuarios[] = [
+                'id_usuario' => $id,
+                'nombre' => $nombre,
+                'username' => $username,
+                'correo' => $correo,
+                'rol' => $rol
+            ];
+        }
+        $stmt->close();
+        return $usuarios;
     }
 
     public function getUserById($conn, $id) {
-        $sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
+        $sql = "SELECT id_usuario, nombre, username, correo, telefono, rol, imagen, bio 
+                FROM usuarios WHERE id_usuario = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $result = $stmt->get_result();
+        
+        $result = $stmt->get_result(); 
         $datos = $result ? $result->fetch_assoc() : null;
         $stmt->close();
         return $datos;
@@ -85,11 +98,11 @@ class Usuarios {
         $stmt_pass = $conn->prepare($sql_pass);
         $stmt_pass->bind_param("i", $id_usuario);
         $stmt_pass->execute();
-        $resultado = $stmt_pass->get_result();
-        $usuario = $resultado->fetch_assoc();
+        $stmt_pass->bind_result($hashed_password);
+        $stmt_pass->fetch();
         $stmt_pass->close();
 
-        if (password_verify($pass_actual, $usuario['password'])) {
+        if (password_verify($pass_actual, $hashed_password)) {
             $password_hash = password_hash($pass_nueva, PASSWORD_BCRYPT);
 
             $sql_update_pass = "UPDATE usuarios SET password = ? WHERE id_usuario = ?";
@@ -101,6 +114,26 @@ class Usuarios {
         } else {
             throw new Exception("La contraseña actual es incorrecta.");
         }
+    }
+
+    public function getAutores($conn) {
+        $sql = "SELECT id_usuario, nombre FROM usuarios 
+                WHERE rol = 'admin' OR rol = 'editor' OR rol = 'super'
+                ORDER BY nombre ASC";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $stmt->bind_result($id_usuario, $nombre);
+        
+        $autores = [];
+        while ($stmt->fetch()) {
+            $autores[] = [
+                'id_usuario' => $id_usuario,
+                'nombre' => $nombre
+            ];
+        }
+        $stmt->close();
+        return $autores;
     }
 }
 ?>

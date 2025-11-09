@@ -31,8 +31,10 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows === 1) {
     $post = $resultado->fetch_assoc();
     
-    if(empty($post['nombre_autor'])) {
-        $post['nombre_autor'] = 'Admin';
+    $autor_existe = !empty($post['nombre_autor']);
+    
+    if(!$autor_existe) {
+        $post['nombre_autor'] = 'Anónimo';
     }
     if(empty($post['autor_imagen'])) {
         $post['autor_imagen'] = 'images/autores/default.png';
@@ -67,7 +69,7 @@ $recent_posts = [];
 if ($resultado_recent->num_rows > 0) {
     while($fila = $resultado_recent->fetch_assoc()) {
         if(empty($fila['nombre_autor'])) {
-            $fila['nombre_autor'] = 'Admin';
+            $fila['nombre_autor'] = 'Anónimo';
         }
         $recent_posts[] = $fila;
     }
@@ -96,13 +98,12 @@ $db->closeConnection($conn);
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-
     <style>
         .hero-wrap .slider-text h1.bread {
             line-height: 1.4; 
         }
     </style>
-    </head>
+  </head>
   <body>
     
     <?php include("menu.php"); ?>
@@ -133,6 +134,7 @@ $db->closeConnection($conn);
                 echo "<p>" . str_replace("<br />\r\n<br />\r\n", "</p><p>", $contenido_con_br) . "</p>";
             ?>
             
+            <?php if ($autor_existe): ?>
             <div class="about-author d-flex p-4 bg-light mt-5">
               <div class="bio mr-5">
                 <img src="<?php echo htmlspecialchars($post['autor_imagen']); ?>" alt="Foto de <?php echo htmlspecialchars($post['nombre_autor']); ?>" class="img-fluid mb-4" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
@@ -142,6 +144,7 @@ $db->closeConnection($conn);
                 <p><?php echo nl2br(htmlspecialchars($post['autor_bio'])); ?></p>
               </div>
             </div>
+            <?php endif; ?>
 
           </div> <div class="col-md-4 sidebar ftco-animate">
             

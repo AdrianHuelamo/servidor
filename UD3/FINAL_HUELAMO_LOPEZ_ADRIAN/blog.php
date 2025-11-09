@@ -7,7 +7,6 @@ require_once 'admin/includes/database.php';
 $db = new Connection();
 $conn = $db->getConnection(); 
 
-
 $perPage = 4; 
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -87,7 +86,7 @@ $result = $conn->query($sql);
             if ($result && $result->num_rows > 0) {
                 while($post = $result->fetch_assoc()) {
                     
-                    $autor = !empty($post['nombre_autor']) ? $post['nombre_autor'] : 'Admin';
+                    $autor = !empty($post['nombre_autor']) ? $post['nombre_autor'] : 'Anónimo';
                     
                     $fecha_formateada = date("M d, Y", strtotime($post['fecha']));
             ?>
@@ -126,8 +125,6 @@ $result = $conn->query($sql);
                 if ($page > 1) {
                     $prev = $page - 1;
                     echo "<li><a href=\"blog.php?page=$prev\">&lt;</a></li>";
-                } else {
-                    echo "<li class=\"disabled\"><span>&lt;</span></li>";
                 }
 
                 for ($p = 1; $p <= $totalPages; $p++) {
@@ -141,8 +138,6 @@ $result = $conn->query($sql);
                 if ($page < $totalPages) {
                     $next = $page + 1;
                     echo "<li><a href=\"blog.php?page=$next\">&gt;</a></li>";
-                } else {
-                    echo "<li class=\"disabled\"><span>&gt;</span></li>";
                 }
                 ?>
               </ul>

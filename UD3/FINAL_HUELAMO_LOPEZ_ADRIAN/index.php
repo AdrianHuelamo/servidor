@@ -48,7 +48,7 @@ $posts_blog = [];
 if ($resultado_blog && $resultado_blog->num_rows > 0) {
     while($fila_b = $resultado_blog->fetch_assoc()) {
         if(empty($fila_b['nombre_autor'])) {
-            $fila_b['nombre_autor'] = 'Admin';
+            $fila_b['nombre_autor'] = 'Anónimo';
         }
         $posts_blog[] = $fila_b;
     }
@@ -88,6 +88,14 @@ $db->closeConnection($conn);
           	<div class="text w-100 text-center mb-md-5 pb-md-5">
 	            <h1 class="mb-4">Alquila ya el coche que necesites</h1>
 	            <p style="font-size: 22px;">¿Quieres saber cuanto vale alquilar un coche? <br> Busca el coche que mejor se adapte a ti en nuestra web</p>
+	            <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
+	            	<div class="icon d-flex align-items-center justify-content-center">
+	            		<span class="ion-ios-play"></span>
+	            	</div>
+	            	<div class="heading-title ml-5">
+		            	<span>Los faciles pasos para alquilar un coche</span>
+	            	</div>
+	            </a>
             </div>
           </div>
         </div>
@@ -101,7 +109,8 @@ $db->closeConnection($conn);
     				<div class="row no-gutters">
 	  					<div class="col-md-12 d-flex align-items-center">
 	  						<div class="services-wrap rounded w-100">
-                  <h3 class="heading-section mb-4 text-center">La mejor forma de alquilar tu coche perfecto</h3>	  							<div class="row d-flex mb-4">
+	  							<h3 class="heading-section mb-4 text-center">La mejor forma de alquilar tu coche perfecto</h3>
+	  							<div class="row d-flex mb-4">
 					          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
 					            <div class="services w-100 text-center">
 				              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car"></span></div>
@@ -197,7 +206,7 @@ $db->closeConnection($conn);
 	            <p>¿Quieres saber cuanto vale alquilar un coche?</p>
 	            <p>En AlquiLobato, entendemos que cada viaje es una nueva aventura. Nacimos de la pasión por la carretera y el servicio, con la misión de ofrecerte la libertad de moverte a tu ritmo, con el coche perfecto para cada ocasión.</p>
 	            <p>Nuestra flota está cuidadosamente seleccionada para garantizar tu seguridad y confort. Desde coches compactos ideales para la ciudad hasta SUVs espaciosos y vehículos de lujo para momentos especiales. Con un proceso de reserva sencillo y precios transparentes, estamos aquí para hacer que tu alquiler sea tan fácil y agradable como el propio viaje.</p>
-	            <p><a href="car.php" class="btn btn-primary py-3 px-4">Busca tu coche</a>
+	            <p><a href="car.php" class="btn btn-primary py-3 px-4">Busca tu coche</a></a
 	          </div>
 					</div>
 				</div>

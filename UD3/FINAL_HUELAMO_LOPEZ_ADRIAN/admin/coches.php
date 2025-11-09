@@ -32,14 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $datos_form = [
         'nombre' => $_POST['nombre'] ?? '',
         'id_categoria' => $_POST['id_categoria'] ?? null,
-        'año' => $_POST['año'] ?? 2024,
-        'precio_hora' => $_POST['precio_hora'] ?? 0,
-        'precio_dia' => $_POST['precio_dia'] ?? 0,
-        'precio_mes' => $_POST['precio_mes'] ?? 0,
-        'kilometros' => $_POST['kilometros'] ?? 0,
+        'año' => $_POST['año'] ?? 0,
+        'precio_hora' => $_POST['precio_hora'] ?? -1,
+        'precio_dia' => $_POST['precio_dia'] ?? -1,
+        'precio_mes' => $_POST['precio_mes'] ?? -1,
+        'kilometros' => $_POST['kilometros'] ?? -1,
         'transmision' => $_POST['transmision'] ?? 'Manual',
-        'asientos' => $_POST['asientos'] ?? 5,
-        'maletero' => $_POST['maletero'] ?? 300,
+        'asientos' => $_POST['asientos'] ?? 0,
+        'maletero' => $_POST['maletero'] ?? 0,
         'combustible' => $_POST['combustible'] ?? 'Gasolina'
     ];
     
@@ -211,15 +211,15 @@ $db->closeConnection($conn);
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Precio por Hora</label>
-                                    <input type="number" name="precio_hora" class="form-control" value="<?php echo htmlspecialchars($datos_coche['precio_hora']); ?>" required>
+                                    <input type="number" name="precio_hora" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_hora']); ?>" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Precio por Día</label>
-                                    <input type="number" name="precio_dia" class="form-control" value="<?php echo htmlspecialchars($datos_coche['precio_dia']); ?>" required>
+                                    <input type="number" name="precio_dia" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_dia']); ?>" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Precio por Mes</label>
-                                    <input type="number" name="precio_mes" class="form-control" value="<?php echo htmlspecialchars($datos_coche['precio_mes']); ?>" required>
+                                    <input type="number" name="precio_mes" class="form-control" min="0" step="0.01" value="<?php echo htmlspecialchars($datos_coche['precio_mes']); ?>" required>
                                 </div>
                             </div>
                             
@@ -228,19 +228,19 @@ $db->closeConnection($conn);
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Año</label>
-                                    <input type="number" name="año" class="form-control" value="<?php echo htmlspecialchars($datos_coche['año']); ?>" required>
+                                    <input type="number" name="año" class="form-control" min="1900" max="<?php echo date('Y') + 1; ?>" value="<?php echo htmlspecialchars($datos_coche['año']); ?>" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Kilómetros</label>
-                                    <input type="number" name="kilometros" class="form-control" value="<?php echo htmlspecialchars($datos_coche['kilometros']); ?>" required>
+                                    <input type="number" name="kilometros" class="form-control" min="0" value="<?php echo htmlspecialchars($datos_coche['kilometros']); ?>" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Asientos</label>
-                                    <input type="number" name="asientos" class="form-control" value="<?php echo htmlspecialchars($datos_coche['asientos']); ?>" required>
+                                    <input type="number" name="asientos" class="form-control" min="1" value="<?php echo htmlspecialchars($datos_coche['asientos']); ?>" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Maletero (Litros)</label>
-                                    <input type="number" name="maletero" class="form-control" value="<?php echo htmlspecialchars($datos_coche['maletero']); ?>" required>
+                                    <input type="number" name="maletero" class="form-control" min="1" value="<?php echo htmlspecialchars($datos_coche['maletero']); ?>" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Transmisión</label>

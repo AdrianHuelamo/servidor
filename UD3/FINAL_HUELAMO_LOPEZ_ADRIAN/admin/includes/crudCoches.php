@@ -10,12 +10,28 @@ class Coches {
     }
 
     public function getAll($conn) {
-        $sql = "SELECT c.*, m.nombre AS marca_nombre 
+        $sql = "SELECT c.id_coche, c.nombre, c.imagen, c.precio_dia, c.asientos, c.transmision, m.nombre 
                 FROM coches c 
                 JOIN marcas m ON c.id_categoria = m.id_marca 
                 ORDER BY c.id_coche DESC";
-        $result = $conn->query($sql);
-        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $stmt->bind_result($id, $nombre, $imagen, $precio_dia, $asientos, $transmision, $marca_nombre);
+        
+        $coches = [];
+        while ($stmt->fetch()) {
+             $coches[] = [
+                'id_coche' => $id,
+                'nombre' => $nombre,
+                'imagen' => $imagen,
+                'precio_dia' => $precio_dia,
+                'asientos' => $asientos,
+                'transmision' => $transmision,
+                'marca_nombre' => $marca_nombre
+            ];
+        }
+        $stmt->close();
+        return $coches;
     }
 
     public function getById($conn, $id) {
@@ -23,6 +39,7 @@ class Coches {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
+        
         $result = $stmt->get_result();
         $datos = $result ? $result->fetch_assoc() : null;
         $stmt->close();
@@ -55,8 +72,27 @@ class Coches {
         
         return $num_rows > 0;
     }
+    
+    private function validarDatosCoche($datos) {
+        if (
+            !is_numeric($datos['precio_hora']) || $datos['precio_hora'] < 0 ||
+            !is_numeric($datos['precio_dia']) || $datos['precio_dia'] < 0 ||
+            !is_numeric($datos['precio_mes']) || $datos['precio_mes'] < 0 ||
+            !is_numeric($datos['kilometros']) || $datos['kilometros'] < 0 ||
+            !is_numeric($datos['año']) || $datos['año'] < 1900 || $datos['año'] > (date('Y') + 1) ||
+            !is_numeric($datos['asientos']) || $datos['asientos'] < 1 ||
+            !is_numeric($datos['maletero']) || $datos['maletero'] < 1
+        ) {
+            throw new Exception("Los valores numéricos (precio, año, asientos, etc.) no pueden ser negativos o irreales.");
+        }
+        if (empty($datos['nombre']) || empty($datos['id_categoria'])) {
+             throw new Exception("El nombre y la marca son obligatorios.");
+        }
+    }
 
     public function insertarCoche($conn, $datos, $imagen_path) {
+        $this->validarDatosCoche($datos);
+        
         if ($this->checkDuplicado($conn, $datos['nombre'], $datos['id_categoria'])) {
             throw new Exception("Ya existe un coche con ese nombre para esa marca.");
         }
@@ -89,6 +125,8 @@ class Coches {
     }
 
     public function actualizarCoche($conn, $id_coche, $datos, $imagen_path) {
+        $this->validarDatosCoche($datos);
+
         if ($this->checkDuplicado($conn, $datos['nombre'], $datos['id_categoria'], $id_coche)) {
             throw new Exception("Ya existe otro coche con ese nombre para esa marca.");
         }
@@ -126,6 +164,18 @@ class Coches {
     }
 
     public function eliminarCoche($conn, $id_coche) {
+        $sql_check = "SELECT COUNT(*) as total FROM reservas WHERE id_coche = ?";
+        $stmt_check = $conn->prepare($sql_check);
+        $stmt_check->bind_param("i", $id_coche);
+        $stmt_check->execute();
+        $stmt_check->bind_result($total);
+        $stmt_check->fetch();
+        $stmt_check->close();
+
+        if ($total > 0) {
+            throw new Exception("No se puede eliminar: " . $total . " reserva(s) está(n) asociada(s) a este coche.");
+        }
+
         $coche_a_borrar = $this->getById($conn, $id_coche);
         if ($coche_a_borrar) {
             $ruta_imagen = "../" . $coche_a_borrar['imagen'];

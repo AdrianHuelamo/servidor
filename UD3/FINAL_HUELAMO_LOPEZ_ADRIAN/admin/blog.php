@@ -1,11 +1,13 @@
 <?php
 require_once './includes/proteger.php';
 require_once './includes/crudBlog.php';
+require_once './includes/crudUsuarios.php'; 
 require_once './includes/database.php';
 
 $db = new Connection();
 $conn = $db->getConnection();
 $blogObj = new Blog();
+$userObj = new Usuarios();
 
 $accion = $_GET['accion'] ?? null;
 $id = $_GET['id'] ?? null;
@@ -26,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titulo = $_POST['titulo'] ?? '';
     $resumen = $_POST['resumen'] ?? '';
     $contenido = $_POST['contenido'] ?? '';
-    $id_autor = getUserId();
     $accion_post = $_POST['accion'] ?? 'crear';
     $id_post = $_POST['id_blog'] ?? null;
 
@@ -58,10 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if ($accion_post === "crear") {
+            $id_autor = getUserId();
             $blogObj->insertarPost($conn, $titulo, $resumen, $contenido, $id_autor, $imagen_path);
             $mensaje = "Post creado con éxito.";
         } elseif ($accion_post === "editar" && $id_post) {
-            $blogObj->actualizarPost($conn, $id_post, $titulo, $resumen, $contenido, $imagen_path);
+            
+            $id_autor = $_POST['id_autor'];
+            
+            $blogObj->actualizarPost($conn, $id_post, $titulo, $resumen, $contenido, $imagen_path, $id_autor);
             $mensaje = "Post actualizado con éxito.";
         }
         header("Location: blog.php?exito=$mensaje");
@@ -80,8 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 $posts = $blogObj->getAll($conn);
+$autores = [];
+if (esAdmin()) {
+    $autores = $userObj->getAutores($conn);
+}
 
-$datos_post = ['titulo' => '', 'resumen' => '', 'contenido' => '', 'imagen' => ''];
+$datos_post = ['id_blog' => '', 'titulo' => '', 'resumen' => '', 'contenido' => '', 'imagen' => '', 'id_autor' => getUserId()];
 if ($accion === "editar" && $id) {
     $datos_post = $blogObj->getPostById($conn, $id);
 }
@@ -134,7 +143,7 @@ $db->closeConnection($conn);
                             <tr>
                                 <td><img src="../<?php echo htmlspecialchars($post['imagen']); ?>" alt=""></td>
                                 <td><?php echo htmlspecialchars($post['titulo']); ?></td>
-                                <td><?php echo htmlspecialchars($post['nombre_autor'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($post['username'] ?? 'N/A'); ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($post['fecha'])); ?></td>
                                 <td>
                                     <a href="blog.php?accion=editar&id=<?php echo $post['id_blog']; ?>" class="btn btn-sm btn-primary">
@@ -164,6 +173,21 @@ $db->closeConnection($conn);
                                 <input type="text" name="titulo" class="form-control"
                                 value="<?php echo htmlspecialchars($datos_post['titulo']); ?>" required>
                             </div>
+                            
+                            <?php if (esAdmin() && $accion === 'editar'): ?>
+                            <div class="mb-3">
+                                <label class="form-label">Autor:</label>
+                                <select name="id_autor" class="form-control" required>
+                                    <?php foreach ($autores as $autor): ?>
+                                        <option value="<?php echo $autor['id_usuario']; ?>" <?php if ($datos_post['id_autor'] == $autor['id_usuario']) echo 'selected'; ?>>
+                                            <?php echo htmlspecialchars($autor['nombre']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <?php elseif ($accion === 'editar'): ?>
+                                <input type="hidden" name="id_autor" value="<?php echo htmlspecialchars($datos_post['id_autor']); ?>">
+                            <?php endif; ?>
                             
                             <div class="form-group mb-3">
                                 <label for="imagen">Imagen Destacada</label>
