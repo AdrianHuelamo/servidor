@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once 'admin/includes/auth.php';
 require_once 'admin/includes/database.php';
 require_once 'admin/includes/crudUsuarios.php';
@@ -24,12 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = $db->getConnection();
 
     if (isset($_POST['guardar_datos'])) {
+        $imagen_path = $_POST['imagen_actual'];
+        $nueva_imagen_subida = false;
+        $ruta_nueva_imagen = '';
+        
         try {
             $nombre = trim($_POST['nombre']);
             $correo = trim($_POST['correo']);
             $telefono = trim($_POST['telefono']);
             $bio = trim($_POST['bio']);
-            $imagen_path = $_POST['imagen_actual'];
 
             if (empty($nombre) || empty($correo) || empty($telefono)) {
                 throw new Exception("Los campos nombre, correo y teléfono son obligatorios.");
@@ -39,16 +39,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
+                
+                $file_tmp_name = $_FILES['imagen']['tmp_name'];
+                $file_name_original = $_FILES['imagen']['name'];
+                
+                $allowed_exts = ['jpg', 'jpeg', 'png', 'webp'];
+                $allowed_mimes = ['image/jpeg', 'image/png', 'image/webp'];
+
+                $file_ext = strtolower(pathinfo($file_name_original, PATHINFO_EXTENSION));
+                if (!in_array($file_ext, $allowed_exts)) {
+                    throw new Exception("Error: Solo se permiten archivos .jpg, .jpeg, .png o .webp.");
+                }
+
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $file_mime = finfo_file($finfo, $file_tmp_name);
+                finfo_close($finfo);
+                
+                if (!in_array($file_mime, $allowed_mimes)) {
+                    throw new Exception("Error: El tipo de archivo no es una imagen válida (MIME detectado: $file_mime).");
+                }
+                
                 $target_dir = "images/autores/";
                 if (!file_exists($target_dir)) {
                     mkdir($target_dir, 0755, true); 
                 }
-                $file_name = "user-" . $id_usuario . '-' . basename($_FILES["imagen"]["name"]);
+                
+                $file_name = "user-" . $id_usuario . '-' . basename($file_name_original);
                 $target_file = $target_dir . $file_name;
                 $db_path = "images/autores/" . $file_name; 
 
-                if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
+                if (move_uploaded_file($file_tmp_name, $target_file)) {
                     $imagen_path = $db_path;
+                    $nueva_imagen_subida = true;
+                    $ruta_nueva_imagen = $target_file;
+                    
                     $ruta_imagen_antigua = $_POST['imagen_actual'];
                     if (!empty($ruta_imagen_antigua) && $ruta_imagen_antigua != 'images/autores/default.png' && file_exists($ruta_imagen_antigua)) {
                         unlink($ruta_imagen_antigua);
@@ -72,6 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } catch (Exception $e) {
             $error_datos = $e->getMessage();
+            
+            if ($nueva_imagen_subida && file_exists($ruta_nueva_imagen)) {
+                unlink($ruta_nueva_imagen);
+            }
         }
     }
 

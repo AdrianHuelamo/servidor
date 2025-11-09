@@ -52,12 +52,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
         if (isset($_FILES['imagen']) && !empty($_FILES['imagen']['name']) && $_FILES['imagen']['error'] == 0) {
+            
+            $file_tmp_name = $_FILES['imagen']['tmp_name'];
+            $file_name_original = $_FILES['imagen']['name'];
+            
+            $allowed_exts = ['jpg', 'jpeg', 'png', 'webp', 'avif'];
+            $allowed_mimes = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
+
+            $file_ext = strtolower(pathinfo($file_name_original, PATHINFO_EXTENSION));
+            if (!in_array($file_ext, $allowed_exts)) {
+                throw new Exception("Error: Solo se permiten archivos .jpg, .jpeg, .png, .webp o .avif.");
+            }
+
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $file_mime = finfo_file($finfo, $file_tmp_name);
+            finfo_close($finfo);
+            
+            if (!in_array($file_mime, $allowed_mimes)) {
+                throw new Exception("Error: El tipo de archivo no es una imagen válida (MIME detectado: $file_mime).");
+            }
+
             $target_dir = "../images/";
-            $file_name = uniqid() . '-' . basename($_FILES["imagen"]["name"]);
+            $file_name = uniqid() . '-' . basename($file_name_original);
             $target_file = $target_dir . $file_name;
             $db_path = "images/" . $file_name; 
 
-            if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($file_tmp_name, $target_file)) {
                 $imagen_path = $db_path;
                 $nueva_imagen_subida = true;
                 $ruta_nueva_imagen = $target_file;
