@@ -19,12 +19,17 @@ $mensaje = "";
 $error = "";
 
 if ($accion == "eliminar" && $id) {
-    if ($cocheObj->eliminarCoche($conn, $id)) {
-        $mensaje = "Coche eliminado correctamente.";
-    } else {
-        $error = "Error al eliminar el coche.";
+    try {
+        if ($cocheObj->eliminarCoche($conn, $id)) {
+            $mensaje = "Coche eliminado correctamente.";
+        } else {
+            $error = "Error al eliminar el coche.";
+        }
+    } catch (Exception $e) {
+        $error = $e->getMessage();
     }
-    header("Location: coches.php" . ($error ? "?error=$error" : "?exito=$mensaje"));
+    
+    header("Location: coches.php" . ($error ? "?error=" . urlencode($error) : "?exito=" . urlencode($mensaje)));
     exit();
 }
 
