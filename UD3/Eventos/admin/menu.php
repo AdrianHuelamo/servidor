@@ -11,6 +11,9 @@
         <li class="nav-item">
           <a class="nav-link" href="./eventos.php">Eventos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./organizadores.php">Organizadores</a>
+        </li>
 
       </ul>
     </div>

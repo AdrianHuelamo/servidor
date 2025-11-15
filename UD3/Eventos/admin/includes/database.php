@@ -3,7 +3,7 @@
 class Connection {
     private $server = "localhost";  
     private $user = "root";       
-    private $password = "bbdd";       
+    private $password = "";       
     private $db = "eventos";     
 
 
