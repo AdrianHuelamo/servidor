@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAHI MAGREBI</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #fff6e6 0%, #fff1e0 50%, #fff6e6 100%);
+        }
+        .container {
+            padding: 30px 40px;
+            background: linear-gradient(90deg, #fffaf0 0%, #fff2e6 100%);
+            border: 3px solid #ff9800;
+            border-left: 10px solid #ffb74d;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(255,152,0,0.12);
+            max-width: 720px;
+        }
+        .warn-icon {
+            font-size: 72px;
+            line-height: 1;
+            color: #d84315;
+            display: inline-block;
+            transform-origin: center;
+            animation: pulse 1.8s infinite;
+            margin-bottom: 12px;
+        }
+        h1 {
+            margin: 8px 0 6px 0;
+            font-size: 42px;
+            color: #bf360c;
+            letter-spacing: 1px;
+        }
+        h2 {
+            margin: 6px 0 12px 0;
+            font-size: 24px;
+            color: #e65100;
+            text-transform: uppercase;
+        }
+        h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #6b4b3a;
+            opacity: 0.95;
+        }
+        .details {
+            margin-top: 14px;
+        }
+        .btn-contact {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 18px;
+            background: #d84315;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            box-shadow: 0 6px 16px rgba(216,67,21,0.18);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.92; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @media (max-width: 520px) {
+            .container { padding: 20px; margin: 12px; }
+            h1 { font-size: 34px; }
+            .warn-icon { font-size: 56px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="alert" aria-live="polite">
+        <div class="warn-icon" aria-hidden="true">⚠️</div>
+        <h1>NO MOLESTAR</h1>
+        <h2>Fuera de servicio</h2>
+        <div class="details">
+            <h3>Contacta con Joselu para más información</h3>
+            <a class="btn-contact" href="mailto:puchadess17@gmail.com">Enviar correo</a>
+        </div>
+    </div>
+</body>
+</html>

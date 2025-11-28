@@ -1,0 +1,149 @@
+CRITICAL - 2025-11-28 11:48:32 --> ParseError: syntax error, unexpected double-quoted string " method=", expecting "," or ";"
+[Method: GET, Route: news/new]
+in APPPATH/Views/news/create.php on line 7.
+ 1 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():221}()
+ 2 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/News.php(42): view()
+ 4 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->new()
+ 5 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-11-28 11:48:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:49:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:52:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:56:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:57:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:58:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:58:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:58:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:58:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 11:59:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 12:10:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:11:00 --> CSRF token verified.
+DEBUG - 2025-11-28 12:11:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:11:04 --> CSRF token verified.
+CRITICAL - 2025-11-28 12:11:04 --> CodeIgniter\Database\Exceptions\DataException: Allowed fields must be specified for model: "App\Models\NewsModel"
+[Method: POST, Route: news]
+in SYSTEMPATH/Model.php on line 822.
+ 1 SYSTEMPATH/Model.php(822): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields()
+ 2 SYSTEMPATH/BaseModel.php(820): CodeIgniter\Model->doProtectFieldsForInsert()
+ 3 SYSTEMPATH/Model.php(800): CodeIgniter\BaseModel->insert()
+ 4 SYSTEMPATH/BaseModel.php(750): CodeIgniter\Model->insert()
+ 5 APPPATH/Controllers/News.php(66): CodeIgniter\BaseModel->save()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->create()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-11-28 12:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-28 12:13:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:13:06 --> CSRF token verified.
+CRITICAL - 2025-11-28 12:13:06 --> CodeIgniter\Database\Exceptions\DataException: Allowed fields must be specified for model: "App\Models\NewsModel"
+[Method: POST, Route: insert_news]
+in SYSTEMPATH/Model.php on line 822.
+ 1 SYSTEMPATH/Model.php(822): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields()
+ 2 SYSTEMPATH/BaseModel.php(820): CodeIgniter\Model->doProtectFieldsForInsert()
+ 3 SYSTEMPATH/Model.php(800): CodeIgniter\BaseModel->insert()
+ 4 SYSTEMPATH/BaseModel.php(750): CodeIgniter\Model->insert()
+ 5 APPPATH/Controllers/News.php(66): CodeIgniter\BaseModel->save()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->create()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+INFO - 2025-11-28 12:14:28 --> CSRF token verified.
+CRITICAL - 2025-11-28 12:14:28 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "news/success.php"
+[Method: POST, Route: insert_news]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/News.php(73): view()
+ 4 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->create()
+ 5 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+INFO - 2025-11-28 12:14:31 --> CSRF token verified.
+ERROR - 2025-11-28 12:14:31 --> mysqli_sql_exception: Duplicate entry 'hjyjyjyjtyjty' for key 'news.slug' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(839): CodeIgniter\Model->doInsert()
+#6 /var/www/html/CodeIgniter/system/Model.php(800): CodeIgniter\BaseModel->insert()
+#7 /var/www/html/CodeIgniter/system/BaseModel.php(750): CodeIgniter\Model->insert()
+#8 /var/www/html/CodeIgniter/app/Controllers/News.php(66): CodeIgniter\BaseModel->save()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->create()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-11-28 12:14:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry 'hjyjyjyjtyjty' for key 'news.slug'
+[Method: POST, Route: insert_news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/BaseModel.php(839): CodeIgniter\Model->doInsert()
+ 4 SYSTEMPATH/Model.php(800): CodeIgniter\BaseModel->insert()
+ 5 SYSTEMPATH/BaseModel.php(750): CodeIgniter\Model->insert()
+ 6 APPPATH/Controllers/News.php(66): CodeIgniter\BaseModel->save()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->create()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-11-28 12:14:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Duplicate entry 'hjyjyjyjtyjty' for key 'news.slug'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH/BaseModel.php(839): CodeIgniter\Model->doInsert()
+ 6 SYSTEMPATH/Model.php(800): CodeIgniter\BaseModel->insert()
+ 7 SYSTEMPATH/BaseModel.php(750): CodeIgniter\Model->insert()
+ 8 APPPATH/Controllers/News.php(66): CodeIgniter\BaseModel->save()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->create()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-11-28 12:14:31 --> [Caused by] mysqli_sql_exception: Duplicate entry 'hjyjyjyjtyjty' for key 'news.slug'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH/BaseModel.php(839): CodeIgniter\Model->doInsert()
+ 7 SYSTEMPATH/Model.php(800): CodeIgniter\BaseModel->insert()
+ 8 SYSTEMPATH/BaseModel.php(750): CodeIgniter\Model->insert()
+ 9 APPPATH/Controllers/News.php(66): CodeIgniter\BaseModel->save()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->create()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+INFO - 2025-11-28 12:16:58 --> CSRF token verified.
+DEBUG - 2025-11-28 12:16:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:17:05 --> CSRF token verified.
+DEBUG - 2025-11-28 12:18:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:18:39 --> CSRF token verified.
+DEBUG - 2025-11-28 12:18:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:18:58 --> CSRF token verified.
+DEBUG - 2025-11-28 12:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:29:16 --> CSRF token verified.
+DEBUG - 2025-11-28 12:30:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-11-28 12:30:10 --> CSRF token verified.
