@@ -9,8 +9,14 @@
         <div class="main">
             <?= esc($news_item['body']) ?>
         </div>
-        <p><a href="<?= base_url('news/'.$news_item['slug'])?>">View article</a></p>
-        <p><a href="<?= base_url('news/del/'.$news_item['id'])?>">Eliminar Noticia</a></p>
+        <div class="main">
+            Categoria: <b><?= esc($news_item['category']) ?></b>
+        </div>
+        <p>
+            <a href="<?= base_url('news/'.$news_item['slug'])?>">View</a>
+            <a href="<?= base_url('news/update/'.$news_item['id'])?>">Edit</a>
+            <a href="<?= base_url('news/del/'.$news_item['id'])?>">Delete</a>
+        </p>
 
     <?php endforeach ?>
 
