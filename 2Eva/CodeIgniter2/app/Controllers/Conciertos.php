@@ -1,0 +1,151 @@
+<?php
+namespace App\Controllers;
+use App\Models\ConciertosModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
+
+class Conciertos extends BaseController
+{
+    public function index()
+    {
+        $model = model(ConciertosModel::class);
+        $data = [
+            'conciertos_list' => $model->getConciertos(),
+        ];
+
+        return view('templates/header', $data)
+            . view('conciertos/index')
+            . view('templates/footer');
+    }
+
+    public function show()
+    {
+        $model = model(ConciertosModel::class);
+        $data['conciertos'] = $model->getconciertos();
+
+        if ($data['conciertos'] === null) {
+            throw new PageNotFoundException('Cannot find the conciertos item');
+        }
+
+        $data['nombre_concierto'] = $data['conciertos']['nombre_concierto'];
+
+        return view('templates/header', $data)
+            . view('conciertos/view')
+            . view('templates/footer');
+    }
+
+    ////Mostrar Form insertar
+    // public function new()
+    //{
+    //    helper('form');
+    //    $model_cat = model(CategoryModel::class);
+    //    if ($data['category'] = $model_cat->findAll()){
+    //    return view('templates/header', ['title' => 'Create a news item'])
+    //        . view('news/create', $data)
+    //        . view('templates/footer');
+    //    }
+    //}
+//
+    // public function create()
+    //{
+    //    helper('form');
+//
+    //    $data = $this->request->getPost(['title', 'body', 'id_category']);
+//
+    //    // Checks whether the submitted data passed the validation rules.
+    //    if (! $this->validateData($data, [
+    //        'title' => 'required|max_length[255]|min_length[3]',
+    //        'body'  => 'required|max_length[5000]|min_length[10]',
+    //        'id_category'  => 'required',
+    //    ])) {
+    //        // The validation fails, so returns the form.
+    //        return $this->new();
+    //    }
+//
+    //    // Gets the validated data.
+    //    $post = $this->validator->getValidated();
+//
+    //    $model = model(NewsModel::class);
+//
+    //    $model->save([
+    //        'title' => $post['title'],
+    //        'slug'  => url_title($post['title'], '-', true),
+    //        'body'  => $post['body'],
+    //        'id_category'  => $post['id_category'],
+    //    ]);
+//
+    //    //return view('templates/header', ['title' => 'Create a news item'])
+    //    //   . view('news/success')
+    //    //    . view('templates/footer');
+//
+    //    return redirect()->to(base_url('news'));        
+    //}
+    //public function delete($id) 
+    //{
+    //    if ($id == null) {
+    //        throw new PageNotFoundException('cannot delete the item');
+    //    }
+//
+    //    $model = model(NewsModel::class);
+    //    if($model->where('id', $id)->find()){
+    //        $model->where('id', $id)->delete();
+    //    } else {
+    //        throw new PageNotFoundException('Selected item does not exist in database');
+    //    }
+    //    return redirect()->to(base_url('news'));        
+    //}
+//
+    //public function update($id)
+    //{
+    //    helper('form');
+//
+    //    if ($id==null) {
+    //        throw new PageNotFoundException('Cannot update the item');
+    //    }
+//
+    //    $model = model(NewsModel::class);
+//
+    //    if($model->where('id', $id)->find()) {
+    //        $data = [
+    //            'news' => $model->where('id', $id)->first(),
+    //            'title' => 'update item',    
+    //        ];
+    //    } else {
+    //        throw new PageNotFoundException('Selected item nor found in DB');
+    //    }
+//
+    //    return view('templates/header',$data)
+    //        . view('news/update')
+    //        . view('templates/footer');
+    //}
+//
+    // //editar noticia
+    //public function updatedItem($id)
+    //{
+    //    helper('form');
+//
+    //    $data = $this->request->getPost(['title', 'body',]);//name form
+//
+    //    // Checks whether the submitted data passed the validation rules.
+    //    if (! $this->validateData($data, [
+    //        'title' => 'required|max_length[255]|min_length[3]',
+    //        'body'  => 'required|max_length[5000]|min_length[10]',
+    //    ])) {
+    //        // The validation fails, so returns the form.
+    //        return $this->update($id);
+    //    }
+//
+    //    // Gets the validated data.
+    //    $post = $this->validator->getValidated();
+//
+    //    $model = model(NewsModel::class);
+//
+    //    $model->save([
+    //        'id' => $id,
+    //        'title' => $post['title'],
+    //        'slug'  => url_title($post['title'], '-', true),
+    //        'body'  => $post['body'],
+    //    ]);
+//
+    //    return redirect()->to(base_url('news'));
+    //}
+}

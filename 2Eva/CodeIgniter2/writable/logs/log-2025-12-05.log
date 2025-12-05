@@ -1,0 +1,78 @@
+CRITICAL - 2025-12-05 12:10:09 --> ErrorException: Undefined variable $title
+[Method: GET, Route: conciertos]
+in APPPATH/Views/conciertos/index.php on line 2.
+ 1 APPPATH/Views/conciertos/index.php(2): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/CodeIgniter2/app/Views/conciertos/index.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():221}()
+ 4 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Conciertos.php(16): view()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Conciertos->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-05 12:10:35 --> ErrorException: Undefined variable $title
+[Method: GET, Route: conciertos]
+in APPPATH/Views/conciertos/index.php on line 2.
+ 1 APPPATH/Views/conciertos/index.php(2): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/CodeIgniter2/app/Views/conciertos/index.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():221}()
+ 4 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Conciertos.php(16): view()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Conciertos->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-05 12:10:36 --> ErrorException: Undefined variable $title
+[Method: GET, Route: conciertos]
+in APPPATH/Views/conciertos/index.php on line 2.
+ 1 APPPATH/Views/conciertos/index.php(2): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/CodeIgniter2/app/Views/conciertos/index.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():221}()
+ 4 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Conciertos.php(16): view()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Conciertos->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-05 12:10:37 --> ErrorException: Undefined variable $title
+[Method: GET, Route: conciertos]
+in APPPATH/Views/conciertos/index.php on line 2.
+ 1 APPPATH/Views/conciertos/index.php(2): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/CodeIgniter2/app/Views/conciertos/index.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():221}()
+ 4 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Conciertos.php(16): view()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Conciertos->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-05 12:46:28 --> ArgumentCountError: Too few arguments to function CodeIgniter\Router\RouteCollection::get(), 1 passed in /var/www/html/CodeIgniter2/app/Config/Routes.php on line 12 and at least 2 expected
+[Method: GET, Route: conciertos/view]
+in SYSTEMPATH/Router/RouteCollection.php on line 1050.
+ 1 APPPATH/Config/Routes.php(12): CodeIgniter\Router\RouteCollection->get()
+ 2 SYSTEMPATH/Router/RouteCollection.php(339): require('/var/www/html/CodeIgniter2/app/Config/Routes.php')
+ 3 SYSTEMPATH/CodeIgniter.php(821): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH/CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 5 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-05 12:46:48 --> ArgumentCountError: Too few arguments to function CodeIgniter\Router\RouteCollection::get(), 1 passed in /var/www/html/CodeIgniter2/app/Config/Routes.php on line 12 and at least 2 expected
+[Method: GET, Route: conciertos/view.php]
+in SYSTEMPATH/Router/RouteCollection.php on line 1050.
+ 1 APPPATH/Config/Routes.php(12): CodeIgniter\Router\RouteCollection->get()
+ 2 SYSTEMPATH/Router/RouteCollection.php(339): require('/var/www/html/CodeIgniter2/app/Config/Routes.php')
+ 3 SYSTEMPATH/CodeIgniter.php(821): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH/CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 5 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()

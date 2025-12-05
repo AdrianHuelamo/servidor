@@ -39,8 +39,8 @@ class News extends BaseController
      public function new()
     {
         helper('form');
-        $model_cat = model(categoryModel::class);
-        if ($data['category'] = $model->findAll()){
+        $model_cat = model(CategoryModel::class);
+        if ($data['category'] = $model_cat->findAll()){
         return view('templates/header', ['title' => 'Create a news item'])
             . view('news/create', $data)
             . view('templates/footer');
@@ -51,12 +51,13 @@ class News extends BaseController
     {
         helper('form');
 
-        $data = $this->request->getPost(['title', 'body']);
+        $data = $this->request->getPost(['title', 'body', 'id_category']);
 
         // Checks whether the submitted data passed the validation rules.
         if (! $this->validateData($data, [
             'title' => 'required|max_length[255]|min_length[3]',
             'body'  => 'required|max_length[5000]|min_length[10]',
+            'id_category'  => 'required',
         ])) {
             // The validation fails, so returns the form.
             return $this->new();
@@ -71,6 +72,7 @@ class News extends BaseController
             'title' => $post['title'],
             'slug'  => url_title($post['title'], '-', true),
             'body'  => $post['body'],
+            'id_category'  => $post['id_category'],
         ]);
 
         //return view('templates/header', ['title' => 'Create a news item'])
@@ -123,7 +125,7 @@ class News extends BaseController
     {
         helper('form');
 
-        $data = $this->request->getPost(['title', 'body']);//name form
+        $data = $this->request->getPost(['title', 'body',]);//name form
 
         // Checks whether the submitted data passed the validation rules.
         if (! $this->validateData($data, [
