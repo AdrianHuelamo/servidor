@@ -1,0 +1,16 @@
+<?php
+namespace App\Models;
+use CodeIgniter\model;
+
+class UserModel extends Model
+{
+    protected $table = 'users';
+    protected $allowedFields = ['username', 'password', 'rol'];
+
+    public function checkUser($user, $pass)
+    {
+        return $this->where(['username' => $user, 'password' => $pass])->find();
+    }
+}
+
+?>

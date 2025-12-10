@@ -1,26 +1,756 @@
-DEBUG - 2025-12-02 11:35:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:37:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:37:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:39:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:39:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:41:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2025-12-02 11:42:16 --> CSRF token verified.
-CRITICAL - 2025-12-02 11:42:16 --> ErrorException: Undefined array key "id_category"
-[Method: POST, Route: insert_news]
-in APPPATH/Controllers/News.php on line 74.
- 1 APPPATH/Controllers/News.php(74): CodeIgniter\Debug\Exceptions->errorHandler()
- 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->create()
- 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
- 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
- 5 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
- 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
- 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
-INFO - 2025-12-02 11:43:54 --> CSRF token verified.
-DEBUG - 2025-12-02 11:43:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2025-12-02 11:43:56 --> CSRF token verified.
-DEBUG - 2025-12-02 11:43:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-CRITICAL - 2025-12-02 11:44:10 --> CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed.
-[Method: POST, Route: insert_news]
+DEBUG - 2025-12-02 11:14:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 11:14:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-02 11:22:17 --> mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:22:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:22:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:22:17 --> [Caused by] mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:25 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:25 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:25 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:26 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:26 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:26 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:26 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:26 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:26 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:26 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:26 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:27 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:27 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:27 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-02 11:23:27 --> mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-02 11:23:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-02 11:23:27 --> [Caused by] mysqli_sql_exception: Unknown column 'news.id_category' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-02 11:29:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 11:30:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 11:33:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-02 11:33:42 --> CSRF token verified.
+DEBUG - 2025-12-02 11:33:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-02 11:36:07 --> CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed.
+[Method: POST, Route: news]
 in SYSTEMPATH/Security/Security.php on line 262.
  1 SYSTEMPATH/Security/Security.php(262): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
  2 SYSTEMPATH/Filters/CSRF.php(52): CodeIgniter\Security\Security->verify()
@@ -31,9 +761,71 @@ in SYSTEMPATH/Security/Security.php on line 262.
  7 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
  9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
-DEBUG - 2025-12-02 11:44:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-INFO - 2025-12-02 11:44:16 --> CSRF token verified.
-DEBUG - 2025-12-02 11:44:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:50:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
-DEBUG - 2025-12-02 11:51:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-02 11:36:15 --> CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed.
+[Method: POST, Route: news]
+in SYSTEMPATH/Security/Security.php on line 262.
+ 1 SYSTEMPATH/Security/Security.php(262): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH/Filters/CSRF.php(52): CodeIgniter\Security\Security->verify()
+ 3 SYSTEMPATH/Filters/Filters.php(241): CodeIgniter\Filters\CSRF->before()
+ 4 SYSTEMPATH/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore()
+ 5 SYSTEMPATH/CodeIgniter.php(479): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-02 11:36:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 11:36:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-02 11:36:29 --> ErrorException: Undefined array key "id_category"
+[Method: GET, Route: news/new]
+in APPPATH/Views/news/create.php on line 25.
+ 1 APPPATH/Views/news/create.php(25): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/CodeIgniter/app/Views/news/create.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():221}()
+ 4 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/News.php(31): view()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->new()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-02 11:36:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 11:37:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 11:37:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-02 11:37:43 --> CSRF token verified.
+DEBUG - 2025-12-02 11:37:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-02 11:38:40 --> CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed.
+[Method: POST, Route: news]
+in SYSTEMPATH/Security/Security.php on line 262.
+ 1 SYSTEMPATH/Security/Security.php(262): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH/Filters/CSRF.php(52): CodeIgniter\Security\Security->verify()
+ 3 SYSTEMPATH/Filters/Filters.php(241): CodeIgniter\Filters\CSRF->before()
+ 4 SYSTEMPATH/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore()
+ 5 SYSTEMPATH/CodeIgniter.php(479): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-02 11:38:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-02 11:39:00 --> CSRF token verified.
+DEBUG - 2025-12-02 11:39:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-02 11:39:48 --> CodeIgniter\Security\Exceptions\SecurityException: The action you requested is not allowed.
+[Method: POST, Route: news]
+in SYSTEMPATH/Security/Security.php on line 262.
+ 1 SYSTEMPATH/Security/Security.php(262): CodeIgniter\Security\Exceptions\SecurityException::forDisallowedAction()
+ 2 SYSTEMPATH/Filters/CSRF.php(52): CodeIgniter\Security\Security->verify()
+ 3 SYSTEMPATH/Filters/Filters.php(241): CodeIgniter\Filters\CSRF->before()
+ 4 SYSTEMPATH/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore()
+ 5 SYSTEMPATH/CodeIgniter.php(479): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-02 11:39:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-02 11:39:55 --> CSRF token verified.
+DEBUG - 2025-12-02 11:39:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 11:40:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-02 11:40:24 --> CSRF token verified.
+DEBUG - 2025-12-02 11:41:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-02 11:41:53 --> CSRF token verified.
+DEBUG - 2025-12-02 11:44:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

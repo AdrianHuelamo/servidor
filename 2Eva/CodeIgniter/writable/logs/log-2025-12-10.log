@@ -1,0 +1,397 @@
+DEBUG - 2025-12-10 11:16:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-10 11:17:00 --> CSRF token verified.
+ERROR - 2025-12-10 11:46:33 --> mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist in /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniterUltimate/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniterUltimate/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniterUltimate/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniterUltimate/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniterUltimate/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniterUltimate/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniterUltimate/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniterUltimate/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-10 11:46:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+[Method: GET, Route: /]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:46:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:46:33 --> [Caused by] mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-10 11:51:03 --> mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist in /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniterUltimate/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniterUltimate/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniterUltimate/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniterUltimate/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniterUltimate/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniterUltimate/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniterUltimate/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniterUltimate/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-10 11:51:03 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+[Method: GET, Route: /]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:03 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:03 --> [Caused by] mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-10 11:51:04 --> mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist in /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniterUltimate/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniterUltimate/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniterUltimate/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniterUltimate/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniterUltimate/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniterUltimate/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniterUltimate/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniterUltimate/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-10 11:51:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+[Method: GET, Route: /]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:04 --> [Caused by] mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-10 11:51:09 --> mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist in /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniterUltimate/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniterUltimate/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniterUltimate/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniterUltimate/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniterUltimate/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniterUltimate/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniterUltimate/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniterUltimate/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-10 11:51:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+[Method: GET, Route: /]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:09 --> [Caused by] mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-10 11:51:29 --> mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist in /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniterUltimate/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniterUltimate/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniterUltimate/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniterUltimate/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniterUltimate/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniterUltimate/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniterUltimate/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniterUltimate/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-10 11:51:29 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+[Method: GET, Route: /]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:29 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:29 --> [Caused by] mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-10 11:51:30 --> mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist in /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniterUltimate/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniterUltimate/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniterUltimate/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniterUltimate/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniterUltimate/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniterUltimate/app/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniterUltimate/app/Controllers/News.php(15): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniterUltimate/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniterUltimate/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniterUltimate/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniterUltimate/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-10 11:51:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+[Method: GET, Route: /]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-10 11:51:30 --> [Caused by] mysqli_sql_exception: Table 'ci4tutorial.categories' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(15): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-10 11:58:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 11:59:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:08:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:11:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-10 12:11:40 --> CSRF token verified.
+DEBUG - 2025-12-10 12:11:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-10 12:12:10 --> CSRF token verified.
+DEBUG - 2025-12-10 12:12:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:12:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:13:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:13:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:15:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:16:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:16:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:18:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:22:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:24:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:26:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:26:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-10 12:26:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -1,4 +1,4 @@
 <section>
-    <h4>Noticia Creada</h4>
-    <p><a href="<?= base_url('news')?>">Volver al listado de noticias</a></p>
+    <p>News item created successfully.</p><br><br><br>
+    <a id="create" href="<?= base_url('news/')?>">Volver al listado de noticias</a>
 </section>

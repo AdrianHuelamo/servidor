@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 <head>
     <meta charset="UTF-8">
     <title>Welcome to CodeIgniter 4!</title>
@@ -45,13 +44,40 @@
         header li {
             display: inline-block;
         }
-        header li a {
+        header li a{
             border-radius: 5px;
             color: rgba(0, 0, 0, .5);
             display: block;
             height: 44px;
             text-decoration: none;
         }
+        #create{
+            padding:10px;
+            border:1px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            color: rgba(0, 0, 0, .5);
+            background-color: rgba(247, 248, 249, 1);
+        }
+        #create:hover{
+            background-color: rgba(221, 72, 20, .2);
+            text-decoration: none;
+            color: rgba(221, 72, 20, 1);
+        }
+        #create2{
+            padding:10px;
+            border:1px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            color:  rgba(255, 255, 255, 1);
+            background-color: rgba(221, 72, 20, 1);
+        }
+        #create2:hover{
+            background-color: rgba(221, 74, 20, 0.46);
+            color: rgba(221, 72, 20, 1);
+            text-decoration: none;
+        }
+
         header li.menu-item a {
             border-radius: 5px;
             margin: 5px 0;
@@ -76,7 +102,7 @@
             font-size: 2rem;
             font-weight: bold;
         }
-        header .menu-toggle button {
+        header .menu-toggle button,{
             background-color: rgba(221, 72, 20, .6);
             border: none;
             border-radius: 3px;
@@ -213,20 +239,12 @@
             <li class="menu-toggle">
                 <button id="menuToggle">&#9776;</button>
             </li>
-            <li class="menu-item hidden"><a href="<?= base_url('news')?>">News</a></li>
             <li class="menu-item hidden"><a href="<?= base_url('home')?>">Home</a></li>
             <li class="menu-item hidden"><a href="<?= base_url('about')?>">About</a></li>
             <li class="menu-item hidden"><a href="<?= base_url('/')?>">Pages</a></li>
-           
+            <li class="menu-item hidden"><a href="<?= base_url('news')?>">News</a></li>
+            <li class="menu-item hidden"><a href="<?= base_url('categories')?>">Categories</a></li>
         </ul>
-    </div>
-
-    <div class="heroe">
-
-        <h1>Welcome to CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
-
-        <h2>The small framework with powerful features</h2>
-
     </div>
 
 </header>

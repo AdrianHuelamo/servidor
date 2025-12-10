@@ -1,3 +1,4 @@
 <section>
-    <h3>Página Sobre Nosotros</h3>
+    <h1>About</h1>
+    <h2><?= esc($title)?></h2>
 </section>

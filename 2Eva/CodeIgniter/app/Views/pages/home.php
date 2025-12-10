@@ -1,4 +1,4 @@
 <section>
-    <h1><?= esc($title) ?></h1>
-    <h3>Página De Inicio</h3>
+    <h1>Welcome to los pollos hermanos</h1>
+    <h2><?= esc($title)?></h2>
 </section>
