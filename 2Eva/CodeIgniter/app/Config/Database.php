@@ -28,7 +28,7 @@ class Database extends Config
         'DSN'          => '',
         'hostname'     => 'localhost',
         'username'     => 'root',
-        'password'     => 'bbdd',
+        'password'     => '',
         'database'     => 'ci4tutorial',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',

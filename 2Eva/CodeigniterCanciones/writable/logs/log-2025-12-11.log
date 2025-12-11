@@ -1,0 +1,398 @@
+CRITICAL - 2025-12-11 20:58:51 --> ErrorException: Undefined variable $slug
+[Method: GET, Route: /]
+in APPPATH\Models\CancionesModel.php on line 19.
+ 1 APPPATH\Models\CancionesModel.php(19): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $slug', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Models\\CancionesModel.php', 19)
+ 2 APPPATH\Controllers\Canciones.php(15): App\Models\CancionesModel->getCanciones()
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-11 20:59:11 --> mysqli_sql_exception: Column 'id' in where clause is ambiguous in C:\xampp\htdocs\Codeigniter\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\Codeigniter\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `cancion...', 0)
+#1 C:\xampp\htdocs\Codeigniter\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `cancion...')
+#2 C:\xampp\htdocs\Codeigniter\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `cancion...')
+#3 C:\xampp\htdocs\Codeigniter\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `cancion...', Array, false)
+#4 C:\xampp\htdocs\Codeigniter\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\Codeigniter\system\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\Codeigniter\app\Models\CancionesModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\Codeigniter\app\Controllers\Canciones.php(15): App\Models\CancionesModel->getCanciones()
+#8 C:\xampp\htdocs\Codeigniter\system\CodeIgniter.php(933): App\Controllers\Canciones->index()
+#9 C:\xampp\htdocs\Codeigniter\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+#10 C:\xampp\htdocs\Codeigniter\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\Codeigniter\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\Codeigniter\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\Codeigniter\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-12-11 20:59:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'id' in where clause is ambiguous
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = :id:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\CancionesModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Canciones.php(15): App\Models\CancionesModel->getCanciones()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 20:59:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = 0')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = 0')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = :id:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\CancionesModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Canciones.php(15): App\Models\CancionesModel->getCanciones()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 20:59:11 --> [Caused by] mysqli_sql_exception: Column 'id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = 0', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = 0')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = 0')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `canciones`.*, `cantantes`.`nombre`
+FROM `canciones`
+JOIN `cantantes` ON `canciones`.`id_cantante`=`cantantes`.`id`
+WHERE `id` = :id:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(677): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\CancionesModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Canciones.php(15): App\Models\CancionesModel->getCanciones()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:02:14 --> ErrorException: Undefined variable $news_list
+[Method: GET, Route: /]
+in APPPATH\Views\canciones\index.php on line 4.
+ 1 APPPATH\Views\canciones\index.php(4): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $news_list', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php', 4)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/index', [], true)
+ 5 APPPATH\Controllers\Canciones.php(20): view('canciones/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:02:59 --> ErrorException: Undefined array key "title"
+[Method: GET, Route: /]
+in APPPATH\Views\canciones\index.php on line 8.
+ 1 APPPATH\Views\canciones\index.php(8): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "title"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php', 8)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/index', [], true)
+ 5 APPPATH\Controllers\Canciones.php(20): view('canciones/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:03:22 --> ErrorException: Undefined variable $nombre
+[Method: GET, Route: /]
+in APPPATH\Views\canciones\index.php on line 2.
+ 1 APPPATH\Views\canciones\index.php(2): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $nombre', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php', 2)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/index', [], true)
+ 5 APPPATH\Controllers\Canciones.php(20): view('canciones/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:03:42 --> ErrorException: Undefined array key "body"
+[Method: GET, Route: /]
+in APPPATH\Views\canciones\index.php on line 9.
+ 1 APPPATH\Views\canciones\index.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "body"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/index', [], true)
+ 5 APPPATH\Controllers\Canciones.php(20): view('canciones/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:03:55 --> ErrorException: Undefined array key "category"
+[Method: GET, Route: /]
+in APPPATH\Views\canciones\index.php on line 10.
+ 1 APPPATH\Views\canciones\index.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "category"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/index', [], true)
+ 5 APPPATH\Controllers\Canciones.php(20): view('canciones/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:04:25 --> ErrorException: Undefined array key "slug"
+[Method: GET, Route: /]
+in APPPATH\Views\canciones\index.php on line 12.
+ 1 APPPATH\Views\canciones\index.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "slug"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php', 12)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/index', [], true)
+ 5 APPPATH\Controllers\Canciones.php(20): view('canciones/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:04:56 --> ErrorException: Undefined variable $news_item
+[Method: GET, Route: /]
+in APPPATH\Views\canciones\index.php on line 14.
+ 1 APPPATH\Views\canciones\index.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $news_item', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/index', [], true)
+ 5 APPPATH\Controllers\Canciones.php(20): view('canciones/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:25:57 --> ErrorException: Array to string conversion
+[Method: GET, Route: canciones/update/1]
+in APPPATH\Views\canciones\update.php on line 2.
+ 1 APPPATH\Views\canciones\update.php(2): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php', 2)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/update', [], true)
+ 5 APPPATH\Controllers\Canciones.php(109): view('canciones/update', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->update('1')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:26:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:31:32 --> ErrorException: Array to string conversion
+[Method: GET, Route: canciones/new]
+in APPPATH\Views\canciones\create.php on line 2.
+ 1 APPPATH\Views\canciones\create.php(2): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\create.php', 2)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\create.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/create', [], true)
+ 5 APPPATH\Controllers\Canciones.php(31): view('canciones/create', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->new()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:31:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:31:44 --> ErrorException: Undefined variable $cangtante_item
+[Method: GET, Route: canciones/new]
+in APPPATH\Views\canciones\create.php on line 19.
+ 1 APPPATH\Views\canciones\create.php(19): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cangtante_item', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\create.php', 19)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\create.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/create', [], true)
+ 5 APPPATH\Controllers\Canciones.php(31): view('canciones/create', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->new()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:31:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:31:59 --> ErrorException: Undefined variable $cantane_item
+[Method: GET, Route: canciones/new]
+in APPPATH\Views\canciones\create.php on line 20.
+ 1 APPPATH\Views\canciones\create.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $cantane_item', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\create.php', 20)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\create.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/create', [], true)
+ 5 APPPATH\Controllers\Canciones.php(31): view('canciones/create', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->new()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:32:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 21:32:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 21:33:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 21:34:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:34:07 --> ErrorException: Undefined array key "cancion_nombre"
+[Method: GET, Route: canciones/update/3]
+in APPPATH\Views\canciones\update.php on line 12.
+ 1 APPPATH\Views\canciones\update.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "cancion_nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php', 12)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/update', [], true)
+ 5 APPPATH\Controllers\Canciones.php(109): view('canciones/update', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->update('3')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:34:31 --> ErrorException: Undefined array key "cancion_nombre"
+[Method: GET, Route: canciones/update/3]
+in APPPATH\Views\canciones\update.php on line 12.
+ 1 APPPATH\Views\canciones\update.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "cancion_nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php', 12)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/update', [], true)
+ 5 APPPATH\Controllers\Canciones.php(109): view('canciones/update', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->update('3')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:35:06 --> ErrorException: Undefined array key "nombre"
+[Method: GET, Route: canciones/3]
+in APPPATH\Controllers\Canciones.php on line 151.
+ 1 APPPATH\Controllers\Canciones.php(151): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Controllers\\Canciones.php', 151)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->show(3)
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:35:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:35:17 --> ErrorException: Undefined array key "cancion_nombre"
+[Method: GET, Route: canciones/update/3]
+in APPPATH\Views\canciones\update.php on line 12.
+ 1 APPPATH\Views\canciones\update.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "cancion_nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php', 12)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\canciones\\update.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('canciones/update', [], true)
+ 5 APPPATH\Controllers\Canciones.php(109): view('canciones/update', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->update('3')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:35:42 --> ErrorException: Undefined array key "nombre"
+[Method: GET, Route: canciones/3]
+in APPPATH\Controllers\Canciones.php on line 151.
+ 1 APPPATH\Controllers\Canciones.php(151): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Controllers\\Canciones.php', 151)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->show(3)
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:36:17 --> ErrorException: Undefined array key "nombre"
+[Method: GET, Route: canciones/3]
+in APPPATH\Controllers\Canciones.php on line 151.
+ 1 APPPATH\Controllers\Canciones.php(151): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Controllers\\Canciones.php', 151)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->show(3)
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:36:20 --> ErrorException: Undefined array key "nombre"
+[Method: GET, Route: canciones/3]
+in APPPATH\Controllers\Canciones.php on line 151.
+ 1 APPPATH\Controllers\Canciones.php(151): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Controllers\\Canciones.php', 151)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->show(3)
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:36:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:36:52 --> ErrorException: Undefined array key "nombre"
+[Method: GET, Route: canciones/3]
+in APPPATH\Controllers\Canciones.php on line 151.
+ 1 APPPATH\Controllers\Canciones.php(151): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Controllers\\Canciones.php', 151)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Canciones->show(3)
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Canciones))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:39:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-11 21:51:19 --> Error: Call to a member function getCantantes() on null
+[Method: GET, Route: cantantes]
+in APPPATH\Controllers\Cantantes.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Cantantes->index()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cantantes))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:54:14 --> ErrorException: Undefined array key "cantante_nombre"
+[Method: GET, Route: cantantes]
+in APPPATH\Views\cantantes\index.php on line 7.
+ 1 APPPATH\Views\cantantes\index.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "cantante_nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\cantantes\\index.php', 7)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\cantantes\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('cantantes/index', [], true)
+ 5 APPPATH\Controllers\Cantantes.php(18): view('cantantes/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Cantantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cantantes))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-11 21:54:21 --> ErrorException: Undefined array key "cantante_nombre"
+[Method: GET, Route: cantantes]
+in APPPATH\Views\cantantes\index.php on line 7.
+ 1 APPPATH\Views\cantantes\index.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "cantante_nombre"', 'C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\cantantes\\index.php', 7)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\Codeigniter\\app\\Views\\cantantes\\index.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('cantantes/index', [], true)
+ 5 APPPATH\Controllers\Cantantes.php(18): view('cantantes/index')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Cantantes->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Cantantes))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-11 21:55:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 21:55:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 21:59:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 21:59:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 22:00:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 22:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-11 22:00:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

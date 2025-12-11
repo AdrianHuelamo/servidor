@@ -244,6 +244,7 @@
             <li class="menu-item hidden"><a href="<?= base_url('/')?>">Pages</a></li>
             <li class="menu-item hidden"><a href="<?= base_url('news')?>">News</a></li>
             <li class="menu-item hidden"><a href="<?= base_url('categories')?>">Categories</a></li>
+            <li class="menu-item hidden"><a href="<?= base_url('admin')?>">Admin</a></li>
         </ul>
     </div>
 

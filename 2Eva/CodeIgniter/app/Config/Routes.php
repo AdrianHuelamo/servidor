@@ -30,7 +30,7 @@ $routes->get('categories/del/(:num)', [Categories::class, 'delete']);
 $routes->get('categories/update/(:num)', [Categories::class, 'update']);
 $routes->post('categories/update/updated/(:num)', [Categories::class, 'updatedItem']);
 
-$routes->get('admin', [users::class, 'loginFrom']);
+$routes->get('admin', [Users::class, 'loginForm']);
 $routes->post('login', [Users::class, 'checkUser']);
 
 
