@@ -25,9 +25,9 @@ class Categories extends BaseController
         $model_cat = model(CategoryModel::class);
         if($data['category'] = $model_cat->findAll()){
             
-            return view('templates/header', ['title' => 'Create a category item'])
-            . view('categories/create', $data)
-            . view('templates/footer');
+            return view('backend/templates/header', ['title' => 'Create a category item'])
+            . view('backend/categories/create', $data)
+            . view('backend/templates/footer');
         }
 
         
@@ -102,9 +102,9 @@ class Categories extends BaseController
             throw new PageNotFoundException('Selected item does not exists in database');
         }
 
-        return view('templates/header')
-            .view('categories/update',$data)
-            .view('templates/footer');
+        return view('backend/templates/header')
+            .view('backend/categories/update',$data)
+            .view('backend/templates/footer');
         //return redirect()->to(base_url('/news'));
     }
 
@@ -144,8 +144,8 @@ class Categories extends BaseController
 
         $data['title'] = $data['news']['title'];
 
-        return view('templates/header', $data)
-            . view('news/view')
-            . view('templates/footer');
+        return view('backend/templates/header', $data)
+            . view('backend/news/view')
+            . view('backend/templates/footer');
     }
 }

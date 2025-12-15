@@ -8,13 +8,13 @@ class Users extends BaseController
         {
             helper('form');
             if($error == null){
-                return view('templates/header', ['title' => 'private Acces'])
-                . view('users/login', ['error' => ''])
-                . view('templates/footer');
+                return view('backend/templates/header', ['title' => 'private Acces'])
+                . view('backend/users/login', ['error' => ''])
+                . view('backend/templates/footer');
             }else{
-                return view('templates/header', ['title' => 'private Acces'])
-                . view('users/login', ['error' => 'Credenciales incorrectas'])
-                . view('templates/footer');
+                return view('backend/templates/header', ['title' => 'private Acces'])
+                . view('backend/users/login', ['error' => 'Credenciales incorrectas'])
+                . view('backend/templates/footer');
             }
         }
 
@@ -34,9 +34,9 @@ class Users extends BaseController
 
             if($data['user'] = $model->checkUser($post['username'],$post['password']))
             {
-                return view('templates/header', ['title' => 'admin'])
-                . view('users/admin', $data)
-                . view('templates/footer');
+                return view('backend/templates/header', ['title' => 'admin'])
+                . view('backend/users/admin', $data)
+                . view('backend/templates/footer');
             } else {
                 return $this->loginForm("error");
             }

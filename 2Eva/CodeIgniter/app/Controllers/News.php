@@ -16,9 +16,9 @@ class News extends BaseController
             'title'     => 'News archive',
         ];
 
-        return view('templates/header', $data)
-            . view('news/index')
-            . view('templates/footer');
+        return view('backend/templates/header', $data)
+            . view('backend/news/index')
+            . view('backend/templates/footer');
     }
 
     public function new()
@@ -27,9 +27,9 @@ class News extends BaseController
         $model_cat = model(CategoryModel::class);
         if($data['category'] = $model_cat->findAll()){
             
-            return view('templates/header', ['title' => 'Create a news item'])
-            . view('news/create', $data)
-            . view('templates/footer');
+            return view('backend/templates/header', ['title' => 'Create a news item'])
+            . view('backend/news/create', $data)
+            . view('backend/templates/footer');
         }
 
         
@@ -109,9 +109,9 @@ class News extends BaseController
             throw new PageNotFoundException('Selected item does not exists in database');
         }
 
-        return view('templates/header')
-            .view('news/update',$data)
-            .view('templates/footer');
+        return view('backend/templates/header')
+            .view('backend/news/update',$data)
+            .view('backend/templates/footer');
         //return redirect()->to(base_url('/news'));
     }
 
@@ -139,9 +139,9 @@ class News extends BaseController
         $model = model(NewsModel::class);
         $model->save($data);
 
-        return view('templates/header',['title' => 'Item updated'])
-            .view('news/success')
-            .view('templates/footer');
+        return view('backend/templates/header',['title' => 'Item updated'])
+            .view('backend/news/success')
+            .view('backend/templates/footer');
         //return redirect()->to(base_url('/news'));
     }
 
@@ -157,8 +157,8 @@ class News extends BaseController
 
         $data['title'] = $data['news']['title'];
 
-        return view('templates/header', $data)
-            . view('news/view')
-            . view('templates/footer');
+        return view('backend/templates/header', $data)
+            . view('backend/news/view')
+            . view('backend/templates/footer');
     }
 }

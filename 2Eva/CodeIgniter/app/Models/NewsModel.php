@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class NewsModel extends Model
 {
     protected $table = 'news';
-    protected $allowedFields = ['title', 'slug', 'body','id_category'];
+    protected $allowedFields = ['title', 'slug', 'body','id_category', 'imagen'];
     /**
      * @param false|string $slug
      *
