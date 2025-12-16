@@ -1,12 +1,12 @@
 <section>
     <h2><?= esc($title) ?></h2>
 
-    <a id="create" href="<?= base_url('categories/')?>">Volver al listado de categorias</a><br><br><br>
+    <a id="create" href="<?= base_url('backend/categories')?>">Volver al listado de categorias</a><br><br><br>
     <?= session()->getFlashdata('error') ?>
     <?= validation_list_errors() ?>
 
     <?php if (!empty($category) && is_array($category)):?>
-    <form method="post" action="./updated/<?= esc($category['id']) ?>">
+    <form method="post" action="./backend/categories/update/updated/<?= esc($category['id']) ?>">
         <?= csrf_field() ?>
 
         <label for="category">Name</label>

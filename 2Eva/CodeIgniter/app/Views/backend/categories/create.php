@@ -1,11 +1,11 @@
 <section>
     <h2><?= esc($title) ?></h2>
 
-    <a id="create" href="<?= base_url('categories/')?>">Volver al listado de categorias</a><br><br><br>
+    <a id="create" href="<?= base_url('backend/categories')?>">Volver al listado de categorias</a><br><br><br>
     <?= session()->getFlashdata('error') ?>
     <?= validation_list_errors() ?>
 
-    <form method="post" action="<?= base_url('categories')?>">
+    <form method="post" action="<?= base_url('backend/categories')?>">
         <?= csrf_field() ?>
 
         <label for="category">Category Name</label>

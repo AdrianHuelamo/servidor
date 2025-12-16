@@ -3,8 +3,7 @@
 
     <?= session()->getFlashdata('error') ?>
     <?= validation_list_errors() ?>
-    <a href="../public">Volver</a>
-    <br><br><br>
+    <a id="create" href="<?= base_url('backend/news')?>">Volver news</a>
     <h1><?= esc($error) ?></h1>
     <form  action="./login" method="post">
         <?= csrf_field() ?>

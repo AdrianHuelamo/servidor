@@ -10,7 +10,7 @@
     
     <h2><?= esc($title) ?></h2>
 
-    <a id="create" href="<?= base_url('news/')?>">Volver al listado de noticias</a><br><br><br>
+    <a id="create" href="<?= base_url('backend')?>">Volver al listado de noticias</a><br><br><br>
     <?= session()->getFlashdata('error') ?>
     <?= validation_list_errors() ?>
 

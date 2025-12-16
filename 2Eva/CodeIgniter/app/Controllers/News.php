@@ -7,7 +7,7 @@ use App\Models\CategoryModel;
 
 class News extends BaseController
 {
-    public function index()
+    public function index($layer = null)
     {
         $model = model(NewsModel::class);
 
@@ -15,10 +15,18 @@ class News extends BaseController
             'news_list' => $model->getNews(),
             'title'     => 'News archive',
         ];
+        //FRONTEND
+        // if($layer == null) :
+        // return view('frontend/templates/header', $data)
+        //     . view('frontend/news/index')
+        //     . view('frontend/templates/footer');
 
+        //BACKEND
+        //else :
         return view('backend/templates/header', $data)
-            . view('backend/news/index')
-            . view('backend/templates/footer');
+        . view('backend/news/index')
+        . view('backend/templates/footer');
+        //endif;
     }
 
     public function new()

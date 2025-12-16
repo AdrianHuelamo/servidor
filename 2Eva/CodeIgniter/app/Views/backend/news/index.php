@@ -503,6 +503,10 @@
             </div>
           </div>
           <h2>Section title</h2>
+          <a href="<?= base_url('backend/news/new')?>"
+                      class="btn btn-outline-info btn-sm">
+                      Crear Noticia
+          </a>
           <div class="table-responsive small">
             <table class="table table-striped table-sm">
               <thead>
@@ -524,19 +528,19 @@
                   <td><?=esc($news_item['slug']) ?></td>
                   <td><?=esc($news_item['category']) ?></td>
                   <td>
-                    <a href="<?= base_url('news/'.$news_item['slug'])?>"
+                    <a href="<?= base_url('backend/news/'.$news_item['slug'])?>"
                       class="btn btn-outline-info btn-sm">
                       Ver Noticia
                     </a>
                   </td>
                   <td>
-                    <a href="<?= base_url('news/del/'.$news_item['id'])?>"
+                    <a href="<?= base_url('backend/news/del/'.$news_item['id'])?>"
                       class="btn btn-outline-danger btn-sm">
                       Eliminar Noticia
                     </a>
                   </td>
                   <td>
-                    <a href="<?= base_url('news/update/'.$news_item['id'])?>"
+                    <a href="<?= base_url('backend/news/update/'.$news_item['id'])?>"
                       class="btn btn-outline-warning btn-sm">
                       Actualizar Noticia
                     </a>

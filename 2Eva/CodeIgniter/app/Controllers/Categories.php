@@ -14,9 +14,9 @@ class Categories extends BaseController
             'title'     => 'Categories',
         ];
 
-        return view('templates/header', $data)
-            . view('categories/index')
-            . view('templates/footer');
+        return view('backend/templates/header', $data)
+            . view('backend/categories/index')
+            . view('backend/templates/footer');
     }
 
     public function new()

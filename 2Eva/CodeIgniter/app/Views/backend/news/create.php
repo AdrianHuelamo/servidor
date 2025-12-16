@@ -5,7 +5,7 @@
     <?= session()->getFlashdata('error') ?>
     <?= validation_list_errors() ?>
 
-    <form method="post" action="<?= base_url('news')?>">
+    <form method="post" action="<?= base_url('backend/news/create')?>">
         <?= csrf_field() ?>
 
         <label for="title">Title</label>
