@@ -1,0 +1,582 @@
+DEBUG - 2025-12-01 07:09:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:10:11 --> CSRF token verified.
+DEBUG - 2025-12-01 07:41:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-01 07:41:18 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "templaes/footer.php"
+[Method: GET, Route: news/updated/1]
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
+ 1 SYSTEMPATH/View/View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile()
+ 2 SYSTEMPATH/Common.php(1173): CodeIgniter\View\View->render()
+ 3 APPPATH/Controllers/News.php(118): view()
+ 4 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->update()
+ 5 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 07:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:41:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:41:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:42:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:42:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:42:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:42:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:43:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:43:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:46:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:46:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:46:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:50:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:50:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:51:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:52:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:52:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:53:32 --> CSRF token verified.
+CRITICAL - 2025-12-01 07:53:32 --> ErrorException: Undefined variable $data
+[Method: POST, Route: news/update/updated/7]
+in APPPATH/Controllers/News.php on line 147.
+ 1 APPPATH/Controllers/News.php(147): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->updatedItem()
+ 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 07:54:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:54:17 --> CSRF token verified.
+CRITICAL - 2025-12-01 07:54:17 --> ErrorException: Undefined variable $data
+[Method: POST, Route: news/update/updated/7]
+in APPPATH/Controllers/News.php on line 147.
+ 1 APPPATH/Controllers/News.php(147): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->updatedItem()
+ 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+INFO - 2025-12-01 07:55:11 --> CSRF token verified.
+CRITICAL - 2025-12-01 07:55:11 --> ErrorException: Undefined variable $data
+[Method: POST, Route: news/update/updated/7]
+in APPPATH/Controllers/News.php on line 147.
+ 1 APPPATH/Controllers/News.php(147): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->updatedItem()
+ 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 07:55:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:55:14 --> CSRF token verified.
+CRITICAL - 2025-12-01 07:55:14 --> ErrorException: Undefined variable $data
+[Method: POST, Route: news/update/updated/7]
+in APPPATH/Controllers/News.php on line 147.
+ 1 APPPATH/Controllers/News.php(147): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->updatedItem()
+ 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 07:55:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:56:25 --> CSRF token verified.
+CRITICAL - 2025-12-01 07:56:25 --> ErrorException: Undefined variable $data
+[Method: POST, Route: news/update/updated/7]
+in APPPATH/Controllers/News.php on line 147.
+ 1 APPPATH/Controllers/News.php(147): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->updatedItem()
+ 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 07:58:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 07:58:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:58:22 --> CSRF token verified.
+CRITICAL - 2025-12-01 07:58:22 --> ErrorException: Undefined variable $data
+[Method: POST, Route: news/update/updated/7]
+in APPPATH/Controllers/News.php on line 147.
+ 1 APPPATH/Controllers/News.php(147): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->updatedItem()
+ 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+INFO - 2025-12-01 07:58:58 --> CSRF token verified.
+DEBUG - 2025-12-01 07:59:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:59:18 --> CSRF token verified.
+DEBUG - 2025-12-01 07:59:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 07:59:33 --> CSRF token verified.
+DEBUG - 2025-12-01 07:59:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 08:01:19 --> CSRF token verified.
+DEBUG - 2025-12-01 08:01:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-01 08:15:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 08:17:09 --> CSRF token verified.
+DEBUG - 2025-12-01 08:30:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 08:31:13 --> CSRF token verified.
+ERROR - 2025-12-01 08:40:43 --> mysqli_sql_exception: Unknown column 'category.categories' in 'field list' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(16): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-01 08:40:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'category.categories' in 'field list'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-01 08:40:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'category.categories' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-01 08:40:43 --> [Caused by] mysqli_sql_exception: Unknown column 'category.categories' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 08:42:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-12-01 08:42:37 --> mysqli_sql_exception: Unknown column 'category.categories' in 'field list' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(16): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-01 08:42:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'category.categories' in 'field list'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-01 08:42:37 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'category.categories' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-01 08:42:37 --> [Caused by] mysqli_sql_exception: Unknown column 'category.categories' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-01 08:43:09 --> mysqli_sql_exception: Unknown column 'category.categories' in 'field list' in /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/CodeIgniter/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/CodeIgniter/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/CodeIgniter/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/CodeIgniter/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/CodeIgniter/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/CodeIgniter/app/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/CodeIgniter/app/Controllers/News.php(16): App\Models\NewsModel->getNews()
+#8 /var/www/html/CodeIgniter/system/CodeIgniter.php(933): App\Controllers\News->index()
+#9 /var/www/html/CodeIgniter/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/CodeIgniter/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/CodeIgniter/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/CodeIgniter/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/CodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2025-12-01 08:43:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'category.categories' in 'field list'
+[Method: GET, Route: news]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-01 08:43:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'category.categories' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-01 08:43:09 --> [Caused by] mysqli_sql_exception: Unknown column 'category.categories' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/News.php(16): App\Models\NewsModel->getNews()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 08:43:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-01 08:43:34 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/elvis-sighted]
+in APPPATH/Controllers/News.php on line 36.
+ 1 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->show()
+ 2 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-12-01 08:44:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-01 08:44:22 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/elvis-sighted]
+in APPPATH/Controllers/News.php on line 36.
+ 1 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->show()
+ 2 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-12-01 08:44:34 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/elvis-sighted]
+in APPPATH/Controllers/News.php on line 36.
+ 1 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\News->show()
+ 2 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-12-01 12:26:18 --> Error connecting to the database: mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\CodeIgniter\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\CodeIgniter\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ci4tutorial', 3306, '', 0)
+#1 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\CodeIgniter\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `news`.*...', Array, false)
+#4 C:\xampp\htdocs\CodeIgniter\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\CodeIgniter\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\CodeIgniter\app\Models\NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\CodeIgniter\app\Controllers\News.php(17): App\Models\NewsModel->getNews()
+#8 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(933): App\Controllers\News->index()
+#9 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+#10 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\CodeIgniter\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\CodeIgniter\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\CodeIgniter\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\CodeIgniter\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\CodeIgniter\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `news`.*...', Array, false)
+#3 C:\xampp\htdocs\CodeIgniter\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\CodeIgniter\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\CodeIgniter\app\Models\NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\CodeIgniter\app\Controllers\News.php(17): App\Models\NewsModel->getNews()
+#7 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(933): App\Controllers\News->index()
+#8 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+#9 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\CodeIgniter\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\CodeIgniter\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\CodeIgniter\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-12-01 12:26:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+[Method: GET, Route: news]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `news`.*, `category`.`category`
+FROM `news`
+JOIN `category` ON `news`.`id_category`=`category`.`id`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\News.php(17): App\Models\NewsModel->getNews()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-12-01 12:26:20 --> Error connecting to the database: mysqli_sql_exception: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\CodeIgniter\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\CodeIgniter\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'ci4tutorial', 3306, '', 0)
+#1 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\CodeIgniter\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `news`.*...', Array, false)
+#4 C:\xampp\htdocs\CodeIgniter\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\CodeIgniter\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\CodeIgniter\app\Models\NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\CodeIgniter\app\Controllers\News.php(17): App\Models\NewsModel->getNews()
+#8 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(933): App\Controllers\News->index()
+#9 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+#10 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\CodeIgniter\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\CodeIgniter\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\CodeIgniter\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión in C:\xampp\htdocs\CodeIgniter\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\CodeIgniter\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\CodeIgniter\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `news`.*...', Array, false)
+#3 C:\xampp\htdocs\CodeIgniter\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\CodeIgniter\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp\htdocs\CodeIgniter\app\Models\NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp\htdocs\CodeIgniter\app\Controllers\News.php(17): App\Models\NewsModel->getNews()
+#7 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(933): App\Controllers\News->index()
+#8 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+#9 C:\xampp\htdocs\CodeIgniter\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\CodeIgniter\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\CodeIgniter\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\CodeIgniter\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2025-12-01 12:26:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+[Method: GET, Route: news]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `news`.*, `category`.`category`
+FROM `news`
+JOIN `category` ON `news`.`id_category`=`category`.`id`', [], false)
+ 3 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\NewsModel.php(22): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\News.php(17): App\Models\NewsModel->getNews()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->index()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:27:26 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Controllers\News.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:28:27 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(42): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:03 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:08 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:08 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:09 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:09 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:09 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/hola]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('hola')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:11 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/elvis-sighted]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('elvis-sighted')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:16 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/elvis-sighted]
+in APPPATH\Controllers\News.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('elvis-sighted')
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:30:20 --> Error: Cannot use object of type App\Models\NewsModel as array
+[Method: GET, Route: news/elvis-sighted]
+in APPPATH\Views\news\view.php on line 2.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('news/view', [], true)
+ 4 APPPATH\Controllers\News.php(40): view('news/view')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('elvis-sighted')
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-01 12:32:41 --> Error: Cannot use object of type stdClass as array
+[Method: GET, Route: news/elvis-sighted]
+in APPPATH\Controllers\News.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\News->show('elvis-sighted')
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\News))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-12-01 12:33:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-12-01 12:33:48 --> CSRF token verified.
