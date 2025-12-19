@@ -24,7 +24,7 @@ class NewsModel extends Model
         // 1. Configurar la consulta con JOIN (Esto aplica a ambos casos: todas o una)
         $this->select('news.*, category.category');
         $this->join('category', 'news.id_category = category.id');
-
+ 
         if ($slug === false) {
             // Caso 1: Devolver TODAS las noticias con su categoría
             // La consulta se ejecuta aquí.
