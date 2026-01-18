@@ -2,13 +2,30 @@
 
 namespace App\Controllers;
 
+use App\Models\EjercicioModel;
+use App\Models\NoticiaModel;
+use App\Models\GrupoModel; // <--- IMPORTANTE: Añade esto
+
 class Home extends BaseController
 {
     public function index()
     {
-        // Cargamos las vistas en orden como si fuera un sándwich
-        echo view('templates/header');
-        echo view('inicio');
-        echo view('templates/footer');
+        $ejercicioModel = new EjercicioModel();
+        $noticiaModel   = new NoticiaModel();
+        $grupoModel     = new GrupoModel();
+
+        $data = [
+            'destacados' => $ejercicioModel->getDestacados(),
+            
+            'noticias'   => $noticiaModel->orderBy('fecha_publicacion', 'DESC')->findAll(3),
+            
+            'grupos'     => $grupoModel->findAll(),
+
+            'title'      => 'Inicio - GymFit'
+        ];
+
+        return view('templates/header', $data)
+             . view('home')
+             . view('templates/footer');
     }
 }
