@@ -2,43 +2,36 @@
 
 namespace App\Controllers;
 
-use App\Models\GrupoModel;
-use App\Models\EjercicioModel;
-use CodeIgniter\Exceptions\PageNotFoundException;
+use App\Controllers\BaseController;
+use App\Models\GrupoModel; 
 
 class Grupos extends BaseController
 {
     public function index()
     {
-        $model = model(GrupoModel::class);
-
+        $model = new GrupoModel();
+        
         $data = [
-            'grupos_list' => $model->getGrupos(),
-            'title'       => 'Grupos Musculares',
+            'grupos' => $model->findAll(), 
+            'title'  => 'Grupos Musculares'
         ];
 
         return view('templates/header', $data)
-            . view('grupos/index')
-            . view('templates/footer');
+             . view('grupos/index', $data)
+             . view('templates/footer');
     }
 
     public function show($id = null)
     {
-        $modelGrupo = model(GrupoModel::class);
-        $modelEjercicios = model(EjercicioModel::class);
+        $model = new GrupoModel();
+        $data['grupo'] = $model->find($id);
 
-        $data['grupo'] = $modelGrupo->getGrupos($id);
-
-        if ($data['grupo'] === null) {
-            throw new PageNotFoundException('No se encuentra el grupo muscular con ID: ' . $id);
+        if (empty($data['grupo'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Grupo no encontrado');
         }
 
-        $data['ejercicios_list'] = $modelEjercicios->where('id_grupo', $id)->findAll();
-        
-        $data['title'] = $data['grupo']['nombre'];
-
-        return view('templates/header', $data)
-            . view('grupos/view')
-            . view('templates/footer');
-    }
+        return view('templates/header', ['title' => $data['grupo']['nombre']])
+             . view('grupos/detalle', $data) 
+             . view('templates/footer');
+        }
 }

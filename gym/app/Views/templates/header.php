@@ -9,7 +9,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
+    
+    <link href="<?= base_url('css/style.css?v=2') ?>" rel="stylesheet">
 </head>
 <body>
 
@@ -26,6 +27,7 @@
     </button>
     
     <div class="collapse navbar-collapse" id="navbarNav">
+      
       <ul class="navbar-nav me-auto ms-auto gap-4">
         <li class="nav-item">
             <a class="nav-link fs-5 text-white" href="<?= base_url('home') ?>">Inicio</a>
@@ -41,10 +43,37 @@
         </li>
       </ul>
       
-      <div class="d-flex gap-2 mt-3 mt-lg-0">
-        <a href="<?= base_url('login') ?>" class="btn btn-outline-light px-4 rounded-pill">Iniciar Sesión</a>
-        <a href="<?= base_url('registro') ?>" class="btn btn-warning px-4 rounded-pill fw-bold">Registrarse</a>
+      <div class="d-flex gap-2 mt-3 mt-lg-0 align-items-center">
+        
+        <?php if (session()->has('isLoggedIn')): ?>
+            
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle fs-4 me-2 text-warning"></i>
+                    <span class="fw-bold"><?= esc(session()->get('username')) ?></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    
+                    <?php if(session()->get('rol') == 1): ?>
+                        <li><h6 class="dropdown-header">Administración</h6></li>
+                        <li><a class="dropdown-item" href="#">Gestión de Ejercicios</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    <?php endif; ?>
+                    
+                    <li><a class="dropdown-item" href="#">Mis Favoritos</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+
+        <?php else: ?>
+            
+            <a href="<?= base_url('login') ?>" class="btn btn-outline-light px-4 rounded-pill">Iniciar Sesión</a>
+            <a href="<?= base_url('registro') ?>" class="btn btn-warning px-4 rounded-pill fw-bold">Registrarse</a>
+
+        <?php endif; ?>
       </div>
+
     </div>
   </div>
 </nav>

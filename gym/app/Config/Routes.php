@@ -27,4 +27,9 @@ $routes->get('noticias', 'Noticias::index');
 $routes->get('noticias/show/(:num)', 'Noticias::show/$1');
 
 $routes->get('login', 'Users::loginForm');
-$routes->get('login', 'Users::checkUser');
+$routes->post('login', 'Users::checkUser');
+
+$routes->get('registro', 'Users::registerForm');
+$routes->post('register/create', 'Users::createUser');
+
+$routes->get('logout', 'Users::logout');

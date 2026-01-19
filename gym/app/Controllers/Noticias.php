@@ -2,39 +2,36 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
 use App\Models\NoticiaModel;
-use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Noticias extends BaseController
 {
     public function index()
     {
-        $model = model(NoticiaModel::class);
+        $model = new NoticiaModel();
 
         $data = [
-            'noticias_list' => $model->getNoticias(),
-            'title'         => 'Últimas Noticias',
+            'noticias' => $model->orderBy('fecha_publicacion', 'DESC')->findAll(),
+            'title'    => 'Noticias'
         ];
 
         return view('templates/header', $data)
-            . view('noticias/index')
-            . view('templates/footer');
+             . view('noticias/index', $data)
+             . view('templates/footer');
     }
 
     public function show($id = null)
-    {
-        $model = model(NoticiaModel::class);
+{
+    $model = new NoticiaModel();
+    $data['noticia'] = $model->find($id);
 
-        $data['noticia'] = $model->getNoticias($id);
-
-        if ($data['noticia'] === null) {
-            throw new PageNotFoundException('No se encuentra la noticia: ' . $id);
-        }
-
-        $data['title'] = $data['noticia']['titulo'];
-
-        return view('templates/header', $data)
-            . view('noticias/view')
-            . view('templates/footer');
+    if (empty($data['noticia'])) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('Noticia no encontrada');
     }
+
+    return view('templates/header', ['title' => $data['noticia']['titulo']])
+         . view('noticias/detalle', $data) 
+         . view('templates/footer');
+}
 }
