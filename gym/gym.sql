@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2026 a las 21:01:33
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: localhost
+-- Tiempo de generación: 19-01-2026 a las 08:36:14
+-- Versión del servidor: 8.0.43-0ubuntu0.24.04.2
+-- Versión de PHP: 8.4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ejercicios` (
-  `id` int(11) NOT NULL,
-  `id_grupo` int(11) DEFAULT NULL,
-  `titulo` varchar(100) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
-  `dificultad` varchar(20) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `destacado` tinyint(1) DEFAULT 0
+  `id` int NOT NULL,
+  `id_grupo` int DEFAULT NULL,
+  `titulo` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf8mb4_general_ci,
+  `dificultad` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `destacado` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -57,10 +57,10 @@ INSERT INTO `ejercicios` (`id`, `id_grupo`, `titulo`, `descripcion`, `dificultad
 --
 
 CREATE TABLE `grupos_musculares` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL
+  `id` int NOT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -80,12 +80,12 @@ INSERT INTO `grupos_musculares` (`id`, `nombre`, `imagen`, `descripcion`) VALUES
 --
 
 CREATE TABLE `noticias` (
-  `id` int(11) NOT NULL,
-  `titulo` varchar(150) DEFAULT NULL,
-  `resumen` varchar(255) DEFAULT NULL,
-  `contenido` text DEFAULT NULL,
+  `id` int NOT NULL,
+  `titulo` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `resumen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contenido` text COLLATE utf8mb4_general_ci,
   `fecha_publicacion` date DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -93,9 +93,22 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`id`, `titulo`, `resumen`, `contenido`, `fecha_publicacion`, `imagen`) VALUES
-(1, 'La importancia del descanso', '¿Sabías que el músculo crece cuando duermes?', 'Muchos piensan que el músculo crece en el gym, pero lo hace mientras descansas. Dormir 8 horas es fundamental para la hipertrofia...', '2023-10-01', 'descanso.jpg'),
-(2, 'Proteína: ¿Cuánta necesitas?', 'Guía rápida sobre el consumo de proteínas.', 'Se recomienda entre 1.6g y 2g de proteína por cada kilo de peso corporal si estás entrenando fuerza...', '2023-10-05', 'proteina.jpg'),
-(3, 'Errores comunes en novatos', 'Evita lesiones siguiendo estos consejos.', 'No cargues más peso del que controlas. La técnica siempre debe ir por delante del ego...', '2023-10-10', 'novatos.jpg');
+(1, 'La importancia del descanso', '¿Sabías que el músculo crece cuando duermes?', 'Muchos piensan que el músculo crece en el gym, pero lo hace mientras descansas. Dormir 8 horas es fundamental para la hipertrofia...', '2026-01-10', 'descanso.jpg'),
+(2, 'Proteína: ¿Cuánta necesitas?', 'Guía rápida sobre el consumo de proteínas.', 'Se recomienda entre 1.6g y 2g de proteína por cada kilo de peso corporal si estás entrenando fuerza...', '2025-12-24', 'proteina.jpg'),
+(3, 'Errores comunes en novatos', 'Evita lesiones siguiendo estos consejos.', 'No cargues más peso del que controlas. La técnica siempre debe ir por delante del ego...', '2026-01-04', 'novatos.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(32) COLLATE utf8mb4_general_ci NOT NULL,
+  `rol` tinyint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -104,13 +117,13 @@ INSERT INTO `noticias` (`id`, `titulo`, `resumen`, `contenido`, `fecha_publicaci
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `rol` enum('admin','user') DEFAULT 'user',
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int NOT NULL,
+  `nombre` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `rol` enum('admin','user') COLLATE utf8mb4_general_ci DEFAULT 'user',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -137,6 +150,12 @@ ALTER TABLE `noticias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -151,25 +170,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `grupos_musculares`
 --
 ALTER TABLE `grupos_musculares`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

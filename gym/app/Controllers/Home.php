@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\EjercicioModel;
 use App\Models\NoticiaModel;
-use App\Models\GrupoModel; // <--- IMPORTANTE: Añade esto
+use App\Models\GrupoModel;
 
 class Home extends BaseController
 {

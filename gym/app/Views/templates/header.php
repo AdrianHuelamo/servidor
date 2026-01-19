@@ -26,7 +26,10 @@
     </button>
     
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto ms-auto gap-4"> 
+      <ul class="navbar-nav me-auto ms-auto gap-4">
+        <li class="nav-item">
+            <a class="nav-link fs-5 text-white" href="<?= base_url('home') ?>">Inicio</a>
+        </li> 
         <li class="nav-item">
             <a class="nav-link fs-5 text-white" href="<?= base_url('grupos') ?>">Grupos Musculares</a>
         </li>
