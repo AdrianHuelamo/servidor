@@ -33,3 +33,19 @@ $routes->get('registro', 'Users::registerForm');
 $routes->post('register/create', 'Users::createUser');
 
 $routes->get('logout', 'Users::logout');
+
+
+$routes->group('admin', ['filter' => 'adminAuth'], function($routes) {
+    $routes->get('/', 'Admin::index');
+
+    $routes->get('ejercicios', 'Admin::ejercicios');              
+    $routes->get('ejercicios/delete/(:num)', 'Admin::deleteEjercicio/$1'); 
+    
+    $routes->get('grupos', 'Admin::grupos');
+    $routes->get('grupos/delete/(:num)', 'Admin::deleteGrupo/$1'); 
+    
+    $routes->get('noticias', 'Admin::noticias');
+    $routes->get('noticias/delete/(:num)', 'Admin::deleteNoticia/$1'); 
+
+    $routes->get('usuarios', 'Admin::usuarios');
+});

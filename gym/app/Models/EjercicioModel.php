@@ -16,7 +16,7 @@ class EjercicioModel extends Model
              ->join('grupos_musculares', 'ejercicios.id_grupo = grupos_musculares.id');
 
         if (!empty($filtros['search'])) {
-            $this->like('ejercicios.titulo', $filtros['search']);
+            $this->like('ejercicios.titulo', $filtros['search'], 'after');
         }
 
         if (!empty($filtros['dificultad'])) {

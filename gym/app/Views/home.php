@@ -7,9 +7,15 @@
             La enciclopedia definitiva de hipertrofia. Ejercicios, ciencia y técnica para alcanzar tu mejor versión.
         </p>
         <div class="d-flex justify-content-center gap-3">
-            <a href="<?= base_url('ejercicios') ?>" class="btn btn-gym rounded-pill shadow-lg px-5 py-3 fs-5">
-                Empezar Ahora
-            </a>
+            <?php if (!session()->has('isLoggedIn')): ?>
+                <a href="<?= base_url('registro') ?>" class="btn btn-gym rounded-pill shadow-lg px-5 py-3 fs-5">
+                    Empezar Ahora
+                </a>
+            <?php else: ?>
+                <a href="<?= base_url('ejercicios') ?>" class="btn btn-gym rounded-pill shadow-lg px-5 py-3 fs-5">
+                    Ver Ejercicios
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </header>
@@ -23,10 +29,12 @@
                 <?php foreach($grupos as $grupo): ?>
                 <div class="col">
                     <a href="<?= base_url('grupos/show/'.$grupo['id']) ?>" class="text-decoration-none text-dark">
-                        <div class="card border-0 shadow-sm text-center p-3 card-custom h-100">
-                            <img src="<?= base_url('img/'.(esc($grupo['imagen']) ?: 'default.jpg')) ?>" 
+                        <div class="card border-0 shadow-sm text-center p-3 card-custom h-100 card-hover">
+                            <img src="<?= base_url('img/'.($grupo['imagen'] ?? 'default.jpg')) ?>" 
                                  class="rounded-circle mx-auto mb-3 shadow" 
-                                 style="width: 80px; height: 80px; object-fit: cover;" alt="...">
+                                 style="width: 80px; height: 80px; object-fit: cover;" 
+                                 alt="<?= esc($grupo['nombre']) ?>"
+                                 onerror="this.onerror=null;this.src='<?= base_url('img/default.jpg') ?>';">
                             <h5 class="fw-bold m-0"><?= esc($grupo['nombre']) ?></h5>
                         </div>
                     </a>
@@ -47,22 +55,28 @@
         <?php if (!empty($destacados)): ?>
             <?php foreach ($destacados as $ej): ?>
             <div class="col">
-                <div class="card card-custom h-100 position-relative">
-                    <div class="position-relative">
-                        <span class="badge-top">TOP</span>
-                        <img src="<?= base_url('img/'.(esc($ej['imagen']) ?: 'default.jpg')) ?>" class="card-img-fix" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">
-                            <a href="<?= base_url('ejercicios/show/'.$ej['id']) ?>" class="text-decoration-none text-dark stretched-link">
+                <a href="<?= base_url('ejercicios/show/'.$ej['id']) ?>" class="text-decoration-none text-dark">
+                    <div class="card card-custom h-100 position-relative card-hover overflow-hidden">
+                        
+                        <div class="position-relative" style="height: 250px; background: white; display: flex; align-items: center; justify-content: center;">
+                            <span class="badge-top">TOP</span>
+                            <img src="<?= base_url('img/'.($ej['imagen'] ?? 'default.jpg')) ?>" 
+                                 class="mw-100 mh-100" 
+                                 style="padding: 20px; object-fit: contain;" 
+                                 alt="<?= esc($ej['titulo']) ?>"
+                                 onerror="this.onerror=null;this.src='<?= base_url('img/default.jpg') ?>';">
+                        </div>
+
+                        <div class="card-body border-top">
+                            <h5 class="card-title fw-bold mb-1">
                                 <?= esc($ej['titulo']) ?>
-                            </a>
-                        </h5>
-                        <p class="text-muted small mb-0">
-                            <i class="bi bi-layers-fill"></i> <?= esc($ej['grupo_nombre'] ?? 'General') ?>
-                        </p>
+                            </h5>
+                            <p class="text-muted small mb-0">
+                                <i class="bi bi-layers-fill"></i> <?= esc($ej['grupo_nombre'] ?? 'General') ?>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -79,28 +93,30 @@
         <?php if (!empty($noticias)): ?>
             <?php foreach ($noticias as $noti): ?>
             <div class="col">
-                <div class="card card-custom h-100 border-0 shadow-sm">
-                    <img src="<?= base_url('img/'.(esc($noti['imagen']) ?: 'news_default.jpg')) ?>" 
-                         class="card-img-top" 
-                         style="height: 180px; object-fit: cover;" alt="...">
-                    
-                    <div class="card-body">
-                        <small class="text-muted d-block mb-2">
-                            <i class="bi bi-calendar3"></i> <?= esc($noti['fecha_publicacion']) ?>
-                        </small>
-                        <h5 class="card-title fw-bold">
-                            <a href="<?= base_url('noticias/show/'.$noti['id']) ?>" class="text-decoration-none text-dark stretched-link">
+                <a href="<?= base_url('noticias/show/'.$noti['id']) ?>" class="text-decoration-none text-dark">
+                    <div class="card card-custom h-100 border-0 shadow-sm card-hover">
+                        <img src="<?= base_url('img/'.($noti['imagen'] ?? 'news_default.jpg')) ?>" 
+                             class="card-img-top" 
+                             style="height: 180px; object-fit: cover;" 
+                             alt="<?= esc($noti['titulo']) ?>"
+                             onerror="this.onerror=null;this.src='<?= base_url('img/news_default.jpg') ?>';">
+                        
+                        <div class="card-body">
+                            <small class="text-muted d-block mb-2">
+                                <i class="bi bi-calendar3"></i> <?= esc($noti['fecha_publicacion']) ?>
+                            </small>
+                            <h5 class="card-title fw-bold">
                                 <?= esc($noti['titulo']) ?>
-                            </a>
-                        </h5>
-                        <p class="card-text text-secondary small">
-                            <?= esc(substr($noti['resumen'] ?? '', 0, 80)) ?>...
-                        </p>
+                            </h5>
+                            <p class="card-text text-secondary small">
+                                <?= esc(substr($noti['resumen'] ?? '', 0, 80)) ?>...
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pt-0">
+                            <small class="text-warning fw-bold">Leer artículo &rarr;</small>
+                        </div>
                     </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <small class="text-warning fw-bold">Leer artículo &rarr;</small>
-                    </div>
-                </div>
+                </a>
             </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -127,8 +143,10 @@
             Únete a GymFit hoy. Accede a las mejores rutinas y lleva el control total de tu progreso físico.
         </p>
         
-        <a href="<?= base_url('registro') ?>" class="btn btn-gym rounded-pill px-5 shadow-lg fs-5">
-            Crear Cuenta Gratis
-        </a>
+        <?php if (!session()->has('isLoggedIn')): ?>
+            <a href="<?= base_url('registro') ?>" class="btn btn-gym rounded-pill px-5 shadow-lg fs-5">
+                Crear Cuenta Gratis
+            </a>
+        <?php endif; ?>
     </div>
 </section>

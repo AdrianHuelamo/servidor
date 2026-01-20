@@ -7,13 +7,14 @@ use App\Models\UserModel;
 
 class Users extends BaseController
 {
-
     protected $helpers = ['form'];
-
 
     public function loginForm()
     {
         if (session()->has('isLoggedIn')) {
+            if (session()->get('rol') == 1) {
+                return redirect()->to('/admin');
+            }
             return redirect()->to('/');
         }
 
@@ -36,7 +37,7 @@ class Users extends BaseController
 
         $model = new UserModel();
         
-        $user = $model->getUserByUsername($username);
+        $user = $model->where('username', $username)->first();
 
         if ($user && password_verify($password, $user['password'])) {
             
@@ -48,7 +49,12 @@ class Users extends BaseController
             ];
             session()->set($sessionData);
 
+            if ($user['rol'] == 1) {
+                return redirect()->to('/admin');
+            }
+            
             return redirect()->to('/')->with('mensaje', '¡Bienvenido ' . $user['username'] . '!');
+
         } else {
             return redirect()->back()->withInput()->with('error', 'Usuario o contraseña incorrectos');
         }
@@ -89,6 +95,6 @@ class Users extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/')->with('mensaje', 'Sesión cerrada correctamente.');
+        return redirect()->to('/login')->with('mensaje', 'Sesión cerrada correctamente.');
     }
 }
