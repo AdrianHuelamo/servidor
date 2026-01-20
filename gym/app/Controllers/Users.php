@@ -67,7 +67,7 @@ class Users extends BaseController
     public function createUser()
     {
         if (! $this->validate([
-            'username' => 'required|min_length[4]|is_unique[users.username]',
+            'username' => 'required|min_length[3]|is_unique[users.username]',
             'email'    => 'required|valid_email|is_unique[users.email]',
             'password' => 'required|min_length[4]'
         ])) {

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2026 a las 23:17:00
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: localhost
+-- Tiempo de generación: 20-01-2026 a las 12:49:16
+-- Versión del servidor: 8.0.43-0ubuntu0.24.04.2
+-- Versión de PHP: 8.4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ejercicios` (
-  `id` int(11) NOT NULL,
-  `id_grupo` int(11) DEFAULT NULL,
-  `titulo` varchar(100) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
-  `dificultad` varchar(20) DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `destacado` tinyint(1) DEFAULT 0
+  `id` int NOT NULL,
+  `id_grupo` int DEFAULT NULL,
+  `titulo` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf8mb4_general_ci,
+  `dificultad` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `destacado` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -57,10 +57,10 @@ INSERT INTO `ejercicios` (`id`, `id_grupo`, `titulo`, `descripcion`, `dificultad
 --
 
 CREATE TABLE `grupos_musculares` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `imagen` varchar(255) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL
+  `id` int NOT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `descripcion` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -80,12 +80,12 @@ INSERT INTO `grupos_musculares` (`id`, `nombre`, `imagen`, `descripcion`) VALUES
 --
 
 CREATE TABLE `noticias` (
-  `id` int(11) NOT NULL,
-  `titulo` varchar(150) DEFAULT NULL,
-  `resumen` varchar(255) DEFAULT NULL,
-  `contenido` text DEFAULT NULL,
+  `id` int NOT NULL,
+  `titulo` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `resumen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contenido` text COLLATE utf8mb4_general_ci,
   `fecha_publicacion` date DEFAULT NULL,
-  `imagen` varchar(255) DEFAULT NULL
+  `imagen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -104,11 +104,11 @@ INSERT INTO `noticias` (`id`, `titulo`, `resumen`, `contenido`, `fecha_publicaci
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `rol` tinyint(4) DEFAULT 0
+  `id` int NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `rol` tinyint DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -116,7 +116,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `rol`) VALUES
-(0, 'joselu', 'joselu@gmail.com', '$2y$10$tEFp5pBPsyRDeW4NK3N2ruZ8C3PuUaidxDv3Wx7LbMRsDml1Atacq', 0);
+(1, 'joselu', 'joselu@gmail.com', '$2y$10$tEFp5pBPsyRDeW4NK3N2ruZ8C3PuUaidxDv3Wx7LbMRsDml1Atacq', 0),
+(2, 'pol7', 'pol@gmail.com', '$2y$12$8abtOyzSH789JwW3j9J2Uucy6TNYPecLReeKhQclu14v4i6uam8..', 0),
+(3, 'pol', 'pol7@gmail.com', '$2y$12$.1oHHh48ghkp7I5J29VZqOkl/w4tMo7MV6uvK3bPF0Lt24n1rizsy', 0);
 
 --
 -- Índices para tablas volcadas
@@ -156,19 +158,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `grupos_musculares`
 --
 ALTER TABLE `grupos_musculares`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

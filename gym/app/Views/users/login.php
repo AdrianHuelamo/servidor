@@ -2,14 +2,14 @@
     .auth-bg {
         background: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
         background-size: cover;
-        min-height: 100vh; /* Ocupa toda la pantalla */
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     .card-glass {
-        background: rgba(0, 0, 0, 0.85); /* Negro semitransparente */
-        backdrop-filter: blur(10px); /* Efecto borroso detrás */
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px); 
         border: 1px solid rgba(255, 255, 255, 0.1);
         color: white;
     }
