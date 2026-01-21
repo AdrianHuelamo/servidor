@@ -25,7 +25,7 @@
             </li>
             <li>
                 <a href="<?= base_url('admin/ejercicios') ?>" class="<?= str_contains(uri_string(), 'ejercicios') ? 'active' : '' ?>">
-                    <i class="bi bi-dumbbell"></i> Ejercicios
+                    <i class="bi bi-activity"></i> Ejercicios
                 </a>
             </li>
             <li>
@@ -60,12 +60,6 @@
     <div id="content">
         <nav class="navbar-admin">
             <h5 class="m-0 text-secondary">Panel de Control</h5>
-            <div class="d-flex align-items-center gap-2">
-                <span class="fw-bold small"><?= session('username') ?></span>
-                <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 35px; height: 35px;">
-                    <?= substr(session('username') ?? 'A', 0, 1) ?>
-                </div>
-            </div>
         </nav>
 
         <div class="container-fluid">

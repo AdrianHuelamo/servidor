@@ -56,7 +56,7 @@
                     
                     <?php if(session()->get('rol') == 1): ?>
                         <li><h6 class="dropdown-header">Administración</h6></li>
-                        <li><a class="dropdown-item" href="#">Gestión de Ejercicios</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('admin') ?>">Gestión de Ejercicios</a></li>
                         <li><hr class="dropdown-divider"></li>
                     <?php endif; ?>
                     

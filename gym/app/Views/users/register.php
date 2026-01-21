@@ -8,24 +8,31 @@
                         
                         <div class="text-center mb-4">
                             <h2 class="fw-bold text-uppercase">Únete a <span class="text-warning">Nosotros</span></h2>
-                            <p class="text-muted small">Empieza tu transformación hoy</p>
+                            <p class="text-muted small">Crea tu cuenta de espartano</p>
                         </div>
 
-                        <?php if (isset($validation)): ?>
+                        <?php if (session()->getFlashdata('errors')): ?>
                             <div class="alert alert-danger small">
-                                <?= $validation->listErrors() ?>
+                                <ul>
+                                <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                                    <li><?= esc($error) ?></li>
+                                <?php endforeach ?>
+                                </ul>
                             </div>
                         <?php endif; ?>
 
-                        <form action="<?= base_url('registro/store') ?>" method="post">
+                        <form action="<?= base_url('register/create') ?>" method="post">
+                            
+                            <?= csrf_field() ?>
+                            
                             <div class="mb-3">
-                                <label for="nombre" class="form-label small text-uppercase fw-bold text-secondary">Nombre Completo</label>
-                                <input type="text" class="form-control form-control-auth" id="nombre" name="nombre" value="<?= set_value('nombre') ?>" required>
+                                <label for="username" class="form-label small text-uppercase fw-bold text-secondary">Nombre de Usuario</label>
+                                <input type="text" class="form-control form-control-auth" id="username" name="username" value="<?= old('username') ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label small text-uppercase fw-bold text-secondary">Correo Electrónico</label>
-                                <input type="email" class="form-control form-control-auth" id="email" name="email" value="<?= set_value('email') ?>" required>
+                                <input type="email" class="form-control form-control-auth" id="email" name="email" value="<?= old('email') ?>" required>
                             </div>
 
                             <div class="mb-4">

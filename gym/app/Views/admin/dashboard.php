@@ -12,8 +12,8 @@
         <div class="col-12 col-md-6 col-xl-3">
             <div class="card card-stat p-4 h-100">
                 <div class="d-flex align-items-center">
-                    <div class="icon-box icon-primary">
-                        <i class="bi bi-dumbbell"></i>
+                    <div class="icon-box icon-blue">
+                        <i class="bi bi-activity"></i>
                     </div>
                     <div>
                         <h6 class="text-muted mb-1 small text-uppercase fw-bold">Ejercicios</h6>

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
 <div class="container py-5">
     
     <div class="text-center mb-4">
@@ -5,10 +7,12 @@
         <p class="lead text-muted">Domina la técnica perfecta</p>
     </div>
 
+    <input type="hidden" class="txt_csrftoken" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
+
     <div class="mb-4">
         <div class="input-group input-group-lg shadow-sm">
             <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-warning"></i></span>
-            <input type="text" id="liveSearch" class="form-control border-start-0" 
+            <input type="text" id="autocomplete" class="form-control border-start-0" 
                    placeholder="Escribe para buscar (ej: Sentadilla)..." 
                    value="<?= esc($filtros_activos['search'] ?? '') ?>">
         </div>
@@ -57,45 +61,106 @@
     </div>
 
     <div id="resultados-ejercicios">
-        <?= $this->include('ejercicios/_grid') ?>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <?php if (!empty($ejercicios_list) && is_array($ejercicios_list)): ?>
+                <?php foreach ($ejercicios_list as $ejercicio): ?>
+                    <div class="col">
+                        <a href="<?= base_url('ejercicios/show/'.$ejercicio['id']) ?>" class="text-decoration-none text-dark">
+                            <div class="card h-100 border-0 shadow-sm card-hover overflow-hidden">
+                                
+                                <?php 
+                                    $dificultad = ucfirst(strtolower($ejercicio['dificultad'] ?? ''));
+                                    $color = match($dificultad) {
+                                        'Alta' => 'bg-danger',
+                                        'Media' => 'bg-warning text-dark',
+                                        'Baja' => 'bg-success',
+                                        default => 'bg-secondary'
+                                    };
+                                ?>
+                                <div class="position-absolute top-0 end-0 m-3 badge <?= $color ?> shadow-sm">
+                                    <?= esc($dificultad) ?>
+                                </div>
+
+                                <div style="height: 250px; background-color: #fff; display: flex; align-items: center; justify-content: center;">
+                                    <img src="<?= base_url('img/' . ($ejercicio['imagen'] ?? 'default.jpg')) ?>" 
+                                         class="mw-100 mh-100" 
+                                         style="object-fit: contain; padding: 20px;" 
+                                         alt="<?= esc($ejercicio['titulo']) ?>"
+                                         onerror="this.onerror=null;this.src='<?= base_url('img/default.jpg') ?>';">
+                                </div>
+
+                                <div class="card-body p-4 border-top">
+                                    <small class="text-muted text-uppercase fw-bold" style="font-size: 0.75rem;">
+                                        <?= esc($ejercicio['grupo_nombre'] ?? 'General') ?>
+                                    </small>
+                                    <h5 class="card-title fw-bold text-uppercase mb-2 mt-1"><?= esc($ejercicio['titulo']) ?></h5>
+                                    <p class="card-text text-muted small">
+                                        <?= esc(substr($ejercicio['descripcion'] ?? '', 0, 80)) ?>...
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="alert alert-warning text-center py-5 w-100">
+                        <i class="bi bi-search display-4 d-block mb-3"></i>
+                        No se encontraron ejercicios con estos filtros.
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <?php if (isset($total_paginas) && $total_paginas > 1): ?>
+            <div class="d-flex justify-content-center mt-5 gap-2">
+                <?php if ($pagina_actual > 1): ?>
+                    <a href="<?= current_url() ?>?page=<?= $pagina_actual - 1 ?>&search=<?= esc($filtros_activos['search'] ?? '') ?>&dificultad=<?= esc($filtros_activos['dificultad'] ?? '') ?>&grupo=<?= esc($filtros_activos['grupo'] ?? '') ?>" class="btn btn-outline-dark rounded-pill">Anterior</a>
+                <?php endif; ?>
+                <span class="d-flex align-items-center fw-bold px-3">Página <?= $pagina_actual ?> de <?= $total_paginas ?></span>
+                <?php if ($pagina_actual < $total_paginas): ?>
+                    <a href="<?= current_url() ?>?page=<?= $pagina_actual + 1 ?>&search=<?= esc($filtros_activos['search'] ?? '') ?>&dificultad=<?= esc($filtros_activos['dificultad'] ?? '') ?>&grupo=<?= esc($filtros_activos['grupo'] ?? '') ?>" class="btn btn-outline-dark rounded-pill">Siguiente</a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     </div>
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 <script>
-    const searchInput = document.getElementById('liveSearch');
-    const resultsContainer = document.getElementById('resultados-ejercicios');
-    const hiddenSearch = document.getElementById('hiddenSearch');
-    let timeout = null; 
-
-    searchInput.addEventListener('input', function() {
-        const texto = this.value;
-        hiddenSearch.value = texto; 
-
-        clearTimeout(timeout);
-
-        timeout = setTimeout(() => {
-            realizarBusqueda(texto);
-        }, 300);
-    });
-
-    function realizarBusqueda(texto) {
-        const form = document.getElementById('filterForm');
-        const formData = new FormData(form);
-        const params = new URLSearchParams(formData);
+    $(document).ready(function(){
         
-        params.set('search', texto);
+        $('#autocomplete').on('input', function() {
+            $('#hiddenSearch').val($(this).val());
+        });
 
-        fetch(`<?= base_url('ejercicios') ?>?` + params.toString(), {
-            method: 'GET',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest' 
+        $('#autocomplete').autocomplete({
+            source: function(request, response) {
+                var csrfName = $('.txt_csrftoken').attr('name');
+                var csrfHash = $('.txt_csrftoken').val();
+
+                $.ajax({
+                    url: "<?= base_url('ejercicios/autocomplete') ?>",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        search: request.term,
+                        [csrfName]: csrfHash
+                    },
+                    success: function(data) {
+                        $('.txt_csrftoken').val(data.token);
+                        response(data.data);
+                    }
+                });
+            },
+            select: function(event, ui) {
+                $('#autocomplete').val(ui.item.label);
+                window.location.href = "<?= base_url('ejercicios/show/') ?>" + ui.item.value;
+                return false;
             }
-        })
-        .then(response => response.text())
-        .then(html => {
-            resultsContainer.innerHTML = html;
-        })
-        .catch(error => console.error('Error:', error));
-    }
+        });
+    });
 </script>

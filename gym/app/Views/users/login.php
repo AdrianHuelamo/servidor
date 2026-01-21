@@ -25,6 +25,8 @@
 
                         <form action="<?= base_url('login') ?>" method="post">
                             
+                            <?= csrf_field() ?>
+                            
                             <div class="mb-3">
                                 <label for="username" class="form-label small text-uppercase fw-bold text-secondary">Usuario</label>
                                 <input type="text" 

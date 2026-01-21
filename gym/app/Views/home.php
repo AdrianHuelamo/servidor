@@ -23,7 +23,7 @@
 <div class="container py-5">
     
     <div class="mb-5">
-        <h3 class="fw-bold mb-4 text-center">🎯 Entrena por <span class="text-primary">Objetivo</span></h3>
+        <h3 class="fw-bold mb-4 text-center">Entrena por <span class="text-primary">Objetivo</span></h3>
         <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
             <?php if(!empty($grupos)): ?>
                 <?php foreach($grupos as $grupo): ?>
@@ -47,7 +47,7 @@
     <hr class="my-5 opacity-25">
 
     <div class="d-flex align-items-center mb-4 justify-content-between">
-        <h2 class="fw-bold m-0">🔥 Ejercicios <span class="text-danger">Top</span></h2>
+        <h2 class="fw-bold m-0">Ejercicios <span class="text-danger">Top</span></h2>
         <a href="<?= base_url('ejercicios') ?>" class="text-decoration-none fw-bold">Ver todos &rarr;</a>
     </div>
 
@@ -86,7 +86,7 @@
 
     <div class="d-flex align-items-center mb-4">
         <div class="bg-warning me-3" style="width: 5px; height: 30px;"></div>
-        <h2 class="fw-bold m-0">📰 Últimas <span class="text-warning">Novedades</span></h2>
+        <h2 class="fw-bold m-0">Últimas <span class="text-warning">Novedades</span></h2>
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">

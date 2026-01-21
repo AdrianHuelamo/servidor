@@ -9,46 +9,42 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 class Ejercicios extends BaseController
 {
     public function index()
-{
-    $model = model(EjercicioModel::class);
-    $grupoModel = model(GrupoModel::class);
+    {
+        $model = model(EjercicioModel::class);
+        $grupoModel = model(GrupoModel::class);
 
-    $filtros = [
-        'search'     => $this->request->getGet('search'),
-        'dificultad' => $this->request->getGet('dificultad'),
-        'grupo'      => $this->request->getGet('grupo')
-    ];
+        $filtros = [
+            'search'     => $this->request->getGet('search'),
+            'dificultad' => $this->request->getGet('dificultad'),
+            'grupo'      => $this->request->getGet('grupo')
+        ];
 
-    $paginaActual = (int) ($this->request->getGet('page') ?? 1);
-    $porPagina = 9; 
-    $offset = ($paginaActual - 1) * $porPagina;
+        $paginaActual = (int) ($this->request->getGet('page') ?? 1);
+        $porPagina = 9; 
+        $offset = ($paginaActual - 1) * $porPagina;
 
-    $totalEjercicios = $model->prepararConsulta($filtros)->countAllResults();
-    $ejercicios = $model->prepararConsulta($filtros)->findAll($porPagina, $offset);
-    $totalPaginas = ceil($totalEjercicios / $porPagina);
+        $totalEjercicios = $model->prepararConsulta($filtros)->countAllResults();
+        $ejercicios = $model->prepararConsulta($filtros)->findAll($porPagina, $offset);
+        $totalPaginas = ceil($totalEjercicios / $porPagina);
 
-    $data = [
-        'ejercicios_list'    => $ejercicios,
-        'grupos_para_filtro' => $grupoModel->findAll(),
-        'filtros_activos'    => $filtros,
-        'title'              => 'Listado de Ejercicios',
-        'pagina_actual'      => $paginaActual,
-        'total_paginas'      => $totalPaginas
-    ];
+        $data = [
+            'ejercicios_list'    => $ejercicios,
+            'grupos_para_filtro' => $grupoModel->findAll(),
+            'filtros_activos'    => $filtros,
+            'title'              => 'Listado de Ejercicios',
+            'pagina_actual'      => $paginaActual,
+            'total_paginas'      => $totalPaginas
+        ];
 
-    if ($this->request->isAJAX()) {
-        return view('ejercicios/_grid', $data);
+
+        return view('templates/header', $data)
+             . view('ejercicios/index', $data)
+             . view('templates/footer');
     }
-
-    return view('templates/header', $data)
-         . view('ejercicios/index', $data)
-         . view('templates/footer');
-}
 
     public function show($id)
     {
         $model = model(EjercicioModel::class);
-
         $ejercicio = $model->getEjercicios($id);
 
         if (empty($ejercicio)) {
@@ -64,5 +60,35 @@ class Ejercicios extends BaseController
              . view('ejercicios/detalle', $data)
              . view('templates/footer');
     }
-    
+
+    public function autocomplete()
+    {
+        $request = service('request');
+        $postData = $request->getPost();
+        
+        $response = array();
+        $data = array();
+
+        $response['token'] = csrf_hash();
+
+        if (isset($postData['search'])) {
+            $search = $postData['search'];
+            $model = new \App\Models\EjercicioModel();
+            
+            $listaEjercicios = $model->select('id, titulo')
+                                     ->like('titulo', $search)
+                                     ->orderBy('titulo', 'ASC')
+                                     ->findAll(10); 
+
+            foreach ($listaEjercicios as $ejercicio) {
+                $data[] = array(
+                    "value" => $ejercicio['id'],
+                    "label" => $ejercicio['titulo']
+                );
+            }
+        }
+
+        $response['data'] = $data;
+        return $this->response->setJSON($response);
+    }
 }

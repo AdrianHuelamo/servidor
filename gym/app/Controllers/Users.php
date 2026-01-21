@@ -95,6 +95,6 @@ class Users extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login')->with('mensaje', 'Sesión cerrada correctamente.');
+        return redirect()->to('/home')->with('mensaje', 'Sesión cerrada correctamente.');
     }
 }
