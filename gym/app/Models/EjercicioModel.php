@@ -45,4 +45,14 @@ class EjercicioModel extends Model
                     ->where('ejercicios.destacado', 1)
                     ->findAll(3);
     }
+
+    public function getFavoritosUsuario($userId)
+    {
+        return $this->select('ejercicios.*, grupos_musculares.nombre as grupo_nombre')
+                    ->join('favoritos', 'ejercicios.id = favoritos.id_ejercicio')
+                    ->join('grupos_musculares', 'ejercicios.id_grupo = grupos_musculares.id')
+                    ->where('favoritos.id_user', $userId)
+                    ->orderBy('favoritos.created_at', 'DESC') // Los más recientes primero
+                    ->findAll();
+    }
 }

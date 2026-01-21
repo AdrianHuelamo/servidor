@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="fw-bold">Noticias y Blog</h2>
-    <a href="<?= base_url('noticias/new') ?>" class="btn btn-warning fw-bold rounded-pill">
+    <a href="<?= base_url('admin/noticias/new') ?>" class="btn btn-warning fw-bold rounded-pill">
         <i class="bi bi-plus-lg"></i> Nueva Noticia
     </a>
 </div>
@@ -38,9 +38,10 @@
                             </small>
                         </td>
                         <td class="text-end pe-4">
-                            <a href="<?= base_url('noticias/edit/' . $noticia['id']) ?>" class="btn btn-sm btn-outline-primary me-1">
+                            <a href="<?= base_url('admin/noticias/edit/' . $noticia['id']) ?>" class="btn btn-sm btn-outline-primary me-1">
                                 <i class="bi bi-pencil"></i>
                             </a>
+                            
                             <a href="<?= base_url('admin/noticias/delete/' . $noticia['id']) ?>" 
                                class="btn btn-sm btn-outline-danger"
                                onclick="return confirm('¿Borrar esta noticia permanentemente?');">

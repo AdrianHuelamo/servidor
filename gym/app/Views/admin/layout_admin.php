@@ -38,6 +38,13 @@
                     <i class="bi bi-newspaper"></i> Noticias
                 </a>
             </li>
+
+            <li>
+                <a href="<?= base_url('admin/rutinas') ?>" class="<?= str_contains(uri_string(), 'rutinas') ? 'active' : '' ?>">
+                    <i class="bi bi-journal-text"></i> Rutinas
+                </a>
+            </li>
+
             <li>
                 <a href="<?= base_url('admin/usuarios') ?>" class="<?= str_contains(uri_string(), 'usuarios') ? 'active' : '' ?>">
                     <i class="bi bi-people"></i> Usuarios

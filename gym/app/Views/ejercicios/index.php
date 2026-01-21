@@ -65,9 +65,19 @@
             <?php if (!empty($ejercicios_list) && is_array($ejercicios_list)): ?>
                 <?php foreach ($ejercicios_list as $ejercicio): ?>
                     <div class="col">
-                        <a href="<?= base_url('ejercicios/show/'.$ejercicio['id']) ?>" class="text-decoration-none text-dark">
-                            <div class="card h-100 border-0 shadow-sm card-hover overflow-hidden">
-                                
+                        <div class="card h-100 border-0 shadow-sm card-hover overflow-hidden position-relative">
+                            
+                            <div class="position-absolute top-0 start-0 m-3" style="z-index: 5;">
+                                <a href="<?= base_url('ejercicios/favorito/'.$ejercicio['id']) ?>" class="text-decoration-none">
+                                    <?php if(in_array($ejercicio['id'], $mis_favoritos ?? [])): ?>
+                                        <i class="bi bi-heart-fill text-danger fs-4 shadow-sm"></i>
+                                    <?php else: ?>
+                                        <i class="bi bi-heart text-danger fs-4 bg-white rounded-circle px-1 shadow-sm opacity-75"></i>
+                                    <?php endif; ?>
+                                </a>
+                            </div>
+
+                            <a href="<?= base_url('ejercicios/show/'.$ejercicio['id']) ?>" class="text-decoration-none text-dark">
                                 <?php 
                                     $dificultad = ucfirst(strtolower($ejercicio['dificultad'] ?? ''));
                                     $color = match($dificultad) {
@@ -98,8 +108,8 @@
                                         <?= esc(substr($ejercicio['descripcion'] ?? '', 0, 80)) ?>...
                                     </p>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>

@@ -19,11 +19,22 @@
             
             <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
                 
-                <div class="mb-3">
-                    <span class="badge bg-primary mb-2"><?= esc($ejercicio['grupo_nombre']) ?></span>
-                    <?php if($ejercicio['destacado']): ?>
-                        <span class="badge bg-warning text-dark">🔥 Destacado</span>
-                    <?php endif; ?>
+                <div class="mb-3 d-flex justify-content-between align-items-start">
+                    <div>
+                        <span class="badge bg-primary mb-2"><?= esc($ejercicio['grupo_nombre']) ?></span>
+                        <?php if($ejercicio['destacado']): ?>
+                            <span class="badge bg-warning text-dark">🔥 Destacado</span>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <a href="<?= base_url('ejercicios/favorito/'.$ejercicio['id']) ?>" 
+                       class="btn <?= ($es_favorito) ? 'btn-danger' : 'btn-outline-danger' ?> rounded-pill fw-bold">
+                        <?php if($es_favorito): ?>
+                            <i class="bi bi-heart-fill me-2"></i> Guardado
+                        <?php else: ?>
+                            <i class="bi bi-heart me-2"></i> Guardar Favorito
+                        <?php endif; ?>
+                    </a>
                 </div>
 
                 <h1 class="display-4 fw-bold mb-3"><?= esc($ejercicio['titulo']) ?></h1>

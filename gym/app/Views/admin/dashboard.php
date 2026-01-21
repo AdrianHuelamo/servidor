@@ -10,59 +10,67 @@
     <div class="row g-4 mb-5">
         
         <div class="col-12 col-md-6 col-xl-3">
-            <div class="card card-stat p-4 h-100">
-                <div class="d-flex align-items-center">
-                    <div class="icon-box icon-blue">
-                        <i class="bi bi-activity"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Ejercicios</h6>
-                        <h2 class="mb-0 fw-bold"><?= $total_ejercicios ?></h2>
+            <a href="<?= base_url('admin/ejercicios') ?>" class="text-decoration-none text-dark">
+                <div class="card card-stat p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box icon-blue">
+                            <i class="bi bi-activity"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1 small text-uppercase fw-bold">Ejercicios</h6>
+                            <h2 class="mb-0 fw-bold"><?= $total_ejercicios ?></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="col-12 col-md-6 col-xl-3">
-            <div class="card card-stat p-4 h-100">
-                <div class="d-flex align-items-center">
-                    <div class="icon-box icon-success">
-                        <i class="bi bi-layers"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Grupos</h6>
-                        <h2 class="mb-0 fw-bold"><?= $total_grupos ?></h2>
+            <a href="<?= base_url('admin/grupos') ?>" class="text-decoration-none text-dark">
+                <div class="card card-stat p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box icon-success">
+                            <i class="bi bi-layers"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1 small text-uppercase fw-bold">Grupos</h6>
+                            <h2 class="mb-0 fw-bold"><?= $total_grupos ?></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="col-12 col-md-6 col-xl-3">
-            <div class="card card-stat p-4 h-100">
-                <div class="d-flex align-items-center">
-                    <div class="icon-box icon-warning">
-                        <i class="bi bi-newspaper"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Noticias</h6>
-                        <h2 class="mb-0 fw-bold"><?= $total_noticias ?></h2>
+            <a href="<?= base_url('admin/noticias') ?>" class="text-decoration-none text-dark">
+                <div class="card card-stat p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box icon-warning">
+                            <i class="bi bi-newspaper"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1 small text-uppercase fw-bold">Noticias</h6>
+                            <h2 class="mb-0 fw-bold"><?= $total_noticias ?></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="col-12 col-md-6 col-xl-3">
-            <div class="card card-stat p-4 h-100">
-                <div class="d-flex align-items-center">
-                    <div class="icon-box icon-info">
-                        <i class="bi bi-people"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1 small text-uppercase fw-bold">Usuarios</h6>
-                        <h2 class="mb-0 fw-bold"><?= $total_usuarios ?? 0 ?></h2>
+            <a href="<?= base_url('admin/usuarios') ?>" class="text-decoration-none text-dark">
+                <div class="card card-stat p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box icon-info">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1 small text-uppercase fw-bold">Usuarios</h6>
+                            <h2 class="mb-0 fw-bold"><?= $total_usuarios ?? 0 ?></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 

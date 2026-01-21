@@ -1,8 +1,9 @@
 <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-5 border-bottom pb-3">
-        <h1 class="fw-bold">Últimas <span class="text-warning">Novedades</span></h1>
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5">Últimas <span class="text-warning">Novedades</span></h1>
         <span class="text-muted">Blog de Fitness</span>
     </div>
+
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <?php if (!empty($noticias) && is_array($noticias)): ?>

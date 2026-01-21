@@ -41,6 +41,13 @@
         <li class="nav-item">
             <a class="nav-link fs-5 text-white" href="<?= base_url('noticias') ?>">Noticias</a>
         </li>
+
+        <?php if (session()->has('isLoggedIn') && session()->get('rol') != 1): ?>
+            <li class="nav-item">
+                <a class="nav-link fs-5 text-white" href="<?= base_url('rutinas') ?>">Mis Rutinas</a>
+            </li>
+        <?php endif; ?>
+
       </ul>
       
       <div class="d-flex gap-2 mt-3 mt-lg-0 align-items-center">
@@ -60,8 +67,11 @@
                         <li><hr class="dropdown-divider"></li>
                     <?php endif; ?>
                     
-                    <li><a class="dropdown-item" href="#">Mis Favoritos</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <?php if(session()->get('rol') != 1): ?>
+                        <li><a class="dropdown-item" href="<?= base_url('mis-favoritos') ?>">Mis Favoritos</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    <?php endif; ?>
+                    
                     <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>">Cerrar Sesión</a></li>
                 </ul>
             </div>
