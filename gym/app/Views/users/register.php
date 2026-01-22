@@ -46,7 +46,7 @@
                         </form>
 
                         <div class="text-center mt-3">
-                            <small class="text-muted">¿Ya tienes cuenta? 
+                            <small class="text">¿Ya tienes cuenta? 
                                 <a href="<?= base_url('login') ?>" class="text-link-warning">Inicia sesión</a>
                             </small>
                         </div>

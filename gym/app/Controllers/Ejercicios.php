@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\EjercicioModel;
 use App\Models\GrupoModel;
-use App\Models\FavoritoModel; // <--- IMPORTANTE
+use App\Models\FavoritoModel;
 
 class Ejercicios extends BaseController
 {
@@ -12,7 +12,7 @@ class Ejercicios extends BaseController
     {
         $model = model(EjercicioModel::class);
         $grupoModel = model(GrupoModel::class);
-        $favoritoModel = new FavoritoModel(); // <---
+        $favoritoModel = new FavoritoModel(); 
 
         $filtros = [
             'search'     => $this->request->getGet('search'),
@@ -21,18 +21,16 @@ class Ejercicios extends BaseController
         ];
 
         $paginaActual = (int) ($this->request->getGet('page') ?? 1);
-        $porPagina = 9; 
+        $porPagina = 6; 
         $offset = ($paginaActual - 1) * $porPagina;
 
         $totalEjercicios = $model->prepararConsulta($filtros)->countAllResults();
         $ejercicios = $model->prepararConsulta($filtros)->findAll($porPagina, $offset);
         $totalPaginas = ceil($totalEjercicios / $porPagina);
 
-        // --- NUEVO: Obtener los IDs de los ejercicios favoritos del usuario ---
         $misFavoritos = [];
         if (session()->has('isLoggedIn')) {
             $favs = $favoritoModel->where('id_user', session()->get('user_id'))->findAll();
-            // Convertimos la lista de objetos en un array simple de IDs: [1, 5, 8]
             $misFavoritos = array_column($favs, 'id_ejercicio');
         }
 
@@ -43,7 +41,7 @@ class Ejercicios extends BaseController
             'title'              => 'Listado de Ejercicios',
             'pagina_actual'      => $paginaActual,
             'total_paginas'      => $totalPaginas,
-            'mis_favoritos'      => $misFavoritos // <--- Pasamos esto a la vista
+            'mis_favoritos'      => $misFavoritos 
         ];
 
         return view('templates/header', $data)
@@ -62,7 +60,6 @@ class Ejercicios extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        // --- NUEVO: Comprobar estado favorito para este ejercicio ---
         $esFavorito = false;
         if (session()->has('isLoggedIn')) {
             $check = $favoritoModel->esFavorito(session()->get('user_id'), $id);
@@ -72,7 +69,7 @@ class Ejercicios extends BaseController
         $data = [
             'ejercicio'   => $ejercicio,
             'title'       => $ejercicio['titulo'],
-            'es_favorito' => $esFavorito // <--- Lo pasamos a la vista
+            'es_favorito' => $esFavorito 
         ];
 
         return view('templates/header', $data)
@@ -148,7 +145,8 @@ class Ejercicios extends BaseController
 
             foreach ($listaEjercicios as $ejercicio) {
                 $data[] = array(
-                    "value" => $ejercicio['id'],
+                    "id" => $ejercicio['id'],
+                    "value" => $ejercicio['titulo'],
                     "label" => $ejercicio['titulo']
                 );
             }

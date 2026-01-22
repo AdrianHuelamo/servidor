@@ -41,6 +41,11 @@ class Admin extends BaseController
         return view('admin/ejercicios/index', $data);
     }
 
+    public function newEjercicio()
+    {
+        return view('admin/ejercicios/create');
+    }
+
     public function createEjercicio()
     {
         if (!$this->validate([

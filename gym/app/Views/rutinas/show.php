@@ -142,7 +142,7 @@
                 });
             },
             select: function(event, ui) {
-                $('#inputIDEjercicio').val(ui.item.value);
+                $('#inputIDEjercicio').val(ui.item.id);
                 $('#formAddEjercicio').submit();
                 return false;
             }

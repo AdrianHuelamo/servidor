@@ -168,7 +168,7 @@
             },
             select: function(event, ui) {
                 $('#autocomplete').val(ui.item.label);
-                window.location.href = "<?= base_url('ejercicios/show/') ?>" + ui.item.value;
+                window.location.href = "<?= base_url('ejercicios/show/') ?>" + ui.item.id;
                 return false;
             }
         });

@@ -13,7 +13,7 @@
                 <ul class="list-unstyled">
                     <li><a href="<?= base_url('ejercicios') ?>" class="text-white-50 text-decoration-none">Ejercicios</a></li>
                     <li><a href="<?= base_url('grupos') ?>" class="text-white-50 text-decoration-none">Grupos Musculares</a></li>
-                    <li><a href="<?= base_url('noticias') ?>" class="text-white-50 text-decoration-none">Blog</a></li>
+                    <li><a href="<?= base_url('noticias') ?>" class="text-white-50 text-decoration-none">Noticias</a></li>
                 </ul>
             </div>
             <div class="col-md-4 mb-4">
@@ -27,7 +27,7 @@
         </div>
         <hr class="border-secondary">
         <div class="text-center text-white-50 small">
-            &copy; 2024 GymFit Project. Desarrollado con CodeIgniter 4.
+            &copy; <?php echo date('Y'); ?> GymFit Project. Desarrollado con CodeIgniter 4.
         </div>
     </div>
 </footer>

@@ -55,7 +55,7 @@
                         </form>
 
                         <div class="text-center mt-3">
-                            <small class="text-muted">¿No tienes cuenta? 
+                            <small class="text">¿No tienes cuenta? 
                                 <a href="<?= base_url('registro') ?>" class="text-link-warning">Regístrate</a>
                             </small>
                         </div>

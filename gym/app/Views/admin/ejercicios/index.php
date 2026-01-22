@@ -192,7 +192,7 @@
             },
             select: function(event, ui) {
                 $('#autocomplete').val(ui.item.label);
-                window.location.href = "<?= base_url('admin/ejercicios/edit/') ?>" + ui.item.value;
+                window.location.href = "<?= base_url('admin/ejercicios/edit/') ?>" + ui.item.id;
                 return false;
             }
         });
