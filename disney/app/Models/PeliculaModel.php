@@ -4,25 +4,30 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PersonajeModel extends Model
+class PeliculasModel extends Model
 {
-    protected $table = 'personajes';
-    protected $allowedFields = ['nombre','especie','rol','id_pelicula'];
+    protected $table = 'peliculas';
     protected $primaryKey = 'id';
+    protected $allowedFields = ['titulo, anio_estreno'];
+
+
     /**
-     * @param false|string $id
+     * @param false|int $id
      *
      * @return array|null
      */
 
-    public function getPersonajes($id = false)
+    public function getPeliculas($id = false)
     {
-        $builder = $this->select('personajes.id, personajes.nombre as personaje_nombre, personajes.id_pelicula, peliculas.nombre as pelicula_nombre') ->join('peliculas', 'personajes.id_pelicula = peliculas.id');
-
         if ($id === false) {
-            return $builder->findAll();
+            $sql = $this->select('peliculas.*');
+            $sql = $this->findAll();
+            return $sql;
         }
 
-        return $builder->where('personajes.id', $id)->first();
+        $sql = $this->select('peliculas.*');
+        $sql = $this->where(['id' => $id]);
+        $sql = $this->first();
+        return $sql;
     }
 }
