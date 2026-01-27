@@ -4,8 +4,8 @@
     <?= session()->getFlashdata('error') ?>
     <?= validation_list_errors() ?>
 
-    <?php if (!empty($personajes) && is_array($personajes)):?>
-    <form method="post" action="./updated/<?= esc($personajes['id']) ?>">
+    <?php if (!empty($personaje) && is_array($personaje)):?>
+    <form method="post" action="./updated/<?= esc($personaje['id']) ?>">
         <?= csrf_field() ?>
 
         <label for="nombre">Nombre</label>
@@ -15,10 +15,10 @@
 
         <label for="pelicula">Pelicula</label>
         <select name="id_pelicula">
-            <?php if(! empty($nombre) && is_array($nombre)): ?>
-            <?php foreach($nombre as $pelicula_item):?>
+            <?php if(! empty($pelicula) && is_array($pelicula)): ?>
+            <?php foreach($pelicula as $pelicula_item):?>
             <option value="<?= $pelicula_item['id']?>">
-                <?= $pelicula_item['nombre']?>
+                <?= $pelicula_item['titulo']?>
             </option>
             <?php endforeach;?>
             <?php endif; ?>

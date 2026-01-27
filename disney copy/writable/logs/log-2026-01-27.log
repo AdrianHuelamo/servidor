@@ -1,0 +1,113 @@
+ERROR - 2026-01-27 10:34:02 --> mysqli_sql_exception: Unknown column 'peliculas.nombre' in 'field list' in /var/www/html/adrian/servidor/disney/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /var/www/html/adrian/servidor/disney/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /var/www/html/adrian/servidor/disney/system/Database/BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /var/www/html/adrian/servidor/disney/system/Database/BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /var/www/html/adrian/servidor/disney/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/adrian/servidor/disney/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/adrian/servidor/disney/system/BaseModel.php(677): CodeIgniter\Model->doFindAll()
+#6 /var/www/html/adrian/servidor/disney/app/Models/PersonajeModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/adrian/servidor/disney/app/Controllers/Personajes.php(15): App\Models\PersonajeModel->getPersonajes()
+#8 /var/www/html/adrian/servidor/disney/system/CodeIgniter.php(933): App\Controllers\Personajes->index()
+#9 /var/www/html/adrian/servidor/disney/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#10 /var/www/html/adrian/servidor/disney/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#11 /var/www/html/adrian/servidor/disney/system/Boot.php(363): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/adrian/servidor/disney/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#13 /var/www/html/adrian/servidor/disney/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#14 {main}
+CRITICAL - 2026-01-27 10:34:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'peliculas.nombre' in 'field list'
+[Method: GET, Route: /]
+in SYSTEMPATH/Database/BaseConnection.php on line 684.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(677): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/PersonajeModel.php(23): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Personajes.php(15): App\Models\PersonajeModel->getPersonajes()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Personajes->index()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-01-27 10:34:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'peliculas.nombre' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(677): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/PersonajeModel.php(23): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Personajes.php(15): App\Models\PersonajeModel->getPersonajes()
+ 8 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Personajes->index()
+ 9 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-01-27 10:34:02 --> [Caused by] mysqli_sql_exception: Unknown column 'peliculas.nombre' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(677): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/PersonajeModel.php(23): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Personajes.php(15): App\Models\PersonajeModel->getPersonajes()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Personajes->index()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-01-27 12:41:22 --> ErrorException: Undefined variable $personajes_item
+[Method: GET, Route: personajes/1]
+in APPPATH/Views/personajes/view.php on line 5.
+ 1 APPPATH/Views/personajes/view.php(5): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/html/adrian/servidor/disney/app/Views/personajes/view.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():223}()
+ 4 SYSTEMPATH/Common.php(1199): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Personajes.php(110): view()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Personajes->show()
+ 7 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-01-27 12:46:59 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\PersonajeModel::getPersonaje
+[Method: GET, Route: personajes/update/1]
+in SYSTEMPATH/Model.php on line 927.
+ 1 APPPATH/Controllers/Personajes.php(57): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Personajes->update()
+ 3 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-01-27 12:49:57 --> Error: Call to a member function findAll() on null
+[Method: GET, Route: personajes/update/1]
+in APPPATH/Controllers/Personajes.php on line 58.
+ 1 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Personajes->update()
+ 2 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-01-27 12:50:36 --> Error: Call to a member function getPeliculas() on null
+[Method: GET, Route: personajes/update/1]
+in APPPATH/Controllers/Personajes.php on line 58.
+ 1 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Personajes->update()
+ 2 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 3 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-01-27 19:39:48 --> Error: Call to a member function getPeliculas() on null
+[Method: GET, Route: personajes/update/1]
+in APPPATH\Controllers\Personajes.php on line 58.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Personajes->update('1')
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Personajes))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
