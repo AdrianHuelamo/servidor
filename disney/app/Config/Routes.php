@@ -14,5 +14,5 @@ $routes->get('personajes/new', [Personajes::class, 'new']);
 $routes->post('personajes', [Personajes::class, 'create']);
 $routes->post('personajes/update/updated/(:num)', [Personajes::class, 'updatedItem']);
 $routes->get('personajes/update/(:num)', [Personajes::class, 'update']);
-$routes->get('personajes/del/(:num)', [Personajes::class, 'updatedItem']);
+$routes->get('personajes/del/(:num)', [Personajes::class, 'delete']);
 $routes->get('personajes/(:num)', [Personajes::class, 'show']);

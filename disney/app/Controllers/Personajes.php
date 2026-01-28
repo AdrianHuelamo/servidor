@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\PersonajesModel;
-use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Models\PeliculasModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Personajes extends BaseController
 {

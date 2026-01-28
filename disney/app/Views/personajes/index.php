@@ -4,12 +4,12 @@
 
     <?php foreach ($personajes_list as $personajes_item): ?>
 
-    <h3><?= esc($personajes_item['personaje_nombre']) ?></h3>
+    <h3><a href="<?= base_url('personajes/'.$personajes_item['id']) ?>"><?= esc($personajes_item['personaje_nombre']) ?></a></h3>
     <div class="main">
     </div>
     <h4>Pelicula: : <?= esc($personajes_item['pelicula_nombre'])?></h4>
     <div style="display:flex;gap:10px;">
-        <p><a href="<?= base_url('personajes/'.$personajes_item['id'])?>">Ver Detalles</a></p>
+        <!-- <p><a href="<?= base_url('personajes/'.$personajes_item['id'])?>">Ver Detalles</a></p> -->
         
     </div>
 

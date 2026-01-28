@@ -7,8 +7,9 @@ use CodeIgniter\Model;
 class PersonajesModel extends Model
 {
     protected $table = 'personajes';
-    protected $allowedFields = ['nombre','especie','rol','id_pelicula'];
     protected $primaryKey = 'id';
+    protected $allowedFields = ['nombre','especie','rol','id_pelicula'];
+    
     /**
      * @param false|string $id
      *

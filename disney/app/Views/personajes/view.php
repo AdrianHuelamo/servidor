@@ -1,6 +1,6 @@
 <section>
-    <h2><?= esc($personajes['personaje_nombre']) ?></h2>
-    <h3><?= esc($personajes['pelicula_nombre']) ?></h3>
+    <h2>Personaje: <?= esc($personajes['personaje_nombre']) ?></h2>
+    <h3>Película: <?= esc($personajes['pelicula_nombre']) ?></h3>
 
     <p><a href=<?= base_url('personajes/update/'.$personajes['id'])?>>Actualizar personaje</a></p>
     <p><a href=<?= base_url('personajes/del/'.$personajes['id'])?>>Eliminar personaje</a></p>

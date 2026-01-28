@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CancionesModel;
 use App\Models\CantantesModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Canciones extends BaseController
 {
